@@ -7,7 +7,7 @@ import { HashLink } from 'react-router-hash-link'
 const Hero = () => {
 	const [text, count] = useTypewriter({
 		words: [
-			"The name is Shivam Taneja",
+			"Thy name's Shivam Taneja",
 			"Guy-who-loves-Games.jsx",
 			"<FrontEndDeveloper />",
 			"Opse, Almost forgot to say 'Hello World!'"
@@ -25,22 +25,22 @@ const Hero = () => {
 			/>
 			<div className='z-20'>
 				<h2 className='text-sm uppercase text-gray-500 pb-2 tracking-[15px]'>Upcoming Engineer</h2>
-				<h1 className='text-5xl lg:text-6xl font-semibold px-10'>
+				<h1 className='text-3xl lg:text-6xl font-semibold px-10'>
 					<span className='mr-3'>{text}</span>
 					<Cursor cursorColor='#2525ba' />
 				</h1>
 				<div className='pt-5'>
 					<HashLink to="#about">
-						<button className='heroButton'>About</button>
+						<button className='heroButton'>&lt; About &gt;</button>
 					</HashLink>
 					<HashLink to="#experience">
-						<button className='heroButton'>Experience</button>
+						<button className='heroButton'>&lt; Experience &gt;</button>
 					</HashLink>
 					<HashLink to="#skills">
-						<button className='heroButton'>Skills</button>
+						<button className='heroButton'>&lt; Skills &gt;</button>
 					</HashLink>
 					<HashLink to="#projects">
-						<button className='heroButton'>Projects</button>
+						<button className='heroButton'>&lt; Projects &gt;</button>
 					</HashLink>
 				</div>
 			</div>

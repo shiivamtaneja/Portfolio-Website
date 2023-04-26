@@ -20,11 +20,18 @@ const Header = () => {
 					duration: 1.25
 				}}
 				className='flex flex-row items-center'>
-				{/* Social Icons */}
 				<SocialIcon
 					url="https://www.linkedin.com/in/shivam-taneja/"
 					fgColor='gray'
-					bgColor='transparent' />
+					bgColor='transparent'
+					target='_blank'
+				/>
+				<SocialIcon
+					url="https://github.com/shiivamtaneja"
+					fgColor='gray'
+					bgColor='transparent'
+					target='_blank'
+				/>
 			</motion.div>
 			<motion.div
 				initial={{
