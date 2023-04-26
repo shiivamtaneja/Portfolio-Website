@@ -12,7 +12,7 @@ function App() {
         <Hero />
       </section>
 
-      <section id="about" className="snap-center">
+      <section id="about">
         <About />
       </section>
     </div>
