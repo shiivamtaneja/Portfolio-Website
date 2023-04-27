@@ -20,8 +20,11 @@ const NavabarBig = () => {
         transition={{
           duration: 1.25
         }}
-        className='flex flex-row items-center'
+        className='flex flex-row'
       >
+        <Link to="/">
+          <button className='text-2xl font-bold text-gray-900 dark:text-gray-100' >Shivam</button><span className='text-color'>T</span>
+        </Link>
         <SocialIcon
           url="https://www.linkedin.com/in/shivam-taneja/"
           fgColor='gray'

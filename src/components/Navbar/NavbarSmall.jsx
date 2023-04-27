@@ -81,6 +81,9 @@ const NavbarSmall = () => {
         <div
           className='flex flex-col items-start'
         >
+          <Link to="/">
+            <button className='heroButton mt-3 w-48'>&lt; Home &gt;</button>
+          </Link>
           <Link to="about">
             <button className='heroButton mt-3 w-48'>&lt; About &gt;</button>
           </Link>
