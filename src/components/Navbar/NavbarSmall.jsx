@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { SocialIcon } from 'react-social-icons'
 import { Link } from 'react-router-dom'
+import { BsArrowDown } from 'react-icons/bs'
 
 const NavbarSmall = () => {
   const [click, setClick] = useState(false)
@@ -95,6 +96,9 @@ const NavbarSmall = () => {
           </Link>
           <Link to="projects">
             <button className='heroButton mt-3 w-48'>&lt; Projects &gt;</button>
+          </Link>
+          <Link to="https://docs.google.com/document/d/1YENkp8cUtNu1nf5u2vlASaijolYPulJJ/edit" target='_blank'>
+            <button className='heroButton cursor-pointer flex items-center mt-3 w-48 justify-center'>Resume <BsArrowDown /></button>
           </Link>
         </div>
         <div className='flex items-center cursor-pointer justify-center'>

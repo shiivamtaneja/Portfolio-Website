@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { SocialIcon } from 'react-social-icons'
 import { Link } from 'react-router-dom'
+import { BsArrowDown } from 'react-icons/bs';
 
 const NavabarBig = () => {
   return (
@@ -65,6 +66,24 @@ const NavabarBig = () => {
         </Link>
         <Link to="projects">
           <button className='heroButton '>&lt; Projects &gt;</button>
+        </Link>
+      </motion.div>
+      <motion.div
+        initial={{
+          x: 500,
+          opacity: 0,
+          scale: 0.5
+        }}
+        animate={{
+          x: 0,
+          opacity: 1,
+          scale: 1
+        }}
+        transition={{
+          duration: 1.25
+        }}>
+        <Link to="https://docs.google.com/document/d/1YENkp8cUtNu1nf5u2vlASaijolYPulJJ/edit" target='_blank'>
+          <button className='cursor-pointer flex items-center '>Resume <BsArrowDown /></button>
         </Link>
       </motion.div>
       <motion.div

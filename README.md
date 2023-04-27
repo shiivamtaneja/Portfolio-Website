@@ -17,6 +17,7 @@ The portfolio website is hosted on the web and can be accessed using the followi
 - Framer Motion
 - React Simple Typerwriter
 - React Social Icons
+- React Icons
 
 ## Features 
 
