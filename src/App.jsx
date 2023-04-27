@@ -1,21 +1,25 @@
-import About from "./components/About"
-import Header from "./components/Header"
-import Hero from "./components/Hero"
+import { RouterProvider, Routes, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
+import { Route } from "react-router-dom"
+import Layouts from "./layouts/Layouts"
+import Hero from "./pages/Hero"
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<Layouts />}> 
+      <Route index element={<Hero />}/>
+      <Route path="about" element={""} />
+      <Route path="experience" element={""} />
+      <Route path="skills" element={""} />
+      <Route path="projects" element={""} />
+
+    </Route>
+  )
+)
 
 function App() {
   return (
-    <div className="bg-[#242424] text-white h-screen snap-y snap-proximity overflow-scroll z-0">
-      
-      <Header />
-      
-      <section id="hero" className="snap-start">
-        <Hero />
-      </section>
-
-      <section id="about">
-        <About />
-      </section>
-    </div>
+    <RouterProvider router={router} />
   )
 }
 

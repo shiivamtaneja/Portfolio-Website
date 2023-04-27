@@ -14,7 +14,8 @@ const About = () => {
       transition={{
         duration: 1.5
       }}
-      className='flex flex-col relative h-screen text-center md:text-left md:flex-col lg:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center'>
+      className='flex flex-col relative h-screen text-center md:text-left md:flex-col lg:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center'
+    >
       <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>About Me</h3>
 
       <motion.img
@@ -38,8 +39,8 @@ const About = () => {
       <div className='space-y-10 px-0 md:px-10 mt-20 md:mt-0'>
         <h4 className='text-3xl font-semibold underline decoration-[#FFAA00]'>I love Design, Technology and Experimentation</h4>
         <p className='text-left'>
-          I'm a 20-year-old B-Tech College student from India who loves experimenting with cutting-edge technologies. 
-          I'm passionate about innovative technology, creativity, software engineering and UI/UX. Along with this, I am also fascinated by gaming, content creation, and video editing. I thrive on taking on new challenges and enjoy playing with codes to expand my knowledge. 
+          I'm a 20-year-old B-Tech College student from India who loves experimenting with cutting-edge technologies.
+          I'm passionate about innovative technology, creativity, software engineering and UI/UX. Along with this, I am also fascinated by gaming, content creation, and video editing. I thrive on taking on new challenges and enjoy playing with codes to expand my knowledge.
           In just a year, I have developed a solid foundation in web development, particularly in HTML, CSS, and JS. I actively pursue my interests by freelancing in Graphic Design and Video Editing, and I have over three years of experience working with major creators.
           To broaden my skill set, I'm currently learning more about back-end development. I take pride in being able to get things done and am always eager to learn more.
         </p>
