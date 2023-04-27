@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const NavabarBig = () => {
   return (
-    <header className='sticky top-0 p-5 flex flex-col items-start justify-center lg:flex-row lg:max-w-7xl lg:justify-between lg:mx-auto z-20 lg:items-center '>
+    <header className='sticky top-0 p-5 flex justify-between flex-row max-w-7xl mx-auto z-20 items-center '>
       <motion.div
         initial={{
           x: -500,
@@ -49,19 +49,19 @@ const NavabarBig = () => {
         transition={{
           duration: 1.25
         }}
-        className='flex flex-col lg:flex-row items-baseline lg:items-center'
+        className='flex flex-row items-center'
       >
         <Link to="about">
           <button className='heroButton'>&lt; About &gt;</button>
         </Link>
         <Link to="experience">
-          <button className='heroButton mt-3 lg:mt-0'>&lt; Experience &gt;</button>
+          <button className='heroButton '>&lt; Experience &gt;</button>
         </Link>
         <Link to="skills">
-          <button className='heroButton mt-3 lg:mt-0'>&lt; Skills &gt;</button>
+          <button className='heroButton '>&lt; Skills &gt;</button>
         </Link>
         <Link to="projects">
-          <button className='heroButton mt-3 lg:mt-0'>&lt; Projects &gt;</button>
+          <button className='heroButton '>&lt; Projects &gt;</button>
         </Link>
       </motion.div>
       <motion.div

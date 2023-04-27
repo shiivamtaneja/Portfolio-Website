@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      {width >= 780 ? <NavabarBig /> : <NavbarSmall />}
+      {width >= 824 ? <NavabarBig /> : <NavbarSmall />}
     </>
   )
 }
