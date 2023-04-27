@@ -85,7 +85,7 @@ const NavabarBig = () => {
           fgColor='gray'
           bgColor='transparent'
         />
-        <p className='uppercase md:inline-flex text-sm text-gray-400'>Get in Touch</p>
+        <p className='uppercase inline-flex text-sm text-gray-400'>Get in Touch</p>
       </motion.div>
     </header>
   )

@@ -64,11 +64,12 @@ const NavbarSmall = () => {
           </button>
         </motion.div>
       </div>
-      {click ? <motion.div initial={{
-        y: -100,
-        opacity: 0,
-        scale: 0.5
-      }}
+      {click ? <motion.div
+        initial={{
+          y: -100,
+          opacity: 0,
+          scale: 0.5
+        }}
         animate={{
           y: 0,
           opacity: 1,
@@ -76,7 +77,7 @@ const NavbarSmall = () => {
         }}
         transition={{
           duration: .5
-        }} className='flex flex-col items-center border-t-4'>
+        }} className='flex flex-col items-center border-t-4 bg-black'>
         <div
           className='flex flex-col items-start'
         >
