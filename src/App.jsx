@@ -2,11 +2,11 @@ import { RouterProvider, Routes, createBrowserRouter, createRoutesFromElements }
 import { Route } from "react-router-dom"
 import Layouts from "./layouts/Layouts"
 import Hero from "./pages/Hero"
-import About from "./pages/About"
-import WorkExperience from "./pages/WorkExperience"
-import Skills from "./pages/Skills"
-import Projects from "./pages/Projects"
-import Contact from "./pages/Contact"
+import About from "./pages/About/index"
+import WorkExperience from "./pages/Experience/WorkExperience"
+import Skills from "./pages/Skills/index"
+import Projects from "./pages/Project/index"
+import Contact from "./pages/Contact/index"
 
 
 const router = createBrowserRouter(
