@@ -11,7 +11,7 @@ const NavbarSmall = () => {
   }
 
   return (
-    <header className='sticky top-0 p-5 flex flex-col justify-between mx-auto z-20 '>
+    <header className='sticky top-0 p-5 flex flex-col mx-auto z-20 '>
       <div className='flex flex-row justify-between'>
         <motion.div
           initial={{
@@ -102,13 +102,17 @@ const NavbarSmall = () => {
           </Link>
         </div>
         <div className='flex items-center cursor-pointer justify-center'>
-          <SocialIcon
-            className='cursor-pointer'
-            network='email'
-            fgColor='gray'
-            bgColor='transparent'
-          />
-          <p className='uppercase text-sm text-gray-400'>Get in Touch</p>
+          <Link to="/contact">
+            <div>
+              <SocialIcon
+                className='cursor-pointer'
+                network='email'
+                fgColor='gray'
+                bgColor='transparent'
+              />
+              <p className='uppercase inline-flex text-sm text-gray-400'>Get in Touch</p>
+            </div>
+          </Link>
         </div>
       </motion.div> : <></>}
     </header>

@@ -6,6 +6,7 @@ import About from "./pages/About"
 import WorkExperience from "./pages/WorkExperience"
 import Skills from "./pages/Skills"
 import Projects from "./pages/Projects"
+import Contact from "./pages/Contact"
 
 
 const router = createBrowserRouter(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path="experience" element={<WorkExperience />} />
       <Route path="skills" element={<Skills />} />
       <Route path="projects" element={<Projects />} />
+      <Route path="contact" element={<Contact />} />
 
     </Route>
   )
