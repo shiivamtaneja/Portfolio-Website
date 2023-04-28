@@ -18,6 +18,8 @@ The portfolio website is hosted on the web and can be accessed using the followi
 - React Simple Typerwriter
 - React Social Icons
 - React Icons
+- Email JS
+- React Toastify
 
 ## Features 
 
