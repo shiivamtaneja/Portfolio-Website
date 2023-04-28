@@ -38,7 +38,7 @@ const About = () => {
       />
       <div className='space-y-10 px-0 md:px-10 mt-20 md:mt-0 z-10'>
         <h4 className='text-3xl font-semibold underline decoration-[#FFAA00]'>I love Design, Technology and Experimentation</h4>
-        <p className='text-left pb-20'>
+        <p className='text-left pb-20 md:pb-32'>
           I'm a 20-year-old B-Tech College student from India who loves experimenting with cutting-edge technologies.
           I'm passionate about innovative technology, creativity, software engineering and UI/UX. Along with this, I am also fascinated by gaming, content creation, and video editing. I thrive on taking on new challenges and enjoy playing with codes to expand my knowledge.
           In just a year, I have developed a solid foundation in web development, particularly in HTML, CSS, and JS. I actively pursue my interests by freelancing in Graphic Design and Video Editing, and I have over three years of experience working with major creators.

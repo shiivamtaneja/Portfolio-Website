@@ -6,7 +6,7 @@ import { BsArrowDown } from 'react-icons/bs';
 
 const NavabarBig = () => {
   return (
-    <header className='sticky top-0 p-5 flex justify-between flex-row max-w-7xl mx-auto z-20 items-center '>
+    <header className='sticky top-0 p-5 flex justify-between flex-row max-w-7xl mx-auto z-20 items-center bg-[#242424]'>
       <motion.div
         initial={{
           x: -500,

@@ -11,7 +11,7 @@ const NavbarSmall = () => {
   }
 
   return (
-    <header className='sticky top-0 p-5 flex flex-col mx-auto z-20 '>
+    <header className='sticky top-0 p-5 flex flex-col mx-auto z-20 bg-[#242424]'>
       <div className='flex flex-row justify-between'>
         <motion.div
           initial={{
