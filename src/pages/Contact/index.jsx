@@ -45,8 +45,8 @@ const Contact = () => {
         className='flex flex-col h-screen relative text-center md:text-left lg:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center overflow-hidden'
       >
         <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl '>Contact me</h3>
-        <h2 className='mt-10 md:mt-0 text-sm uppercase text-gray-500 tracking-[15px] '>Lets Talk.</h2>
         <div className='flex flex-col'>
+          <h2 className='uppercase font-bold tracking-[10px] text-center mb-8'>Have someting to discuss lets talk.</h2>
           <form
             ref={form}
             onSubmit={sendEmail}
