@@ -3,6 +3,9 @@ import React from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import BackgroundCircles from '../components/BackgroundCircles'
 
+import UserPic from '../assets/images/circle-game.png'
+
+
 
 const Hero = () => {
 	const [text, count] = useTypewriter({
@@ -21,7 +24,7 @@ const Hero = () => {
 				<BackgroundCircles />
 				<img
 					className='relative rounded-full h-32 w-32 mx-auto top-[-68px]'
-					src='https://avatars.githubusercontent.com/u/79853285?v=4'
+					src={UserPic}
 					alt=""
 				/>
 				<div className='z-20 top-[-150px] relative'>
