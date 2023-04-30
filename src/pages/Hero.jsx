@@ -3,7 +3,7 @@ import React from 'react'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import BackgroundCircles from '../components/BackgroundCircles'
 
-import UserPic from '../assets/images/circle-game.png'
+import UserPic from '../assets/images/profile-pic.png'
 
 
 

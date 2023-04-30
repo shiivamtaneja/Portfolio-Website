@@ -3,6 +3,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import BackgroundCircles from '../../components/BackgroundCircles'
 
+import UserPic from '../../assets/images/profile-pic-about.jpg'
+
 const About = () => {
   return (
     <section>
@@ -34,7 +36,7 @@ const About = () => {
           transition={{
             duration: 1.2,
           }}
-          src='https://avatars.githubusercontent.com/u/79853285?v=4'
+          src={UserPic}
           className='-mb-20 md:mb-0 mt-[250px] md:mt-40 lg:mt-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-96 md:h-80 xl:w=[500px] xl:h-[600px] z-10'
         />
         <div className='space-y-10 px-0 md:px-10 mt-20 md:mt-0 z-10'>
