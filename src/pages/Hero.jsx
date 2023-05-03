@@ -10,7 +10,7 @@ import UserPic from '../assets/images/profile-pic.png'
 const Hero = () => {
 	const [text, count] = useTypewriter({
 		words: [
-			"Thy name's Shivam Taneja",
+			"The name is Shivam Taneja",
 			"Guy-who-loves-Games.jsx",
 			"<FrontEndDeveloper />",
 			"Opse, Almost forgot to say 'Hello World!'"
