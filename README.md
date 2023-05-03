@@ -6,7 +6,7 @@ This is my portfolio website built with React.js and multiple libraries. The web
 
 The portfolio website is hosted on the web and can be accessed using the following link:
 
-[Portfolio Website](https://portfolio-website-drab-nine.vercel.app/)
+[Portfolio Website](https://www.shivamtaneja.in/)
 
 ## Libraries used
 
