@@ -16,7 +16,7 @@ const Skills = () => {
         transition={{
           duration: 1.5
         }}
-        className='flex flex-col lg:h-screen relative text-center md:text-left lg:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center overflow-hidden'
+        className='flex flex-col h-screen relative text-center md:text-left lg:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center overflow-hidden'
       >
         <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl '>Skills</h3>
         <h2 className='text-sm uppercase text-gray-500 pb-2 tracking-[15px] '>This Section is under Development1</h2>

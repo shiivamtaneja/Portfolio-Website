@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 const SingleProjects = ({ imgURl, desc, title, projectLink, showProject }) => {
   return (
-    <div className='flex flex-col items-start bg-[#0d0d0d] cursor-pointer p-4 rounded-[15px] border-2 border-[#0d0d0d] hover:border-[#2525ba] transition-all duration-700 hover:scale-105'>
+    <div className='flex flex-col items-start bg-[#0d0d0d] cursor-pointer p-4 rounded-[15px] border-2 border-[#0d0d0d] hover:border-[#2525ba] transition-all duration-700 hover:scale-105 '>
       <motion.img
         initial={{
           y: 100,
