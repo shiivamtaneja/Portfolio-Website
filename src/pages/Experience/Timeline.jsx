@@ -3,7 +3,7 @@ import React from 'react'
 const Timeline = () => {
     return (
         <>
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-9 px-2 z-20">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-9 px-2 z-10">
                 {/* 1st */}
                 <div className="col-span-4 w-full h-full ">
                     <div className="w-full h-full bg-indigo-400 rounded-md p-2 md:pl-4">

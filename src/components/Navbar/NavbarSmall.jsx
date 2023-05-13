@@ -83,26 +83,26 @@ const NavbarSmall = () => {
           className='flex flex-col items-start'
         >
           <Link to="/">
-            <button className='heroButton mt-3 w-48'>&lt; Home &gt;</button>
+            <button className='heroButton mt-3 w-48' onClick={updateClick}>&lt; Home &gt;</button>
           </Link>
           <Link to="about">
-            <button className='heroButton mt-3 w-48'>&lt; About &gt;</button>
+            <button className='heroButton mt-3 w-48' onClick={updateClick}>&lt; About &gt;</button>
           </Link>
           <Link to="experience">
-            <button className='heroButton mt-3 w-48'>&lt; Experience &gt;</button>
+            <button className='heroButton mt-3 w-48' onClick={updateClick}>&lt; Experience &gt;</button>
           </Link>
           <Link to="skills">
-            <button className='heroButton mt-3 w-48'>&lt; Skills &gt;</button>
+            <button className='heroButton mt-3 w-48' onClick={updateClick}>&lt; Skills &gt;</button>
           </Link>
           <Link to="projects">
-            <button className='heroButton mt-3 w-48'>&lt; Projects &gt;</button>
+            <button className='heroButton mt-3 w-48' onClick={updateClick}>&lt; Projects &gt;</button>
           </Link>
           <Link to="https://docs.google.com/document/d/1YENkp8cUtNu1nf5u2vlASaijolYPulJJ/edit" target='_blank'>
-            <button className='heroButton cursor-pointer flex items-center mt-3 w-48 justify-center'>Resume <BsArrowDown /></button>
+            <button className='heroButton cursor-pointer flex items-center mt-3 w-48 justify-center' onClick={updateClick}>Resume <BsArrowDown /></button>
           </Link>
         </div>
         <div className='flex items-center cursor-pointer justify-center'>
-          <Link to="/contact">
+          <Link to="/contact" onClick={updateClick}>
             <div>
               <SocialIcon
                 className='cursor-pointer'
