@@ -97,7 +97,7 @@ const NavbarSmall = () => {
           <Link to="projects">
             <button className='heroButton mt-3 w-48' onClick={updateClick}>&lt; Projects &gt;</button>
           </Link>
-          <Link to="https://docs.google.com/document/d/1YENkp8cUtNu1nf5u2vlASaijolYPulJJ/edit" target='_blank'>
+          <Link to="https://drive.google.com/file/d/14fovgqc4w38kwJBgb2a08jIMjCY5KW9l/view?usp=sharing" target='_blank'>
             <button className='heroButton cursor-pointer flex items-center mt-3 w-48 justify-center' onClick={updateClick}>Resume <BsArrowDown /></button>
           </Link>
         </div>
