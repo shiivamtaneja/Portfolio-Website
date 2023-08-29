@@ -1,37 +1,41 @@
-import React from 'react'
+import { useLayoutEffect, useState } from 'react';
 
-import { Cursor, useTypewriter } from 'react-simple-typewriter'
-import BackgroundCircles from '../components/BackgroundCircles'
+import { getPageInfo } from '../api/api';
 
-import UserPic from '../assets/images/profile-pic.png'
-
-
+import BackgroundCircles from '../components/BackgroundCircles';
+import TypeWriter from '../components/TypeWriter';
 
 const Hero = () => {
-	const [text, count] = useTypewriter({
-		words: [
-			"The name is Shivam Taneja",
-			"Guy-who-loves-Games.jsx",
-			"<FrontEndDeveloper />",
-			"Opse, Almost forgot to say 'Hello World!'"
-		],
-		loop: true,
-		delaySpeed: 2000,
-	})
+	const [pageInfo, setpageInfo] = useState();
+
+	useLayoutEffect(() => {
+		async function fetchData() {
+			try {
+				const data = await getPageInfo();
+
+				setpageInfo(data?.result[0]);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		}
+		fetchData();
+	}, []);
+
+	const imageUrl = `https://cdn.sanity.io/images/${import.meta.env.VITE_APP_SANITY_PRODUCTION_ID}/production/${pageInfo?.profilePic.asset._ref.split('-')[1]}-${pageInfo?.profilePic.asset._ref.split('-')[2]}.${pageInfo?.profilePic.asset._ref.split('-')[3]}`;
+
 	return (
 		<section>
-			<div className='h-screen flex flex-col space-y-28 items-center justify-center text-center overflow-hidden '>
+			<div className='flex flex-col items-center justify-center h-screen overflow-hidden text-center space-y-28 '>
 				<BackgroundCircles />
 				<img
 					className='relative rounded-full h-32 w-32 mx-auto top-[-68px]'
-					src={UserPic}
+					src={imageUrl}
 					alt=""
 				/>
 				<div className='z-20 top-[-150px] relative'>
-					<h2 className='text-sm uppercase text-gray-500 pb-2 tracking-[15px] '>Upcoming Engineer</h2>
-					<h1 className='text-3xl lg:text-6xl font-semibold px-10'>
-						<span className='mr-3'>{text}</span>
-						<Cursor cursorColor='#2525ba' />
+					<h2 className='text-sm uppercase text-gray-500 pb-2 tracking-[15px] '>{pageInfo?.role}</h2>
+					<h1 className='px-10 text-3xl font-semibold lg:text-6xl'>
+						<TypeWriter words={pageInfo?.otherInfo} />
 					</h1>
 				</div>
 			</div>

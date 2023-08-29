@@ -1,18 +1,18 @@
-import { RouterProvider, Routes, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
-import { Route } from "react-router-dom"
-import Layouts from "./layouts/Layouts"
-import Hero from "./pages/Hero"
-import About from "./pages/About/index"
-import WorkExperience from "./pages/Experience/index"
-import Skills from "./pages/Skills/index"
-import Projects from "./pages/Projects/index"
-import Contact from "./pages/Contact/index"
+import { RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Layouts from "./layouts/Layouts";
+import Hero from "./pages/Hero";
+import About from "./pages/About/index";
+import WorkExperience from "./pages/Experience/index";
+import Skills from "./pages/Skills/index";
+import Projects from "./pages/Projects/index";
+import Contact from "./pages/Contact/index";
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<Layouts />}> 
-      <Route index element={<Hero />}/>
+    <Route element={<Layouts />}>
+      <Route index element={<Hero />} />
       <Route path="about" element={<About />} />
       <Route path="experience" element={<WorkExperience />} />
       <Route path="skills" element={<Skills />} />

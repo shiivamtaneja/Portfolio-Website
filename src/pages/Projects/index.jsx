@@ -1,16 +1,31 @@
-import React from 'react'
+import { useLayoutEffect, useState } from 'react';
 
-import { motion } from 'framer-motion'
-import BackgroundCircles from '../../components/BackgroundCircles'
+import { motion } from 'framer-motion';
 
-import SingleProjects from '../../components/Projects/index'
+import BackgroundCircles from '../../components/BackgroundCircles';
+import SingleProjects from '../../components/Projects/index';
 
-import CircleGame from '../../assets/images/circle-game.png'
-import YYTDMenu from '../../assets/images/yytd-menu.png'
-import CommingSoon from '../../assets/images/coming-soon.png'
-import ChatMingle from '../../assets/images/chat-mingle.png'
+import { getProjects } from '../../api/api';
 
 const Projects = () => {
+
+  const [projects, setProjects] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useLayoutEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getProjects();
+
+        setProjects(data?.result);
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <section>
       <motion.div
@@ -23,40 +38,21 @@ const Projects = () => {
         transition={{
           duration: 1.5
         }}
-        className='flex flex-col relative text-center xl:h-screen md:text-left lg:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center overflow-hidden'
+        className='relative flex flex-col items-center px-10 mx-auto overflow-hidden text-center xl:h-screen md:text-left lg:flex-row max-w-7xl justify-evenly'
       >
         <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl '>Projects</h3>
-        <div className='flex flex-col z-10 mt-52 space-y-6 lg:space-y-0 lg:mt-[160px] lg:space-x-6 xl:flex-row mb-10 xl:mt-0 lg:gap-5'>
-          <SingleProjects
-            imgURl={CircleGame}
-            title="Circle Catcher - The Circle Game"
-            desc="Control a white circle to get bigger and win"
-            projectLink="https://github.com/shiivamtaneja/circle-game"
-            showProject={true}
-          />
-          <SingleProjects
-            imgURl={ChatMingle}
-            title="Chat Mingle"
-            desc="Real Time Chatting App"
-            projectLink="https://github.com/shiivamtaneja/chat-mingle"
-            showProject={true}
-          />
-          <SingleProjects
-            imgURl={YYTDMenu}
-            title="Youtube Video / Audio Downloader"
-            desc="Application to download youtube videos and audios"
-            projectLink="https://github.com/shiivamtaneja/YTVD"
-            showProject={true}
-          />
-          <SingleProjects
-            imgURl={CommingSoon}
-            title="Coming Soon"
-            desc="More projects are being added"
-            projectLink="https://github.com/shiivamtaneja/YTVD"
-            showProject={false}
-          />
+        {/* <div className='flex flex-col z-10 mt-52 space-y-6 lg:space-y-0 lg:mt-[160px] lg:space-x-6 xl:flex-row mb-10 xl:mt-0 lg:gap-5'> */}
+        <div className='z-10 flex flex-col flex-wrap space-y-6 mt-52 md:space-y-0 md:flex-row md:mt-32 lg:w-full '>
+          {!loading && projects.map((project, index) => (
+            <SingleProjects
+              key={index}
+              imgURl={`https://cdn.sanity.io/images/${import.meta.env.VITE_APP_SANITY_PRODUCTION_ID}/production/${project?.image.asset._ref.split('-')[1]}-${project?.image?.asset._ref.split('-')[2]}.${project?.image.asset._ref.split('-')[3]}`}
+              title={project.title}
+              desc={project.summary}
+              projectLink={project.linkToBuild}
+            />
+          ))}
         </div>
-
 
         <div className='absolute top-64'>
           <BackgroundCircles />

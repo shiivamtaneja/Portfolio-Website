@@ -1,7 +1,7 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react';
 
-import { motion } from 'framer-motion'
-import BackgroundCircles from '../../components/BackgroundCircles'
+import { motion } from 'framer-motion';
+import BackgroundCircles from '../../components/BackgroundCircles';
 import emailjs from '@emailjs/browser';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -42,7 +42,7 @@ const Contact = () => {
         transition={{
           duration: 1.5
         }}
-        className='flex flex-col h-screen relative text-center md:text-left lg:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center overflow-hidden'
+        className='relative flex flex-col items-center h-screen px-10 mx-auto overflow-hidden text-center md:text-left lg:flex-row max-w-7xl justify-evenly'
       >
         <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl '>Contact me</h3>
         <div className='flex flex-col'>
@@ -50,7 +50,7 @@ const Contact = () => {
           <form
             ref={form}
             onSubmit={sendEmail}
-            className='flex flex-col mx-auto space-y-2 z-10'>
+            className='z-10 flex flex-col mx-auto space-y-2'>
             <div className='flex flex-col space-y-2 md:space-x-2 md:space-y-0 md:flex-row'>
               <input
                 name='user_name'

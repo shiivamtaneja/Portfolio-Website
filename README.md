@@ -20,6 +20,8 @@ The portfolio website is hosted on the web and can be accessed using the followi
 - React Icons
 - Email JS
 - React Toastify
+- Sanity
+- Axios 
 
 ## Features 
 
