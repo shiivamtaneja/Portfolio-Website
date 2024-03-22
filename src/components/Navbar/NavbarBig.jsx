@@ -103,7 +103,7 @@ const NavabarBig = () => {
         transition={{
           duration: 1.25
         }}>
-        <Link to="https://drive.google.com/file/d/1gqWBKXT9E-ntOAEjlkCv4546DftQzere/view?usp=sharing" target='_blank'>
+        <Link to="https://drive.google.com/file/d/16qCsxIOzzaP0-mc72q4ygO3e04HR88L6/view?usp=drive_link" target='_blank'>
           <button className='flex items-center cursor-pointer '>Resume <BsArrowDown /></button>
         </Link>
       </motion.div>
