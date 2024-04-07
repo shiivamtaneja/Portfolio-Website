@@ -2,7 +2,12 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination":"/"
+            "destination": "/"
         }
-    ]
+    ],
+    "git": {
+        "deploymentEnabled": {
+            "migrate-next-js": false
+        }
+    }
 }
