@@ -1,4 +1,3 @@
-import { DrawerClose } from '@/components/ui/drawer';
 import { navLinks, socialIcons } from '@/lib/constants';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -8,9 +7,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 const NavContent = ({
-  navOpen
+  navOpen,
+  setNavOpen
 }: {
-  navOpen: boolean
+  navOpen: boolean,
+  setNavOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const navBarRef = useRef(null);
 
@@ -36,18 +37,17 @@ const NavContent = ({
   return (
     <>
       <div
-        className="w-screen h-full bg-accent-300 rounded-md pointer-events-auto relative max-w-xl flex flex-col"
+        className="w-screen h-full bg-accent-300 rounded-md relative flex flex-col"
       >
         <div className='flex justify-between px-5 py-2'>
           <div></div>
-          <DrawerClose asChild>
-            <button
-              className='rounded-full flex h-16 w-16 flex-col items-center justify-center bg-accent-400 relative transition-all duration-100 ease-in-out hover:scale-90 scale-100 z-[20]'
-            >
-              <span className="absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 rotate-45" />
-              <span className="absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 -rotate-45" />
-            </button>
-          </DrawerClose>
+          <button
+            className='rounded-full flex h-16 w-16 flex-col items-center justify-center bg-accent-400 relative transition-all duration-100 ease-in-out hover:scale-90 scale-100 z-[20]'
+            onClick={() => setNavOpen(false)}
+          >
+            <span className="absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 rotate-45" />
+            <span className="absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 -rotate-45" />
+          </button>
         </div>
         <div className='h-full '>
           <div className="absolute left-0 top-0 opacity-40">
@@ -76,15 +76,13 @@ const NavContent = ({
                     <span className="invisible inline-block h-3 w-3 scale-0 rounded-full bg-darkest opacity-0 transition-all duration-800 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
                     </span>
                     <div className="w-fit overflow-y-clip">
-                      <DrawerClose asChild>
-                        <a
-                          href={data.path}
-                          // scroll={false}
-                          className='inline-block transition-transform duration-700 group-hover:translate-x-6'
-                        >
-                          {data.name}
-                        </a>
-                      </DrawerClose>
+                      <Link
+                        href={data.path}
+                        className='inline-block transition-transform duration-700 group-hover:translate-x-6'
+                        onClick={() => setNavOpen(false)}
+                      >
+                        {data.name}
+                      </Link>
                     </div>
                   </div>
                 </div>

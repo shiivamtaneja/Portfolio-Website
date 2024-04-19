@@ -1,21 +1,23 @@
 import Loader from "@/components/Loader";
+import Link from "next/link";
 import Description from "./_components/Description";
 import HeroBg from "./_components/HeroBg";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <>
       <main>
         <Loader />
-
+        <Link href={'#about'} className="absolute top-96">
+          about
+        </Link>
         <section className="" id="hero">
           <div className="flex justify-center items-center h-svh">
             hero
             <a
               href={'#projects'}
-              
-              // scroll={false}
+
+            // scroll={false}
 
             >
               click
