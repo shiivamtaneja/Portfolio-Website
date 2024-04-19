@@ -14,16 +14,16 @@ const Description = () => {
 
     t1.from('.text-stagger', {
       opacity: 0,
-      y: 50,
+      y: 100,
       delay: delays['hero-description'],
       stagger: {
-        each: 0.001
+        each: 0.03
       }
     });
   }, { scope: descriptionRef });
 
   return (
-    <div className="z-10 uppercase h-1/2" >
+    <div className="z-10 uppercase h-1/2 mt-20" >
       <div className='' ref={descriptionRef}>
         <div className='flex flex-col items-center gap-y-3 '>
           <h1 className='sr-only'>Hi there, i'm shivam taneja</h1>
@@ -58,11 +58,11 @@ const Description = () => {
               </span>
             </span>
           </h1>
+
+          <h2>
+
+          </h2>
         </div>
-        {/* test */}
-        {/* {"Hi there, I'm".split('').map((word) => (
-          word === ' ' ? <span className='text-stagger'>&nbsp;</span> : <span className='text-stagger'>{word}</span>
-        ))} */}
       </div>
     </div>
   )
