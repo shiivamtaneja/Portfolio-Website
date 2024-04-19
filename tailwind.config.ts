@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config = {
   darkMode: ["class"],
@@ -14,12 +14,50 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        'mid': '550px',
+        // "2xl": "1400px",
+        "3xl": "1920px",
       },
     },
     extend: {
       screens: {
-        'md2': '872px'
+        'xs': '550px',
+        "3xl": "1920px",
+      },
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       fontSize: {
         'title': 'clamp(3rem, 10vw, 9rem)',
@@ -50,17 +88,11 @@ const config = {
         'accent-400': '#bfbfb1',
         'accent-500': '#aeae9d',
         'mid': '#a29e9a',
+        'cream': '#e5e5df',
         'mid-200': '#9e978f',
         'dark': '#393632',
         'darkest': '#080807',
       },
-      // colors: {
-      //   'dark': '#5A5B63',
-      //   'lighter': '#81848F',
-      //   'lightest': '#F7F7F7',
-      //   'highlight': '#545E8C',
-      //   'highlight-light': '#D9DFF2',
-      // },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -83,6 +115,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+} satisfies Config
 
-export default config;
+export default config
