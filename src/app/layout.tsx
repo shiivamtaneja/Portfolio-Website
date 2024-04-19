@@ -1,13 +1,15 @@
 import GrainyFilter from "@/components/GrainyFilter";
+
 import type { Metadata } from "next";
+
 import { Single_Day, Space_Grotesk } from "next/font/google";
-import Navbar from "./(home)/_components/Navbar";
+
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shivam Taneja",
+  title: "Page Not Found | Shivam Taneja",
   description: "Personal portfolio website for Shivam Taneja",
   icons: {
     icon: [
@@ -33,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={spaceGrotesk.className}>
-        <Navbar />
         <GrainyFilter />
         {children}
       </body>
