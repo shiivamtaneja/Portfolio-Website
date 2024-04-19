@@ -40,7 +40,7 @@ const Loader = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className='fixed top-0 left-0 bg-darkest flex h-svh w-full items-center justify-center text-special font-bold leading-[115%] text-accent-300 z-[999999]'>
+    <section ref={containerRef} className='fixed top-0 left-0 bg-darkest flex h-svh w-screen items-center justify-center text-special font-bold leading-[115%] text-accent-300 z-[999999]'>
       <div className="z-50 flex flex-col items-center">
         <span className="overflow-hidden">
           <span className="flex text-reveal invisible">Shivam Taneja</span>

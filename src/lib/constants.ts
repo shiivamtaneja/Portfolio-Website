@@ -16,5 +16,28 @@ export const socialIcons = [
 
 export const delays = {
   'pre-loader': 2.25,
-  'hero-description' : 2.25 + 0.25 // pre-loader + delay
+  'hero-description': 2.25 + 0.25 // pre-loader + delay
 };
+
+export const navLinks = [
+  {
+    path: '/',
+    name: 'Home'
+  },
+  {
+    path: '/#experience',
+    name: 'Experience'
+  },
+  {
+    path: '/#skills',
+    name: 'Skills'
+  },
+  {
+    path: '/#projects',
+    name: 'Porjects'
+  },
+  {
+    path: '/#about',
+    name: 'About'
+  },
+]
