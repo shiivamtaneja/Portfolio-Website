@@ -1,5 +1,3 @@
-import React from 'react'
-
 const GrainyFilter = () => {
   return (
     <svg className="pointer-events-none absolute cursor-none">

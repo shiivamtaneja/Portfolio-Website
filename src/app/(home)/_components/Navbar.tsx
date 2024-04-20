@@ -3,12 +3,11 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from "react";
 
-import { delays } from '@/lib/constants';
 import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import React from 'react';
-
 import { Variants, motion, useAnimationControls } from 'framer-motion';
+import gsap from 'gsap';
+
+import { delays } from '@/lib/constants';
 import Logo from "./Logo";
 import NavContent from './NavContent';
 
@@ -26,8 +25,6 @@ const navVariants: Variants = {
     width: 'inherit',
     opacity: 1,
     transition: {
-      // type: 'spring',
-      // damping: 10,
       duration: 0.4
     }
   }

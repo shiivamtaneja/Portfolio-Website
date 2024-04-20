@@ -1,9 +1,12 @@
-import { navLinks, socialIcons } from '@/lib/constants';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
+import React, { useRef } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+
+import { navLinks, socialIcons } from '@/lib/constants';
 import { SocialIcon } from 'react-social-icons';
 
 const NavContent = ({

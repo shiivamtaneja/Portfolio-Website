@@ -1,5 +1,7 @@
-import Loader from "@/components/Loader";
 import Link from "next/link";
+
+import Loader from "@/components/Loader";
+
 import Description from "./_components/Description";
 import HeroBg from "./_components/HeroBg";
 

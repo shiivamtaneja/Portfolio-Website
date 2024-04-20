@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Logo = () => {
   // Font - Single Day
   // Generator - https://danmarshall.github.io/google-font-to-svg-path/

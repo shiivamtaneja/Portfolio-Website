@@ -1,8 +1,9 @@
-import GrainyFilter from "@/components/GrainyFilter";
 import type { Metadata } from "next";
-import { Single_Day, Space_Grotesk } from "next/font/google";
-import Navbar from "./_components/Navbar";
+import { Space_Grotesk } from "next/font/google";
+
+import GrainyFilter from "@/components/GrainyFilter";
 import "../globals.css";
+import Navbar from "./_components/Navbar";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 

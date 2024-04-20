@@ -1,9 +1,11 @@
 'use client';
 
-import { delays } from '@/lib/constants';
+import React, { useRef } from 'react';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import React, { useRef } from 'react';
+
+import { delays } from '@/lib/constants';
 
 const HeroBg = () => {
   const svgRef = useRef(null);

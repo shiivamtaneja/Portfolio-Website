@@ -1,10 +1,12 @@
 'use client';
 
-import { delays } from '@/lib/constants';
-import { singleDay } from '@/utils/fonts';
+import React, { useRef } from 'react';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import React, { useRef } from 'react';
+
+import { delays } from '@/lib/constants';
+import { singleDay } from '@/utils/fonts';
 
 const Description = () => {
   const descriptionRef = useRef(null);

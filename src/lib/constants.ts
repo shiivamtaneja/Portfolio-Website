@@ -34,7 +34,7 @@ export const navLinks = [
   },
   {
     path: '/#projects',
-    name: 'Porjects'
+    name: 'Projects'
   },
   {
     path: '/#about',
