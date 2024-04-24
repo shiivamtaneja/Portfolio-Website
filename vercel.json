@@ -7,7 +7,7 @@
     ],
     "git": {
         "deploymentEnabled": {
-            "migrate-next-js": false
+            "migrate-next-js": true
         }
     }
 }
