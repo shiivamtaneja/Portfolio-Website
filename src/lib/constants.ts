@@ -1,4 +1,3 @@
-
 export const socialIcons = [
   {
     link: 'https://www.linkedin.com/in/shivam-taneja/',
@@ -22,22 +21,32 @@ export const delays = {
 export const navLinks = [
   {
     path: '/',
-    name: 'Home'
+    name: 'Home',
+    showOnHeader: false
   },
   {
     path: '/#experience',
-    name: 'Experience'
+    name: 'Experience',
+    showOnHeader: true
   },
   {
     path: '/#skills',
-    name: 'Skills'
+    name: 'Skills',
+    showOnHeader: true
   },
   {
     path: '/#projects',
-    name: 'Projects'
+    name: 'Projects',
+    showOnHeader: true
   },
   {
     path: '/#about',
-    name: 'About'
+    name: 'About',
+    showOnHeader: true
   },
-]
+  {
+    path: '/#contact',
+    name: 'Contact',
+    showOnHeader: true
+  },
+];

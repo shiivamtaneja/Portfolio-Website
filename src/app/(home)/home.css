@@ -103,3 +103,11 @@ body:before {
 body:before {
   filter: url(#grainy)
 }
+
+.links::after {
+  @apply content-[''] absolute bottom-0 bg-dark rounded-xl w-0 h-[3px] duration-300 transition-all ease-in-out right-0 
+}
+
+.links:hover::after {
+  @apply w-full left-0 right-auto
+}

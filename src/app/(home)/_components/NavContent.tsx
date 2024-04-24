@@ -16,10 +16,10 @@ const NavContent = ({
   navOpen: boolean,
   setNavOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
-  const navBarRef = useRef(null);
+  const navBarRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const t1 = gsap.timeline({ paused: true })
+    const t1 = gsap.timeline({ paused: true });
 
     if (navOpen) {
       t1.play();
@@ -33,26 +33,16 @@ const NavContent = ({
       opacity: 1,
       duration: 0.5,
       stagger: 0.1,
-    })
+    });
 
   }, { scope: navBarRef });
 
   return (
     <>
       <div
-        className="w-screen h-full bg-accent-300 rounded-md relative flex flex-col"
+        className="w-full h-full bg-accent-300 rounded-md relative flex flex-col"
       >
-        <div className='flex justify-between px-5 py-2'>
-          <div></div>
-          <button
-            className='rounded-full flex h-16 w-16 flex-col items-center justify-center bg-accent-400 relative transition-all duration-100 ease-in-out hover:scale-90 scale-100 z-[20]'
-            onClick={() => setNavOpen(false)}
-          >
-            <span className="absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 rotate-45" />
-            <span className="absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 -rotate-45" />
-          </button>
-        </div>
-        <div className='h-full '>
+        <div className='h-full'>
           <div className="absolute left-0 top-0 opacity-40">
             <Image
               src={'/navmenu.svg'}
@@ -76,8 +66,7 @@ const NavContent = ({
                   <div
                     className="group flex w-fit cursor-pointer items-center gap-x-4 nav-item"
                   >
-                    <span className="invisible inline-block h-3 w-3 scale-0 rounded-full bg-darkest opacity-0 transition-all duration-800 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
-                    </span>
+                    <span className="invisible inline-block h-3 w-3 scale-0 rounded-full bg-darkest opacity-0 transition-all duration-800 group-hover:visible group-hover:scale-100 group-hover:opacity-100"></span>
                     <div className="w-fit overflow-y-clip">
                       <Link
                         href={data.path}
@@ -91,7 +80,7 @@ const NavContent = ({
                 </div>
               ))}
             </nav>
-            <div className='flex sm:justify-end justify-center'>
+            <div className='flex justify-start'>
               {socialIcons.map((socials, index) => (
                 <SocialIcon
                   style={{
@@ -111,7 +100,7 @@ const NavContent = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default NavContent
+export default NavContent;

@@ -4,15 +4,35 @@ import React, { useRef } from 'react';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import { delays } from '@/lib/constants';
 import { singleDay } from '@/utils/fonts';
 
 const Description = () => {
-  const descriptionRef = useRef(null);
+  const descriptionRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const t1 = gsap.timeline();
+
+    gsap.to(descriptionRef.current, {
+      scrollTrigger: {
+        trigger: descriptionRef.current,
+        markers: false,
+        start: 'top 200px',
+        end: 'top',
+        // toggleActions: 'play reset reset reset'
+        onEnter: () => gsap.to(descriptionRef.current, {
+          opacity: 0, 
+          duration: 1.2
+        }),
+        onLeaveBack: () => gsap.to(descriptionRef.current, {
+          opacity: 1,
+          duration: 1.2
+        }),
+      },
+    });
 
     t1.from('.text-stagger', {
       opacity: 0,
@@ -25,10 +45,10 @@ const Description = () => {
   }, { scope: descriptionRef });
 
   return (
-    <div className="z-10 uppercase h-1/2 mt-20" >
-      <div className='' ref={descriptionRef}>
+    <div className="z-10 uppercase h-1/2 mt-20" ref={descriptionRef}>
+      <div className=''>
         <div className='flex flex-col items-center gap-y-3 '>
-          <h1 className='sr-only'>Hi there, i'm shivam taneja</h1>
+          <h1 className='sr-only'>Hi there, i&apos;m shivam taneja</h1>
           <h1 aria-hidden className='flex flex-col whitespace-nowrap text-dark font-semibold text-title relative leading-tight items-center'>
             <span className='flex gap-4' aria-hidden>
               <span className='flex' aria-hidden>
@@ -67,7 +87,7 @@ const Description = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Description
+export default Description;

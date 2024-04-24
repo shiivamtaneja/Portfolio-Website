@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 
 import GrainyFilter from "@/components/GrainyFilter";
-import "./globals.css";
+import "./notfound.css";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 

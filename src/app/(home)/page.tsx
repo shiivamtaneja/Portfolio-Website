@@ -1,31 +1,17 @@
-import Link from "next/link";
-
 import Loader from "@/components/Loader";
 
 import Description from "./_components/Description";
-import HeroBg from "./_components/HeroBg";
+// import HeroBg from "./_components/HeroBg";
 
 export default function Home() {
   return (
     <>
       <main>
         <Loader />
-        <Link href={'#about'} className="absolute top-96">
-          about
-        </Link>
         <section className="" id="hero">
           <div className="flex justify-center items-center h-svh">
-            hero
-            <a
-              href={'#projects'}
-
-            // scroll={false}
-
-            >
-              click
-            </a>
-            {/* <HeroBg />
-            <Description /> */}
+            {/* <HeroBg /> */}
+            <Description />
           </div>
         </section>
 
@@ -58,6 +44,8 @@ export default function Home() {
             {/* <HeroBg /> */}
             about
             {/* <Description /> */}
+            {/* <Description /> */}
+
           </div>
         </section>
 

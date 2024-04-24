@@ -9,10 +9,6 @@ const Loader = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (containerRef.current) {
-      // document.body.classList.add('overflow-hidden');
-    }
-
     const t1 = gsap.timeline({
       onComplete: () => {
         // window.scroll({
@@ -20,7 +16,7 @@ const Loader = () => {
         //   top: 0,
         //   behavior: 'smooth'
         // })
-        containerRef.current?.remove()
+        // containerRef.current?.remove()
         // document.body.classList.remove('overflow-hidden');
       }
     });
@@ -34,9 +30,11 @@ const Loader = () => {
       autoAlpha: 0,
       duration: 1.05,
     }).to(containerRef.current, {
-      y: '-100vh',
       duration: 0.75,
-      delay: 0.5
+      delay: 0.5,
+      ease: 'power1.inOut',
+      y: '-100vh',
+      
     });
   }, { scope: containerRef });
 

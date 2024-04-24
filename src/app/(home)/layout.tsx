@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 
 import GrainyFilter from "@/components/GrainyFilter";
-import "../globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import Hamburger from "./_components/Hamburger";
 import Navbar from "./_components/Navbar";
+import "./home.css";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -34,9 +36,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={spaceGrotesk.className}>
-        <Navbar />
-        <GrainyFilter />
-        {children}
+        <SmoothScroll>
+          <Hamburger />
+          <Navbar />
+          <GrainyFilter />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

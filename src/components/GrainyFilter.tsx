@@ -6,7 +6,7 @@ const GrainyFilter = () => {
         <feColorMatrix type="saturate" values="0"></feColorMatrix>
       </filter>
     </svg>
-  )
-}
+  );
+};
 
-export default GrainyFilter
+export default GrainyFilter;

@@ -10,15 +10,6 @@ const config = {
   ],
   prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        'mid': '550px',
-        // "2xl": "1400px",
-        "3xl": "1920px",
-      },
-    },
     extend: {
       screens: {
         'xs': '550px',
