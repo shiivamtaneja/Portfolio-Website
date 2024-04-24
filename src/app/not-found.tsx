@@ -48,6 +48,7 @@ const NotFoundPage = () => {
             <p className="">
               404 Error. The page you&apos;re looking for does not exist.</p>
           </div>
+          {/* TODO: */}
         </section>
       </main>
     </>
