@@ -9,10 +9,10 @@ export type ChangelogDataType = GetResponseDataTypeFromEndpointMethod<typeof oct
 
 const getChangeLogData = async () => {
 
-  const { data } = await octokit.request(`GET /repos/{owner}/{repo}/commits`, {
+  const { data } = await octokit.request(`GET /repos/{owner}/{repo}/commits/{commit_sha}`, {
     owner: process.env.GITHUB_OWNER!,
     repo: process.env.GITHUB_REPO!,
-    sha: process.env.GITHUB_BRANCH_SHA!
+    sha: process.env.GITHUB_BRANCH_SHA!,    
   });
 
   return data;
