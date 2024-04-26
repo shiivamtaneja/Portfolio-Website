@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
+import ActiveLink from '@/components/ActiveLink';
 import { navLinks, socialIcons } from '@/lib/constants';
 import { SocialIcon } from 'react-social-icons';
 
@@ -25,14 +25,9 @@ const NavContent = ({
       t1.play();
     }
 
-    t1.fromTo('.nav-item', {
-      y: 50,
+    t1.from('.nav-items', {
+      x: '-100',
       opacity: 0
-    }, {
-      y: 0,
-      opacity: 1,
-      duration: 0.5,
-      stagger: 0.1,
     });
 
   }, { scope: navBarRef });
@@ -59,25 +54,18 @@ const NavContent = ({
             ref={navBarRef}
           >
             <nav
-              className='text-dark relative flex flex-col justify-center px-8 font-bold sm:px-14 text-heading-3 2xl:px-20 overflow-hidden'
+              className='text-dark-200 relative flex flex-col justify-center px-8 font-bold sm:px-14 text-heading-3 2xl:px-20 overflow-hidden nav-items'
             >
               {navLinks.map((data, index) => (
-                <div className='overflow-hidden' key={index}>
-                  <div
-                    className="group flex w-fit cursor-pointer items-center gap-x-4 nav-item"
-                  >
-                    <span className="invisible inline-block h-3 w-3 scale-0 rounded-full bg-darkest opacity-0 transition-all duration-800 group-hover:visible group-hover:scale-100 group-hover:opacity-100"></span>
-                    <div className="w-fit overflow-y-clip">
-                      <Link
-                        href={data.path}
-                        className='inline-block transition-transform duration-700 group-hover:translate-x-6'
-                        onClick={() => setNavOpen(false)}
-                      >
-                        {data.name}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <ActiveLink
+                  key={index}
+                  name={data.path}
+                  href={data.path}
+                  isNavElement={true}
+                  onClick={() => setNavOpen(false)}
+                >
+                  {data.name}
+                </ActiveLink>
               ))}
             </nav>
             <div className='flex justify-start'>

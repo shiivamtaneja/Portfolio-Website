@@ -2,11 +2,14 @@
 
 import { useRef } from "react";
 
+import Link from "next/link";
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
+
+import ActiveLink from "@/components/ActiveLink";
 import { delays, navLinks } from '@/lib/constants';
-import Link from "next/link";
 import Logo from "./Logo";
 
 const Navbar = () => {
@@ -37,16 +40,14 @@ const Navbar = () => {
         <div className='gap-3 md:flex hidden flex-row'>
           {navLinks.map((data, index) => (
             data.showOnHeader &&
-            <Link
-              href={data.path}
-              // target="_blank"
-              // rel="noopener noreferrer"
-              prefetch={false}
+            <ActiveLink
               key={index}
-              className="font-semibold text-lg links relative overflow-hidden"
+              href={data.path}
+              name={data.path}
+              isNavElement={false}
             >
               {data.name}
-            </Link>
+            </ActiveLink>
           ))}
         </div>
       </nav>
