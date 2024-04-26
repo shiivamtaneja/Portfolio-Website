@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useGSAP } from '@gsap/react';
+import { useLenis } from '@studio-freight/react-lenis';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -27,9 +28,11 @@ const navVariants: Variants = {
 };
 const Hamburger = () => {
   const [navOpen, setNavOpen] = useState(false);
-  
+
   const hamburgerRef = useRef<HTMLDivElement>(null);
   const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
+
+  const lenis = useLenis();
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -59,7 +62,11 @@ const Hamburger = () => {
     if (button) {
       if (navOpen) {
         button.classList.add("!scale-100");
+        document.body.classList.add('overflow-hidden');
+        lenis?.stop();
       } else {
+        document.body.classList.remove('overflow-hidden');
+        lenis?.start();
         button.classList.remove("!scale-100");
       }
     }
@@ -74,10 +81,10 @@ const Hamburger = () => {
           ref={hamburgerButtonRef}
         >
           <span
-            className={`${navOpen ? "translate-y-0 rotate-45" : "-translate-y-1 rotate-0"} absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 transition-all duration-300 ease-in-out`}
+            className={`${navOpen ? "translate-y-0 rotate-45" : "-translate-y-1 rotate-0"} absolute h-[2px] w-7 rounded-full bg-dark-200 2xl:w-9 transition-all duration-300 ease-in-out`}
           />
           <span
-            className={`${navOpen ? "translate-y-0 -rotate-45" : "translate-y-1 rotate-0"} absolute h-[2px] w-7 rounded-full bg-dark 2xl:w-9 transition-all duration-300 ease-in-out`}
+            className={`${navOpen ? "translate-y-0 -rotate-45" : "translate-y-1 rotate-0"} absolute h-[2px] w-7 rounded-full bg-dark-200 2xl:w-9 transition-all duration-300 ease-in-out`}
           />
         </button>
       </div>
