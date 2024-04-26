@@ -29,3 +29,19 @@ body:before {
 body:before {
   filter: url(#grainy)
 }
+
+.changelog-message {
+  position: relative;
+  padding-left: 10px;
+}
+
+.changelog-message::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background-color: black;
+  border-radius: 100%;
+  top: 10px;
+  left: -1px;
+  position: absolute;
+}
