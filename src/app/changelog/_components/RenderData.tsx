@@ -35,7 +35,7 @@ const RenderData = ({
       }
     });
 
-    return groupedData.reverse();
+    return groupedData;
   };
 
   const groupedData = groupDataByDate();
