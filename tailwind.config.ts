@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -51,12 +51,12 @@ const config = {
         },
       },
       fontSize: {
-        'title': 'clamp(3rem, 10vw, 9rem)',
-        'heading-1': 'clamp(2.5rem, 6.5vw, 10rem)',
+        'title': 'clamp(2.5rem, 10vw, 12rem)',
+        'heading-1': 'clamp(1.1rem, 4vw, 1.6rem)',
         'heading-2': 'clamp(2.4rem, 8vw, 10rem)',
         'heading-3': 'clamp(2rem, 5vw, 2.75rem)',
         'special': 'clamp(2rem, 4vw, 3.25rem)',
-        'works-title': 'clamp(1.25rem, 2vw, 1.5rem)',
+        // 'works-title': 'clamp(1.25rem, 2vw, 1.5rem)',
         'body-1': 'clamp(1.1rem, 2vw, 1.3rem)',
         'body-2': 'clamp(1rem, 1.5vw, 1.5rem)',
         'body-3': '1.1rem',
@@ -70,8 +70,8 @@ const config = {
         'accent-300': '#e1e1db',
         'accent-400': '#bfbfb1',
         'mid': '#a29e9a',
-        'dark': '#393632',
-        'darkest': '#080807',
+        'dark-200': '#393632',
+        'dark-400': '#080807',
       },
       textColor: {
         'accent-200': '#ddddd5',
@@ -81,8 +81,9 @@ const config = {
         'mid': '#a29e9a',
         'cream': '#e5e5df',
         'mid-200': '#9e978f',
-        'dark': '#393632',
-        'darkest': '#080807',
+        'mid-400': '#6b645c',
+        'dark-200': '#393632',
+        'darkest-400': '#080807',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -106,6 +107,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

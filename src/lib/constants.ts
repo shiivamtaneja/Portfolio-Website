@@ -25,28 +25,28 @@ export const navLinks = [
     showOnHeader: false
   },
   {
-    path: '/#experience',
-    name: 'Experience',
+    path: '/experience',
+    name: 'experience',
     showOnHeader: true
   },
   {
-    path: '/#skills',
-    name: 'Skills',
+    path: '/skills',
+    name: 'skills',
     showOnHeader: true
   },
   {
-    path: '/#projects',
-    name: 'Projects',
+    path: '/projects',
+    name: 'projects',
     showOnHeader: true
   },
   {
-    path: '/#about',
-    name: 'About',
+    path: '/about',
+    name: 'about',
     showOnHeader: true
   },
   {
-    path: '/#contact',
-    name: 'Contact',
+    path: '/contact',
+    name: 'contact',
     showOnHeader: true
   },
 ];

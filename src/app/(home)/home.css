@@ -105,9 +105,35 @@ body:before {
 }
 
 .links::after {
-  @apply content-[''] absolute bottom-0 bg-dark rounded-xl w-0 h-[3px] duration-300 transition-all ease-in-out right-0 
+  @apply content-[''] absolute bottom-0 bg-dark-200 rounded-xl w-0 h-[3px] duration-300 transition-all ease-in-out right-0
 }
 
-.links:hover::after {
+.links:hover::after,
+.heading-underline:hover::after,
+.active::after {
   @apply w-full left-0 right-auto
+}
+
+.heading-underline {
+  position: relative;
+}
+
+@media (min-width: 1020px) {
+  .heading-underline::after {
+    @apply content-[''] absolute bottom-6 2xl:bottom-8 bg-dark-200 rounded-xl w-0 h-[3px] duration-1000 transition-all ease-in-out right-0
+  }
+}
+
+@media (max-width: 1020px) {
+  .heading-underline:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    height: 10px;
+    width: 100%;
+    border: solid 2px #cb1829;
+    border-color: #cb1829 transparent transparent transparent;
+    border-radius: 50%;
+  }
 }

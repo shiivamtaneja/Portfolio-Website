@@ -8,9 +8,8 @@ export default function Home() {
     <>
       <main>
         <Loader />
-        <section className="" id="hero">
-          <div className="flex justify-center items-center h-svh">
-            {/* <HeroBg /> */}
+        <section className="px-3" id="hero">
+          <div className="h-svh flex md:items-center items-end ">
             <Description />
           </div>
         </section>
