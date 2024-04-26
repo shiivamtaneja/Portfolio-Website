@@ -10,7 +10,7 @@ import gsap from 'gsap';
 
 import ActiveLink from "@/components/ActiveLink";
 import { delays, navLinks } from '@/lib/constants';
-import Logo from "./Logo";
+// import Logo from "./Logo";
 
 const Navbar = () => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -27,14 +27,15 @@ const Navbar = () => {
   }, { scope: headerRef });
 
   return (
-    <header className='z-[15] w-full absolute' ref={headerRef}>
+    <header className='z-[15] w-full absolute mt-4' ref={headerRef}>
       <nav className='flex justify-between px-4 items-center py-3 max-w-screen-2xl mx-auto w-full'>
         <Link
           href={'/'}
           className=''
           aria-label='Back to home'
         >
-          <Logo />
+          {/* <Logo /> */}
+          <span className="font-medium">© Code by Shivam Taneja</span>
         </Link>
 
         <div className='gap-3 md:flex hidden flex-row'>
