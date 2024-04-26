@@ -8,13 +8,14 @@ export default function Home() {
     <>
       <main>
         <Loader />
-        <section className="px-3" id="hero">
-          <div className="h-svh flex md:items-center items-end ">
+        <section className="mb-[-100svh]" id="hero">
+          <div className="h-svh flex md:items-center items-end fixed top-0">
             <Description />
           </div>
+          <div className="h-svh"></div>
         </section>
 
-        <section className="" id="experience">
+        <section className="mt-[100svh] bg-black text-white" id="experience">
           <div className="flex justify-center items-center h-svh">
             exp
             {/* <HeroBg />

@@ -38,16 +38,24 @@ const Description = () => {
       scrollTrigger: {
         trigger: descriptionRef.current,
         markers: false,
-        start: '100px top',
-        end: '100px',
-        onEnter: () => gsap.to(descriptionRef.current, {
-          opacity: 0,
-          duration: 1.2
-        }),
-        onLeaveBack: () => gsap.to(descriptionRef.current, {
-          opacity: 1,
-          duration: 1.2
-        }),
+        // start: '200px 50px',
+        // end: '250px 250px',
+        start: '200px 150px', 
+        end: '300px 100px',
+        scrub: true,
+        onUpdate: (self) => {
+          const { progress } = self;
+          const opacity = 1 - progress;
+          gsap.set(descriptionRef.current, { opacity });
+        },
+        // onEnter: () => gsap.to(descriptionRef.current, {
+        //   opacity: 0,
+        //   // duration: 1.2
+        // }),
+        // onLeaveBack: () => gsap.to(descriptionRef.current, {
+        //   opacity: 1,
+        //   // duration: 1.2
+        // }),
       },
     });
 
@@ -88,11 +96,9 @@ const Description = () => {
             alt='Headshot of Shivam wearing a grey jacket.'
           />
         </div>
-        <div className='lg:w-1/3 w-full flex flex-col gap-4 justify-around text-justify'>
+        <div className='lg:w-1/3 w-full flex flex-col gap-4 justify-around md:text-left text-justify text-stagger px-3'>
           <h2 className='sr-only'>A {calculateDateOfBirth('2002-05-31')}-year-old B-Tech College student who loves experimenting with cutting-edge technologies. Currently working as a Software Developer Inter and a full stack developer.</h2>
-          <h2 aria-hidden >
-            <span className='text-stagger ' aria-hidden>A {calculateDateOfBirth('2002-05-31')}-year-old B-Tech College student who loves experimenting with cutting-edge technologies. Currently working as a Software Developer Intern and a freelance Full Stack developer.</span>
-          </h2>
+          <h2 aria-hidden>A {calculateDateOfBirth('2002-05-31')}-year-old B-Tech College student who loves experimenting with cutting-edge technologies. Currently working as a Software Developer Intern and a freelance Full Stack developer.</h2>
 
           <div className='flex flex-row gap-3 text-stagger'>
             <p className='font-bold'>Local Time:</p>
