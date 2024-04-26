@@ -54,7 +54,7 @@ const NavContent = ({
             ref={navBarRef}
           >
             <nav
-              className='text-dark-200 relative flex flex-col justify-center px-8 font-bold sm:px-14 text-heading-3 2xl:px-20 overflow-hidden nav-items'
+              className='text-dark-200 relative flex flex-col justify-center px-8 font-bold sm:px-14 text-heading-2 2xl:px-20 overflow-hidden nav-items'
             >
               {navLinks.map((data, index) => (
                 <ActiveLink
