@@ -53,8 +53,8 @@ const config = {
       fontSize: {
         'title': 'clamp(2.5rem, 10vw, 12rem)',
         'heading-1': 'clamp(1.1rem, 4vw, 1.6rem)',
-        'heading-2': 'clamp(2.4rem, 8vw, 10rem)',
-        'heading-3': 'clamp(2rem, 5vw, 2.75rem)',
+        'heading-2': 'clamp(2rem, 5vw, 2.75rem)',
+        'heading-3': 'clamp(2.4rem, 8vw, 10rem)',
         'special': 'clamp(2rem, 4vw, 3.25rem)',
         // 'works-title': 'clamp(1.25rem, 2vw, 1.5rem)',
         'body-1': 'clamp(1.1rem, 2vw, 1.3rem)',
