@@ -16,7 +16,7 @@ const Loader = () => {
         //   top: 0,
         //   behavior: 'smooth'
         // })
-        // containerRef.current?.remove();
+        containerRef.current?.remove();
         // document.body.classList.remove('overflow-hidden');
       }
     });

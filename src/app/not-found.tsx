@@ -27,7 +27,7 @@ const NotFoundPage = () => {
         <section id="hero" className="relative h-svh w-full flex flex-col items-center justify-center gap-4" ref={notFoundRef}>
           <div>
             <h1 className='sr-only'>Seems like you got lost :&#40;</h1>
-            <h1 aria-hidden className='flex flex-col whitespace-nowrap text-dark-200 font-semibold text-heading-2 leading-tight items-center uppercase'>
+            <h1 aria-hidden className='flex flex-col whitespace-nowrap text-dark-200 font-semibold text-heading-3 leading-tight items-center uppercase'>
               <span className='flex' aria-hidden>
                 <span className='flex' aria-hidden>
                   {"Seems like".split('').map((word, index) => (
