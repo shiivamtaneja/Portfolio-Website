@@ -14,8 +14,8 @@ export const socialIcons = [
 ];
 
 export const delays = {
-  'pre-loader': 2.25,
-  'hero-description': 2.25 + 0.25 // pre-loader + delay
+  'pre-loader': 1.95,
+  'hero-description': 1.95 + 0.25 // pre-loader + delay
 };
 
 export const navLinks = [

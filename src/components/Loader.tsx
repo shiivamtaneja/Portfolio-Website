@@ -30,12 +30,14 @@ const Loader = () => {
       autoAlpha: 0,
       duration: 1.05,
     }).to(containerRef.current, {
+      borderBottomLeftRadius: '100%',
+      borderBottomRightRadius: '100%',
       duration: 0.75,
       delay: 0.5,
       ease: 'power1.inOut',
       y: '-100vh',
-
     });
+
   }, { scope: containerRef });
 
   return (
