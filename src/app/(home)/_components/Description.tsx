@@ -75,7 +75,7 @@ const Description = () => {
       <div className='flex lg:hidden'>
         <Image
           src={'/assets/my_side_profile.jpg'}
-          width={150}
+          width={255}
           height={0}
           className='rounded-md text-stagger '
           alt='Headshot of Shivam wearing a grey jacket.'
@@ -87,12 +87,12 @@ const Description = () => {
       </h1>
 
       <div className='flex flex-row w-full justify-center text-mid-400 text-heading-1 font-semibold normal-case lg:h-96 gap-24 '>
-        <div className='hidden lg:flex h-full'>
+        <div className='hidden lg:flex'>
           <Image
             src={'/assets/my_side_profile.jpg'}
-            width={200}
+            width={255}
             height={0}
-            className='rounded-md text-stagger '
+            className='rounded-md text-stagger aspect-[433/667]'
             alt='Headshot of Shivam wearing a grey jacket.'
           />
         </div>
