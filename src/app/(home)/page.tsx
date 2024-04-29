@@ -8,16 +8,17 @@ export default function Home() {
     <>
       <main>
         <Loader />
-        <section className="mb-[-100svh]" id="hero">
-          <div className="h-svh flex md:items-center items-end fixed top-0">
+        <section className="" id="hero">
+          <div className="h-svh sticky top-0 flex justify-center items-center z-[-1]">
             <Description />
           </div>
           <div className="h-svh"></div>
         </section>
 
-        <section className="mt-[100svh] bg-black text-white" id="experience">
-          <div className="flex justify-center items-center h-svh">
-            exp
+        <section className="text-white rounded-3xl z-20 bg-black mt-[-100svh]" id="about">
+          <div className="flex h-svh max-w-screen-2xl mx-auto px-4">
+
+            about me
             {/* <HeroBg />
             <Description /> */}
           </div>
@@ -38,17 +39,6 @@ export default function Home() {
             {/* <Description /> */}
           </div>
         </section>
-
-        <section className="" id="about">
-          <div className="flex justify-center items-center h-svh">
-            {/* <HeroBg /> */}
-            about
-            {/* <Description /> */}
-            {/* <Description /> */}
-
-          </div>
-        </section>
-
       </main>
     </>
   );
