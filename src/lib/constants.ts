@@ -30,18 +30,8 @@ export const navLinks = [
     showOnHeader: true
   },
   {
-    path: '/skills',
-    name: 'skills',
-    showOnHeader: true
-  },
-  {
     path: '/projects',
     name: 'projects',
-    showOnHeader: true
-  },
-  {
-    path: '/about',
-    name: 'about',
     showOnHeader: true
   },
   {
