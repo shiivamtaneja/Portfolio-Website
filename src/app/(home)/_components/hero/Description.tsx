@@ -8,8 +8,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-import { delays } from '@/lib/constants';
-import calculateDateOfBirth from '@/utils/calculateDateOfBirth';
+import { delays, homePageInformation } from '@/lib/constants';
 
 const Description = () => {
   const [currLocalTime, setCurrLocalTime] = useState<string>();
@@ -37,13 +36,15 @@ const Description = () => {
       scrollTrigger: {
         trigger: descriptionRef.current,
         markers: false,
-        start: '40% 35%', 
-        end: '80% 30%',
+        start: '60% 50%',
+        end: '80% 10%',
         scrub: true,
         onUpdate: (self) => {
           const { progress } = self;
-          const opacity = 1 - progress;
-          gsap.set(descriptionRef.current, { opacity });
+          const opacity = 1 - (progress * 0.5);
+          const y = progress * 100;
+          const scale = 1 - (progress * 0.05);
+          gsap.set(descriptionRef.current, { opacity, y, scale });
         },
       },
     });
@@ -66,7 +67,7 @@ const Description = () => {
           alt='Headshot of Shivam wearing a white shirt with mountains in the background.'
         />
       </div>
-      
+
       <h1 aria-hidden className='uppercase flex flex-col whitespace-nowrap text-dark-200 font-semibold text-title relative leading-tight items-center overflow-hidden'>
         <span className='text-stagger heading-underline'>Shivam Taneja</span>
       </h1>
@@ -82,8 +83,8 @@ const Description = () => {
           />
         </div>
         <div className='lg:w-1/3 w-full flex flex-col gap-4 justify-around md:text-left text-justify text-stagger px-4'>
-          <h2 className='sr-only'>A {calculateDateOfBirth('2002-05-31')}-year-old B-Tech College student who loves experimenting with cutting-edge technologies. Currently working as a Software Developer Inter and a full stack developer.</h2>
-          <h2 aria-hidden>A {calculateDateOfBirth('2002-05-31')}-year-old B-Tech College student who loves experimenting with cutting-edge technologies. Currently working as a Software Developer Intern and a freelance Full Stack developer.</h2>
+          <h2 className='sr-only'>{homePageInformation.description}</h2>
+          <h2 aria-hidden>{homePageInformation.description}</h2>
 
           <div className='flex flex-row gap-3 text-stagger'>
             <p className='font-bold'>Local Time:</p>

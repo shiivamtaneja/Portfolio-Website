@@ -10,7 +10,6 @@ import gsap from 'gsap';
 
 import ActiveLink from "@/components/ActiveLink";
 import { delays, navLinks } from '@/lib/constants';
-// import Logo from "./Logo";
 
 const Navbar = () => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -34,7 +33,6 @@ const Navbar = () => {
           className=''
           aria-label='Back to home'
         >
-          {/* <Logo /> */}
           <span className="font-medium">© Code by Shivam Taneja</span>
         </Link>
 
