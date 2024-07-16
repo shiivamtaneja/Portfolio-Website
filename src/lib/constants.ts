@@ -1,3 +1,5 @@
+import calculateDateOfBirth from "@/utils/calculateDateOfBirth";
+
 export const socialIcons = [
   {
     link: 'https://www.linkedin.com/in/shivam-taneja/',
@@ -14,8 +16,8 @@ export const socialIcons = [
 ];
 
 export const delays = {
-  'pre-loader': 1.95,
-  'hero-description': 1.95 + 0.25 // pre-loader + delay
+  'pre-loader': 1.0,
+  'hero-description': 1.0 + 0.25 // pre-loader + delay
 };
 
 export const navLinks = [
@@ -40,3 +42,28 @@ export const navLinks = [
     showOnHeader: true
   },
 ];
+
+export const homePageInformation = {
+  description: `A ${calculateDateOfBirth('2002-05-31')}-year-old full-stack developer passionate about experimenting with cutting-edge technologies, currently working as an Associate Software Development Engineer in NTT Data.`
+};
+
+type PathNamesType = {
+  [key: string]: {
+    [key: string]: string;
+  };
+};
+
+export const pathNames: PathNamesType = {
+  true: {
+    '/': 'Shivam Taneja',
+    '/contact': 'Contact',
+    '/experience': 'Experience',
+    '/projects': 'Projects',
+  },
+  false: {
+    '/': '<Home />',
+    '/contact': '<Contact />',
+    '/experience': '<Experience />',
+    '/projects': '<Projects />',
+  }
+};
