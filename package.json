@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.0",
+    "@next/font": "^14.2.15",
     "@octokit/rest": "^20.1.0",
     "@octokit/types": "^13.4.1",
     "@radix-ui/react-dialog": "^1.0.5",
     "@studio-freight/react-lenis": "^0.0.47",
+    "blobity": "^0.2.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.1.7",

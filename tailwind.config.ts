@@ -14,6 +14,7 @@ const config = {
       screens: {
         'xs': '550px',
         "3xl": "1920px",
+        "840": "840px",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,7 +52,7 @@ const config = {
         },
       },
       fontSize: {
-        'title': 'clamp(2.5rem, 10vw, 12rem)',
+        'title': 'clamp(2.5rem, 10vw, 10rem)',
         'heading-1': 'clamp(1.1rem, 4vw, 1.6rem)',
         'heading-2': 'clamp(2rem, 5vw, 2.75rem)',
         'heading-3': 'clamp(2.4rem, 8vw, 10rem)',

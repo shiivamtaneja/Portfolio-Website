@@ -145,3 +145,22 @@ body:before {
     border-radius: 50%;
   }
 }
+
+.glow {
+  font-style: italic;
+  text-shadow: 0 0 100px rgba(255, 255, 255, 0.8), 0 0 100px rgba(255, 255, 255, 0.6);
+}
+
+/* .double-column-block {
+  grid-column-gap: 48px;
+  grid-row-gap: 16px;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: space-between;
+  display: grid;
+} */
+
+.text-underline a {
+  text-decoration: underline;
+}

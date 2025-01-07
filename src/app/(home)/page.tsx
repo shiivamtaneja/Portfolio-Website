@@ -1,5 +1,5 @@
-import AboutSection from "./_components/about/AboutSection";
-import HeroSection from "./_components/hero/HeroSection";
+import AboutSection from "./_components/about-section";
+import HeroSection from "./_components/home-hero-section";
 
 export default function Home() {
   return (
@@ -9,7 +9,11 @@ export default function Home() {
           <HeroSection />
         </section>
 
-        <section className="text-white rounded-t-3xl z-20 bg-black mt-[-100svh]" id="about">
+        <section className="text-white rounded-3xl z-20 bg-black mt-[-100svh]" id="about">
+          <AboutSection />
+        </section>
+
+        <section>
           <AboutSection />
         </section>
       </main>

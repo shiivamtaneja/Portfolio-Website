@@ -8,7 +8,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-import { delays, homePageInformation } from '@/lib/constants';
+import { delays, pageInformations } from '@/lib/constants';
 
 const Description = () => {
   const [currLocalTime, setCurrLocalTime] = useState<string>();
@@ -75,16 +75,16 @@ const Description = () => {
       <div className='flex flex-row w-full justify-center text-mid-400 text-heading-1 font-semibold normal-case lg:h-96 gap-24'>
         <div className='hidden lg:flex'>
           <Image
-            src={'/assets/my_side_profile.jpg'}
+            src={'/assets/me_mongo_db_event_12_sep_24.png'}
             width={255}
             height={0}
             className='rounded-md text-stagger aspect-[433/667]'
-            alt='Headshot of Shivam wearing a white shirt with mountains in the background.'
+            alt='Shivam wearing a white patterned shirt and event lanyard standing in front of a MongoDB logo wall.'
           />
         </div>
         <div className='lg:w-1/3 w-full flex flex-col gap-4 justify-around md:text-left text-justify text-stagger px-4'>
-          <h2 className='sr-only'>{homePageInformation.description}</h2>
-          <h2 aria-hidden>{homePageInformation.description}</h2>
+          <h2 className='sr-only'>{pageInformations.homepageDescription}</h2>
+          <h2 aria-hidden>{pageInformations.homepageDescription}</h2>
 
           <div className='flex flex-row gap-3 text-stagger'>
             <p className='font-bold'>Local Time:</p>

@@ -1,6 +1,5 @@
 import getChangeLogData from '@/utils/getChangeLogData';
-
-import RenderData from './_components/RenderData';
+import RenderData from './_components/render-data';
 
 const page = async () => {
   const data = await getChangeLogData();

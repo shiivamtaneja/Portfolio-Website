@@ -1,4 +1,4 @@
-import Description from './Description';
+import Description from "./home-description";
 
 const HeroSection = () => {
   return (
