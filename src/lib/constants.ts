@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { House, MailCheck } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
@@ -60,8 +62,8 @@ export const delays = {
 
 export const aboutMeContent = [
   "22-year-old B-Tech graduate from India.",
+  "Specializing in full-stack development with expertise in MERN.",
   "Working as an Associate Software Developer at NTT Data.",
-  "Specializes in full-stack development with expertise in MERN.",
   "Currently pursuing certifications in AWS and Microsoft Azure.",
   "Interests: gaming, content creation, music, video editing.",
   "Passionate about tech, software engineering, and UI/UX design.",
@@ -138,3 +140,49 @@ export const openSourceContribution = [
     date: 'Sep 21, 2023',
   }
 ];
+
+export const defaultMetadata: Partial<Metadata> = {
+  openGraph: {
+    type: "website",
+    url: "https://shivamtaneja.com/contact",
+    images: [
+      {
+        url: "/og-image.png",
+        alt: "Shivam Taneja - Full Stack Developer",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
+  },
+  keywords: [
+    "Shivam Taneja",
+    "Full Stack Developer Portfolio",
+    "Web Developer Portfolio",
+    "Full Stack Developer",
+    "Shivam Taneja Projects",
+    "Hire Shivam Taneja",
+    "Full Stack Development",
+    "React Developer Portfolio",
+  ],
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/logo.svg',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/logo-dark.svg',
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://shivamtaneja.com",
+  },
+  viewport: "width=device-width, initial-scale=1.0",
+  robots: "index, follow",
+}

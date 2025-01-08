@@ -6,6 +6,8 @@ import "./globals.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { defaultMetadata } from "@/lib/constants";
+
 import GrainyFilter from "@/components/grainy-filter";
 import SmoothScroll from "@/components/smooth-scroll";
 
@@ -16,22 +18,19 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Shivam Taneja",
-  description: "Personal portfolio website for Shivam Taneja",
-  icons: {
-    icon: [
-      {
-        media: '(prefers-color-scheme: light)',
-        url: '/logo.svg',
-        href: '/logo.svg'
-      },
-      {
-        media: '(prefers-color-scheme: dark)',
-        url: '/logo-dark.svg',
-        href: '/logo-dark.svg'
-      },
-    ],
-  }
+  ...defaultMetadata,
+  title: "Shivam Taneja - Full Stack Developer | Portfolio",
+  description: "Welcome to Shivam Taneja's portfolio. Explore my projects, skills, and journey as a full-stack developer passionate about building innovative digital experiences.",
+  openGraph: {
+    title: "Shivam Taneja - Full Stack Developer | Portfolio",
+    description: "Explore Shivam Taneja's portfolio and discover innovative projects and cutting-edge web development solutions.",
+    ...defaultMetadata.openGraph,
+  },
+  twitter: {
+    title: "Shivam Taneja - Full Stack Developer | Portfolio",
+    description: "Explore Shivam Taneja's portfolio and discover innovative projects and cutting-edge web development solutions.",
+    ...defaultMetadata.twitter
+  },
 };
 
 export default function RootLayout({

@@ -1,26 +1,33 @@
 import { Metadata } from 'next';
 
+import { defaultMetadata } from '@/lib/constants';
+
 import CustomWrapper from '@/components/custom-wrapper';
 
 export const metadata: Metadata = {
-  title: "Not Found | Shivam Taneja",
-  description: "Personal portfolio website for Shivam Taneja",
-  icons: {
-    icon: [
-      {
-        media: '(prefers-color-scheme: light)',
-        url: '/logo.svg',
-        href: '/logo.svg'
-      },
-      {
-        media: '(prefers-color-scheme: dark)',
-        url: '/logo-dark.svg',
-        href: '/logo-dark.svg'
-      },
-    ],
-  }
+  ...defaultMetadata,
+  title: "404 - Page Not Found | Shivam Taneja",
+  description: "Oops! The page you're looking for doesn't exist. Return to Shivam Taneja's portfolio or explore other sections.",
+  openGraph: {
+    title: "404 - Page Not Found | Shivam Taneja",
+    description: "Oops! The page you're looking for doesn't exist. Return to Shivam Taneja's portfolio or explore other sections.",
+    ...defaultMetadata.openGraph
+  },
+  twitter: {
+    title: "404 - Page Not Found | Shivam Taneja",
+    description: "Oops! The page you're looking for doesn't exist. Return to Shivam Taneja's portfolio or explore other sections.",
+    ...defaultMetadata.twitter
+  },
+  keywords: [
+    "404 Page",
+    "Page Not Found",
+    "Shivam Taneja",
+    "Full Stack Developer",
+    "Portfolio 404",
+    "Error Page",
+  ],
+  robots: "noindex, follow",
 };
-
 
 export default function NotFound() {
   return (
