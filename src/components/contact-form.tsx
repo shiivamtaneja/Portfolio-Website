@@ -35,6 +35,11 @@ const ContactForm = () => {
         render() {
           setTimeout(() => {
             form.reset();
+            
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
           }, 0);
 
           return 'Message sent successfully!'
