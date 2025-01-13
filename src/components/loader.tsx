@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useGSAP, } from '@gsap/react';
 import gsap from 'gsap';
 
-import { pathNames } from '@/lib/constants';
+import { matchPath } from '@/lib/utils';
 
 const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +48,7 @@ const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
       <div className="z-50 flex flex-col items-center">
         <span className={`${isFirstLoad ? "overflow-hidden" : ""}`}>
           <span className={`flex text-reveal text-3xl ${isFirstLoad ? "invisible" : ''}`}>
-            {pathNames[`${isFirstLoad}`][pathname] || "Not Found"}
+            {matchPath(pathname, isFirstLoad)}
           </span>
         </span>
 

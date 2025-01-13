@@ -1,5 +1,6 @@
-import { aboutMeContent } from '@/lib/constants'
 import React from 'react'
+
+import { aboutMeContent } from '@/lib/constants/about-me'
 
 const AboutMeSection = () => {
   return (

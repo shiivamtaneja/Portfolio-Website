@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { defaultMetadata } from '@/lib/constants';
+import { defaultMetadata } from '@/lib/constants/metadata';
 
 import ContactForm from '@/components/contact-form';
-import CustomWrapper from '@/components/custom-wrapper';
+import Wrapper from '@/components/wrapper';
 import { FileText, MailIcon, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 const ContactPage = () => {
   return (
-    <CustomWrapper>
+    <Wrapper>
       <section>
         <div className="py-6">
           <div className="grid md:grid-cols-2 md:gap-0 gap-10">
@@ -64,7 +64,7 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-    </CustomWrapper>
+    </Wrapper>
   )
 }
 

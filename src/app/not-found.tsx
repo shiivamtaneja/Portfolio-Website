@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
-import { defaultMetadata } from '@/lib/constants';
+import { defaultMetadata } from '@/lib/constants/metadata';
 
-import CustomWrapper from '@/components/custom-wrapper';
+import Wrapper from '@/components/wrapper';
 
 export const metadata: Metadata = {
   ...defaultMetadata,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <CustomWrapper>
+    <Wrapper>
       <section>
         <div className="text-center flex flex-col gap-4 py-4">
           <div className='flex flex-col gap'>
@@ -43,6 +43,6 @@ export default function NotFound() {
           </p>
         </div>
       </section>
-    </CustomWrapper>
+    </Wrapper>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { experiences } from '@/lib/constants'
+import { experiences } from '@/lib/constants/experience'
 import { CircleDot } from 'lucide-react'
 
 const ExperienceSection = () => {

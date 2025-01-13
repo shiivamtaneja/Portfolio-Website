@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { sideProjects } from '@/lib/constants';
+import { sideProjects } from '@/lib/constants/side-projects';
 
 import { ExternalLink, Info } from 'lucide-react';
 import { GoDotFill } from "react-icons/go";
@@ -42,8 +42,7 @@ const SideProjectsSection = () => {
                     </Link>
 
                     <Link
-                      href={`/projects/${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      target='_blank'
+                      href={item.descLink}
                       className="text-neutral-400 hover:text-white transition-colors"
                     >
                       <Tooltip delayDuration={50}>

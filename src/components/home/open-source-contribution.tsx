@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { openSourceContribution } from '@/lib/constants'
+import { openSourceContribution } from '@/lib/constants/open-source-contribution'
 
 import { ExternalLink } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'

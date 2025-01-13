@@ -5,7 +5,8 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { navItems, socialItems } from '@/lib/constants';
+import { navItems } from '@/lib/constants/nav-items';
+import { socialItems } from '@/lib/constants/social-items';
 
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
