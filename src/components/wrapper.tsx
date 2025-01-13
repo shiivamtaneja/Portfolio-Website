@@ -5,14 +5,14 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-import { delays } from '@/lib/constants';
+import { delays } from '@/lib/constants/delays';
 
 import useLoadingStore from '@/store/loading-store';
 
 import Nav from './nav';
 import { TooltipProvider } from './ui/tooltip';
 
-const CustomWrapper = ({
+const Wrapper = ({
   children
 }: {
   children: React.ReactNode
@@ -41,4 +41,4 @@ const CustomWrapper = ({
   )
 }
 
-export default CustomWrapper
+export default Wrapper
