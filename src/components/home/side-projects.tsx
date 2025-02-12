@@ -61,22 +61,22 @@ const SideProjectsSection = () => {
                 </p>
               </div>
 
-              {item.userCount &&
-                <div className='flex gap-2 items-center shrink-0'>
+              <div className='flex gap-2 items-center shrink-0'>
+                {item.userCount &&
                   <p>{item.userCount}</p>
+                }
 
-                  {item.activelyWorking && (
-                    <Tooltip delayDuration={50}>
-                      <TooltipTrigger asChild>
-                        <GoDotFill size={15} className='hover:scale-110 scale-100 transition duration-75 ease-in-out text-green-500' />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p className='p-2 bg-gray-500 text-white rounded'>Actively working on it</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-                </div>
-              }
+                {item.activelyWorking && (
+                  <Tooltip delayDuration={50}>
+                    <TooltipTrigger asChild>
+                      <GoDotFill size={15} className='hover:scale-110 scale-100 transition duration-75 ease-in-out text-green-500' />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className='p-2 bg-gray-500 text-white rounded'>Actively working on it</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+              </div>
             </li>
           ))}
         </ul>
