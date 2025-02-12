@@ -1,10 +1,10 @@
 export const sideProjects = [
   {
-    title: 'Rage-Bait',
-    projLink: 'https://rage-bait.shivamtaneja.com/',
+    title: 'Tilt Bot',
+    projLink: 'https://tilt-bot.shivamtaneja.com/',
     desc: "an AI-powered gaming roast generator for witty, non-toxic comebacks.",
-    descLink: "/project/rage-bait/",
-    userCount: null,
+    descLink: "/project/tilt-bot/",
+    userCount: '05 users',
     activelyWorking: true,
   },
   {
