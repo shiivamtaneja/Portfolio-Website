@@ -31,3 +31,26 @@ export function matchPath(pathname: string, isFirstLoad: boolean) {
 
   return 'Not Found';
 }
+
+export async function verifyRecaptchaToken(token: string) {
+  const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      secret: process.env.RECAPTCHA_SECRET_KEY!,
+      response: token
+    })
+  });
+
+  const data = await response.json();
+
+  return {
+    success: data.success as boolean,
+    score: data.score as number,
+    action: data.action as string,
+    challengeTs: data.challenge_ts as string,
+    hostname: data.hostname as string
+  };
+}

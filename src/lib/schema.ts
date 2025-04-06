@@ -18,7 +18,14 @@ export const contactFormSchema = z.object({
     message: "Message must be at least 10 characters.",
   }).max(250, {
     message: "Message must be at most 250 characters.",
-  }),
+  })
 })
 
 export type ContactFormSchema = z.infer<typeof contactFormSchema>;
+
+export const formDataWithRecaptcha = z.object({
+  ...contactFormSchema.shape,
+  recaptchaToken: z.string().min(1, "reCAPTCHA token is required")
+});
+
+export type FormDataWithRecaptcha = z.infer<typeof formDataWithRecaptcha>;
