@@ -7,9 +7,11 @@ import gsap from 'gsap';
 
 import { delays } from '@/lib/constants/delays';
 
-import useLoadingStore from '@/store/loading-store';
+import { useIsFirstLoad } from '@/store/loading-store';
 
+import ChatBot from './chat-bot';
 import Nav from './nav';
+
 import { TooltipProvider } from './ui/tooltip';
 
 const Wrapper = ({
@@ -17,8 +19,9 @@ const Wrapper = ({
 }: {
   children: React.ReactNode
 }) => {
+
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { isFirstLoad } = useLoadingStore();
+  const isFirstLoad = useIsFirstLoad();
 
   useGSAP(() => {
     const t1 = gsap.timeline();
@@ -36,7 +39,10 @@ const Wrapper = ({
         <Nav />
 
         {children}
+
       </main>
+
+      <ChatBot />
     </TooltipProvider>
   )
 }

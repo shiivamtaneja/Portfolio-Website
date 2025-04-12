@@ -1,10 +1,10 @@
 'use client';
 
 import Loader from "@/components/loader";
-import useLoadingStore from "@/store/loading-store";
+import { useIsFirstLoad } from "@/store/loading-store";
 
 const Template = ({ children }: { children: React.ReactNode }) => {
-  const { isFirstLoad } = useLoadingStore();
+  const isFirstLoad = useIsFirstLoad();
 
   return (
     <>

@@ -10,4 +10,5 @@ const useLoadingStore = create<LoadingStore>((set) => ({
   setIsFirstLoad: (value: boolean) => set({ isFirstLoad: value }),
 }));
 
-export default useLoadingStore
+export const useIsFirstLoad = () => useLoadingStore(state => state.isFirstLoad)
+export const useSetFirstLoad = () => useLoadingStore(state => state.setIsFirstLoad)

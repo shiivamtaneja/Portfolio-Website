@@ -11,7 +11,7 @@ import useRecaptcha from '@/hooks/use-recaptcha';
 
 import { sendEmail } from '@/app/actions/send-mail';
 
-import { contactFormSchema, ContactFormSchema } from '@/lib/schema';
+import { contactFormSchema, ContactFormSchema } from '@/schema/contact';
 
 import { Loader2 } from 'lucide-react';
 import { Button } from './ui/button';

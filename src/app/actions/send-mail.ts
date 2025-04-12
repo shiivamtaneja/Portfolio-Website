@@ -2,13 +2,14 @@
 
 import { Resend } from 'resend'
 
-import { FormDataWithRecaptcha } from '@/lib/schema'
-
+import { serverEnv } from '@/lib/env/server'
 import { verifyRecaptchaToken } from '@/lib/utils'
+
+import { FormDataWithRecaptcha } from '@/schema/contact'
 
 import ContactFormEmail from '@/components/emails/contact-form-email'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(serverEnv().RECAPTCHA_SECRET_KEY)
 
 export async function sendEmail(formData: FormDataWithRecaptcha) {
   try {

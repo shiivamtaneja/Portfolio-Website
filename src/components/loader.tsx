@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useGSAP, } from '@gsap/react';
 import gsap from 'gsap';
 
+import { chatIdRegex, excludedPaths } from '@/lib/constants/path-names';
 import { matchPath } from '@/lib/utils';
 
 const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
@@ -14,6 +15,10 @@ const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
   const pathname = usePathname();
 
   useGSAP(() => {
+    if (excludedPaths.includes(pathname) || chatIdRegex.test(pathname)) {
+      return
+    }
+
     const t1 = gsap.timeline();
 
     if (!isFirstLoad) {
@@ -43,8 +48,15 @@ const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
 
   }, { scope: containerRef, dependencies: [isFirstLoad] });
 
+  if (excludedPaths.includes(pathname) || chatIdRegex.test(pathname)) {
+    return null
+  }
+
   return (
-    <section ref={containerRef} className='fixed top-0 left-0 bg-black flex h-svh w-screen items-center justify-center font-bold leading-[115%] z-[999999] text-white'>
+    <section
+      ref={containerRef}
+      className='fixed top-0 left-0 bg-black flex h-svh w-screen items-center justify-center font-bold leading-[115%] z-[999999] text-white'
+    >
       <div className="z-50 flex flex-col items-center">
         <span className={`${isFirstLoad ? "overflow-hidden" : ""}`}>
           <span className={`flex text-reveal text-3xl ${isFirstLoad ? "invisible" : ''}`}>

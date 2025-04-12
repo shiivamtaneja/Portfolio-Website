@@ -4,16 +4,22 @@ import { useEffect, useRef } from 'react';
 
 import { usePathname } from 'next/navigation';
 
-import useLoadingStore from '@/store/loading-store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import { useIsFirstLoad, useSetFirstLoad } from '@/store/loading-store';
 
 const SmoothScroll = ({
   children
 }: {
   children: React.ReactNode
 }) => {
+  const queryClient = new QueryClient()
+
   const countRef = useRef(0);
   const pathname = usePathname();
-  const { setIsFirstLoad, isFirstLoad } = useLoadingStore();
+
+  const isFirstLoad = useIsFirstLoad();
+  const setIsFirstLoad = useSetFirstLoad();
 
   useEffect(() => {
     if (countRef.current > 1 && isFirstLoad) {
@@ -30,7 +36,9 @@ const SmoothScroll = ({
   }, [pathname]);
 
   return (
-    children
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
   );
 };
 

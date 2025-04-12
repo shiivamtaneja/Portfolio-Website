@@ -1,6 +1,9 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 import { pathNames } from "./constants/path-names";
+
+import { serverEnv } from "./env/server";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -39,7 +42,7 @@ export async function verifyRecaptchaToken(token: string) {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: new URLSearchParams({
-      secret: process.env.RECAPTCHA_SECRET_KEY!,
+      secret: serverEnv().RECAPTCHA_SECRET_KEY,
       response: token
     })
   });
