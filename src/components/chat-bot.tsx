@@ -256,8 +256,6 @@ const ChatBot = () => {
     onSuccess: async (res) => {
       setChatId(res.chatId)
 
-      await refetchChat()
-
       queryClient.invalidateQueries({ queryKey: ['allChats'] })
     },
     onError: (err) => {
