@@ -104,8 +104,8 @@ export async function POST(req: NextRequest) {
              Additionally, generate a **short 5-word title** (maximum of 5 words) that summarizes the main topic of this conversation. The title should be concise and accurately reflect the content of the conversation.
              
              Please separate the title from the response. For example:
-             title: [Generated Title]
-             response: [Generated response]
+             title: [Generated Title]. Make sure this is a string.
+             response: [Generated response]. Make sure this is a string.
  
              Ensure your response is **valid JSON**. No extra explanations—only return the JSON object.
              `
