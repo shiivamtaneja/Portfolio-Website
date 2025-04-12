@@ -101,7 +101,7 @@ The crawler endpoint is protected using Next.js middleware that validates the re
 
 The crawler requires the following environment variables:
 
-```
+```env
 SITE_TO_CRAWL=https://shivamtaneja.com/sitemap.xml
 MONGODB_URI=""
 MONGODB_DB_NAME=""
@@ -110,6 +110,8 @@ MONGODB_COLLECTION_CRAWLING_META=""
 MONGODB_VECTOR_INDEX_NAME=""
 MONGODB_VECTOR_PATH_NAME=""
 GCP_KEY_BASE64=""
+NEXTAUTH_SECRET=""
+NEXTAUTH_URL="http://localhost:3000"
 ```
 
 ## Best Practices and Optimizations

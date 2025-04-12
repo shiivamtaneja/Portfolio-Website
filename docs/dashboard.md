@@ -111,10 +111,12 @@ The dashboard implements several security measures:
 
 The dashboard requires the following environment variables:
 
-```
+```env
 GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 ALLOWED_DASHBOARD_EMAIL=""
+NEXTAUTH_SECRET=""
+NEXTAUTH_URL="http://localhost:3000"
 ```
 
 ## Best Practices
