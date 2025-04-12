@@ -5,14 +5,43 @@ import { CrawlingMetaData } from "@/types/crawl.types";
 
 import { serverEnv } from "./env/server";
 
-const dbClient = new MongoClient(serverEnv().MONGODB_URI);
-await dbClient.connect();
+let client: MongoClient | null = null
+let db: ReturnType<MongoClient["db"]> | null = null;
 
-const db = dbClient.db(serverEnv().MONGODB_DB_NAME);
+async function connectToDatabase() {
+  if (!client) {
+    client = new MongoClient(serverEnv().MONGODB_URI);
+    await client.connect();
+    db = client.db(serverEnv().MONGODB_DB_NAME);
+  }
 
-const embeddingsCollection = db.collection(serverEnv().MONGODB_COLLECTION_EMBEDDINGS);
-const crawlingMetaDataCollection = db.collection<CrawlingMetaData>(serverEnv().MONGODB_COLLECTION_CRAWLING_META);
-const chatsCollection = db.collection<ChatDocument>(serverEnv().MONGODB_COLLECTION_CHATS);
+  return db!;
+}
+
+async function getDbClient(): Promise<MongoClient> {
+  if (!client) {
+    client = new MongoClient(serverEnv().MONGODB_URI);
+    await client.connect();
+    db = client.db(serverEnv().MONGODB_DB_NAME);
+  }
+
+  return client;
+}
+
+async function getChatsCollection() {
+  const db = await connectToDatabase();
+  return db.collection<ChatDocument>(serverEnv().MONGODB_COLLECTION_CHATS);
+}
+
+async function getEmbeddingsCollection() {
+  const db = await connectToDatabase();
+  return db.collection(serverEnv().MONGODB_COLLECTION_EMBEDDINGS);
+}
+
+async function getCrawlingMetaDataCollection() {
+  const db = await connectToDatabase();
+  return db.collection<CrawlingMetaData>(serverEnv().MONGODB_COLLECTION_CRAWLING_META);
+}
 
 async function appendToConversation(
   sessionId: string,
@@ -21,6 +50,8 @@ async function appendToConversation(
   type: 'bot' | 'user',
   mongoSession?: ClientSession
 ) {
+  const chatsCollection = await getChatsCollection();
+
   const newMessage: ConversationMessage = {
     message,
     type,
@@ -51,8 +82,6 @@ async function appendToConversation(
 
 export {
   appendToConversation,
-  chatsCollection,
-  crawlingMetaDataCollection,
-  dbClient,
-  embeddingsCollection
+  connectToDatabase, getChatsCollection,
+  getCrawlingMetaDataCollection, getDbClient, getEmbeddingsCollection
 };

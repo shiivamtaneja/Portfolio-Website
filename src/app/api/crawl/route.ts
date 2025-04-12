@@ -9,12 +9,13 @@ import { parseStringPromise } from "xml2js";
 import { initGCPAuth } from "@/lib/auth/gcp-auth";
 import { generateEmbedding } from "@/lib/embedding";
 import { serverEnv } from "@/lib/env/server";
-import { crawlingMetaDataCollection, dbClient, embeddingsCollection } from "@/lib/mongo";
+import { getCrawlingMetaDataCollection, getDbClient, getEmbeddingsCollection } from "@/lib/mongo";
 
 import { Sitemap } from "@/types/sitemap.types";
 
 export async function GET() {
   try {
+    const crawlingMetaDataCollection = await getCrawlingMetaDataCollection();
     const crawlingMeta = await crawlingMetaDataCollection.findOne();
 
     if (!crawlingMeta) {
@@ -31,7 +32,10 @@ export async function GET() {
 export async function POST() {
   initGCPAuth();
 
-  const session = dbClient.startSession();
+  const client = await getDbClient()
+  const session = client.startSession();
+  const embeddingsCollection = await getEmbeddingsCollection();
+  const crawlingMetaDataCollection = await getCrawlingMetaDataCollection();
 
   try {
     await session.withTransaction(async () => {

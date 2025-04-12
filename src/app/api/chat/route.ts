@@ -9,7 +9,12 @@ import { authOptions } from "@/lib/auth/next-auth";
 import { processAIResponse } from "@/lib/chat";
 import { generateEmbedding } from "@/lib/embedding";
 import { serverEnv } from "@/lib/env/server";
-import { appendToConversation, chatsCollection, dbClient, embeddingsCollection } from "@/lib/mongo";
+import {
+  appendToConversation,
+  getChatsCollection,
+  getDbClient,
+  getEmbeddingsCollection
+} from "@/lib/mongo";
 
 import { chatSchema } from "@/schema/chat";
 
@@ -27,6 +32,8 @@ export async function GET() {
   }
 
   try {
+    const chatsCollection = await getChatsCollection()
+
     const chats = await chatsCollection.find().project({ chatId: 1, title: 1, createdAt: 1 }).sort({ createdAt: -1 }).toArray();
 
     return NextResponse.json({ chats });
@@ -38,8 +45,10 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   initGCPAuth();
-  
-  const session = dbClient.startSession();
+
+  const client = await getDbClient()
+  const session = client.startSession();
+  const chatsCollection = await getChatsCollection();
 
   try {
     // Parse and validate incoming request
@@ -141,6 +150,8 @@ export async function POST(req: NextRequest) {
  * @returns The most relevant content or null if none found
  */
 async function findRelevantContent(queryEmbedding: number[]): Promise<string | null> {
+  const embeddingsCollection = await getEmbeddingsCollection()
+
   const results = await embeddingsCollection.aggregate([
     {
       $vectorSearch: {

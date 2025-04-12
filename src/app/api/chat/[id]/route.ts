@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { chatsCollection } from "@/lib/mongo";
+import { getChatsCollection } from "@/lib/mongo";
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
 
   try {
+    const chatsCollection = await getChatsCollection()
     const chat = await chatsCollection.findOne({ chatId: id });
 
     if (!chat) {
