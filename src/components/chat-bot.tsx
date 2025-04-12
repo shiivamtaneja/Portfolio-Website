@@ -177,7 +177,7 @@ const ChatBot = () => {
   } = useQuery({
     queryKey: ['chat', chatId],
     queryFn: () => fetchMessages(chatId!),
-    enabled: !!chatId && open,
+    enabled: !!chatId,
     retry: false,
     refetchOnWindowFocus: false
   });
@@ -204,8 +204,6 @@ const ChatBot = () => {
       if (chatId && open) {
         // Always refetch the conversation
         await refetchChat();
-
-        queryClient.invalidateQueries({ queryKey: ['chat', chatId] });
       }
     },
     onError: (error) => {
@@ -255,10 +253,10 @@ const ChatBot = () => {
   // Chat initialization
   const { mutate: initChat } = useMutation({
     mutationFn: () => initializeChat(),
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
       setChatId(res.chatId)
 
-      refetchChat()
+      await refetchChat()
 
       queryClient.invalidateQueries({ queryKey: ['allChats'] })
     },
