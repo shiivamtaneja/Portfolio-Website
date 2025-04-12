@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shivam Taneja's Portfolio Website
 
-## Getting Started
+This is the official repository for my personal website built with Next.js 15, featuring a modern design and an AI-powered chatbot to interact with visitors.
 
-First, run the development server:
+## 🌟 About the project
 
+This branch (`design-v2`) contains the latest design updates for my portfolio website. The site showcases my work, skills, and provides a unique way for visitors to interact with an AI assistant that can answer questions about me and my work.
+
+## ✨ Key Features
+
+- Modern, responsive design built with Next.js 15
+- AI-powered chatbot using Groq and vector embeddings
+- Email contact form
+- MDX support for rich content
+
+## 🛠️ Technologies Used
+
+- **Frontend**: Next.js 15, React 19, TailwindCSS
+- **Styling**: GSAP for animations, Shadcn UI for components
+- **AI**: Groq AI, MongoDB Vector Search
+- **Backend**: Next.js API routes, MongoDB
+- **Authentication**: NextAuth.js
+- **State Management**: Zustand, React Query
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18.x or higher
+- yarn
+- MongoDB database (local or Atlas)
+- Groq AI API key (for chatbot functionality)
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/username/shivam-portfolio-website.git
+cd shivam-portfolio-website
+git checkout design-v2
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables
+Create a `.env` file in the root directory, take reference from `.env.sample` file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Run the development server
+```bash
+yarn dev
+```
 
-## Learn More
+1. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-To learn more about Next.js, take a look at the following resources:
+## 💬 Chatbot Functionality
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The AI chatbot is powered by Groq AI and uses MongoDB vector search to find relevant information about me to answer visitor questions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For detailed information on how the chatbot works, please see the [Chatbot Documentation](/docs/chatbot.md).
 
-## Deploy on Vercel
+### Running without the chatbot
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you don't want to set up the chatbot functionality, you can comment out the chatbot component in `src/components/wrapper.tsx`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```tsx
+{/* Temporarily disable chatbot
+    <ChatBot /> 
+*/}
+```
+
+## 🔐 Admin Dashboard
+
+The website includes an admin dashboard (accessible only to authorized users) with features for chat monitoring.
+
+For detailed information on the dashboard functionality, please see the [Dashboard Documentation](/docs/dashboard.md).
+
+## 🤖 Content Crawler
+
+This project includes an automated content crawler that processes website content and generates embeddings for the chatbot.
+
+For detailed information on how the crawler works, please see the [Crawler Documentation](/docs/crawler.md).
+
+## 📧 Email Functionality
+
+To see the email designs locally, run:
+
+```bash
+yarn email
+```
+
+This will start a local server to preview email templates.
+
+## 📚 Technical Documentation
+
+For more detailed technical documentation, please refer to the following:
+
+- [Architecture Overview](/docs/architecture.md)
+
+## 🔧 Customization
+
+To customize the website for your own use:
+1. Update personal information in the relevant data files
+2. Replace images in the public directory
+3. Modify the theme in the tailwind configuration
+4. Update content in the MDX files
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Contact
+
+Feel free to reach out to me at business.shivamtaneja@gmail.com if you have any questions or feedback.
+
+---
+
+Built with ❤️ by Shivam Taneja
