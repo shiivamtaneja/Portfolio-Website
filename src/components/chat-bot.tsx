@@ -10,6 +10,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
 import { differenceInMinutes, format, formatDistanceToNow } from 'date-fns';
 
+import { useChatbotHighlight } from '@/provider/chatbot-highlight';
+
 import { useChatBotActions, useChatBotId } from '@/store/chatbot-store';
 
 import { ChatDocument, ConversationMessage } from '@/types/chats.types';
@@ -28,7 +30,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Bot, Ellipsis, Loader2, MessageCircle, Send, User, X } from 'lucide-react';
+import { ArrowDownRight, Bot, Ellipsis, Loader2, MessageCircle, Send, User, X } from 'lucide-react';
 
 export async function fetchMessages(chatId: string): Promise<{ chat: ChatDocument }> {
   const response = await fetch(`/api/chat/${chatId}`);
@@ -44,45 +46,6 @@ export async function fetchMessages(chatId: string): Promise<{ chat: ChatDocumen
   }
 
   return response.json();
-
-  // return new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve({
-  //       "chat": {
-  //         "chatId": "67f97dda9eef5464a36bf144",
-  //         "conversation": [
-  //           {
-  //             "message": "Hey! How can I assist?",
-  //             "type": "bot",
-  //             "createdAt": "2025-04-11T20:38:53.756Z"
-  //           },
-  //           {
-  //             "message": "Tell me why should I hire you?",
-  //             "type": "user",
-  //             "createdAt": "2025-04-11T20:38:53.790Z"
-  //           },
-  //           {
-  //             "message": "I'd be delighted to tell you! With my expertise in technology and passion for innovation, I can help bring your ideas to life. Whether it's a project or a business, I can provide the technical expertise and guidance you need to turn your vision into a reality. Let's work together and make something amazing happen!",
-  //             "type": "bot",
-  //             "createdAt": "2025-04-11T20:38:53.819Z"
-  //           },
-  //           {
-  //             "message": "Tell me why should I hire you?",
-  //             "type": "user",
-  //             "createdAt": "2025-04-11T20:39:15.312Z"
-  //           },
-  //           {
-  //             "message": "I bring innovative solutions and expertise to help businesses thrive. With years of experience and a passion for technology, I can help you turn your ideas into reality. Whether you're looking for strategic guidance or hands-on support, I'm here to help you achieve your goals. Let's bring your vision to life, together.",
-  //             "type": "bot",
-  //             "createdAt": "2025-04-11T20:39:15.341Z"
-  //           }
-  //         ],
-  //         "createdAt": "2025-04-11T20:38:53.756Z",
-  //         "title": "Why Hire Shivam Taneja"
-  //       }
-  //     })
-  //   }, 5000);
-  // })
 }
 
 async function sendMessage(chatId: string | null, content: string) {
@@ -162,9 +125,12 @@ const ChatBot = () => {
   const [open, setOpen] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const chatId = useChatBotId()
   const { setChatId, resetChatId } = useChatBotActions()
+
+  const { isHighlighted, disableHighlight } = useChatbotHighlight();
 
   const queryClient = useQueryClient()
 
@@ -257,6 +223,7 @@ const ChatBot = () => {
       setChatId(res.chatId)
 
       queryClient.invalidateQueries({ queryKey: ['allChats'] })
+      queryClient.invalidateQueries({ queryKey: ['chatBotUserCtn'] })
     },
     onError: (err) => {
       console.error("Failed to initialize chat", err)
@@ -273,14 +240,34 @@ const ChatBot = () => {
       form.reset({ chatId, message: '' })
   }, [chatId, form])
 
+  useEffect(() => {
+    if (isHighlighted && buttonRef.current) {
+      buttonRef.current.focus();
+    }
+  }, [isHighlighted])
+
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={(value) => {
+      setOpen(value)
+
+      if (value) // turn off highlight once opened
+        disableHighlight()
+    }}>
       <PopoverTrigger asChild>
-        <Button
-          className="fixed bottom-4 right-4 border border-white h-12 w-12 rounded-full p-0 hover:bg-black"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </Button>
+        <div className='fixed bottom-4 right-4'>
+          {isHighlighted &&
+            <ArrowDownRight size={40} className="animate-bounce absolute -left-6 -top-8 text-green-400" />
+          }
+          <Button
+            ref={buttonRef}
+            className={cn(
+              "border border-white h-12 w-12 rounded-full p-0 hover:bg-black",
+              isHighlighted && "ring-4 ring-green-400"
+            )}
+          >
+            <MessageCircle className="h-6 w-6" />
+          </Button>
+        </div>
       </PopoverTrigger>
 
       <PopoverContent className='mx-4 mb-2 text-sm min-w-96 max-w-96 w-full p-0'>

@@ -7,6 +7,8 @@ import gsap from 'gsap';
 
 import { delays } from '@/lib/constants/delays';
 
+import ChatbotHighlightProvider from '@/provider/chatbot-highlight';
+
 import { useIsFirstLoad } from '@/store/loading-store';
 
 import ChatBot from './chat-bot';
@@ -35,14 +37,16 @@ const Wrapper = ({
 
   return (
     <TooltipProvider>
-      <main ref={wrapperRef} className="mx-auto max-w-3xl py-12 flex flex-col gap-6 px-4 text-white">
-        <Nav />
+      <ChatbotHighlightProvider>
+        <main ref={wrapperRef} className="mx-auto max-w-3xl py-12 flex flex-col gap-6 px-4 text-white">
+          <Nav />
 
-        {children}
+          {children}
 
-      </main>
+        </main>
 
-      <ChatBot />
+        <ChatBot />
+      </ChatbotHighlightProvider>
     </TooltipProvider>
   )
 }

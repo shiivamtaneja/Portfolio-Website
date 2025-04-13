@@ -1,6 +1,8 @@
-import type { MDXComponents } from 'mdx/types';
-import Link from 'next/link';
 import { ComponentPropsWithoutRef } from 'react';
+
+import Link from 'next/link';
+
+import type { MDXComponents } from 'mdx/types';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
 type ParagraphProps = ComponentPropsWithoutRef<'p'>;
@@ -16,7 +18,10 @@ const components: MDXComponents = {
     <h2 className="text-xl" {...props} />
   ),
   h3: (props: HeadingProps) => (
-    <h3 className="text-xl font-bold" {...props} />
+    <h3 className="text-lg" {...props} />
+  ),
+  h4: (props: HeadingProps) => (
+    <h4 className="text-base" {...props} />
   ),
   p: (props: ParagraphProps) => (
     <p className="text-neutral-400" {...props} />
