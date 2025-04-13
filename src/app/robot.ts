@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: ["/"],
-      disallow: []
+      disallow: ["/dashboard", "/auth/*", "/chat/*"]
     },
     sitemap: 'https://shivamtaneja.com/sitemap.xml'
   }
