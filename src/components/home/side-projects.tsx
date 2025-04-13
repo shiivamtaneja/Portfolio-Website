@@ -4,6 +4,8 @@ import Link from 'next/link';
 
 import { sideProjects } from '@/lib/constants/side-projects';
 
+import ChatBotProject from './chat-bot-project';
+
 import { ExternalLink, Info } from 'lucide-react';
 import { GoDotFill } from "react-icons/go";
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
@@ -15,12 +17,14 @@ const SideProjectsSection = () => {
         <h3 className='text-xl font-bold'>Side Projects</h3>
 
         <ul className="flex flex-col gap-4">
+          <ChatBotProject />
+
           {sideProjects.map((item, idx) => (
             <li className='text-neutral-500 flex w-full gap-4 items-start justify-between' key={idx}>
               <div className='flex flex-col gap-2 flex-1'>
                 <div className='flex gap-2 items-center flex-wrap'>
                   <p className='text-white'>
-                    {idx + 1}{"."}
+                    {idx + 2}{"."}
                   </p>
                   <div className="flex items-center gap-2">
                     <Link

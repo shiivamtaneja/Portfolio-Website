@@ -7,6 +7,8 @@ export const pathNames = {
     'chat-mingle': 'Project | Chat Mingle',
     'circle-catcher': 'Project | Circle Catcher',
     'career-guidance': 'Project | Career Guidance',
+    'chat-bot': 'Project | Ask Shivam',
+    'tilt-bot': 'Project | Tilt Bot',
   },
 };
 
