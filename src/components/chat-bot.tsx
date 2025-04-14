@@ -345,6 +345,10 @@ const ChatBot = () => {
             </Button>
           </form>
         </Form>
+
+        <div className='flex justify-center pb-3'>
+          <p className='text-center text-xs'>Note: Responses aren&apos;t always accurate or complete.</p>
+        </div>
       </PopoverContent>
     </Popover>
   )
