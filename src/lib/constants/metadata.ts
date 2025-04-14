@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const defaultMetadata: Partial<Metadata> = {
   openGraph: {
     type: "website",
-    url: "https://shivamtaneja.com/contact",
+    url: "https://www.shivamtaneja.com/contact",
     images: [
       {
         url: "/og-image.png",
@@ -40,7 +40,7 @@ export const defaultMetadata: Partial<Metadata> = {
     ],
   },
   alternates: {
-    canonical: "https://shivamtaneja.com",
+    canonical: "https://www.shivamtaneja.com",
   },
   robots: "index, follow",
 }

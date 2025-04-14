@@ -3,32 +3,32 @@ import { MetadataRoute } from "next";
 export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
   return [
     {
-      url: 'https://shivamtaneja.com/',
+      url: 'https://www.shivamtaneja.com/',
       lastModified: new Date(),
       priority: 1.0
     },
     {
-      url: 'https://shivamtaneja.com/contact',
+      url: 'https://www.shivamtaneja.com/contact',
       lastModified: new Date(),
     },
     {
-      url: 'https://shivamtaneja.com/project/career-guidance',
+      url: 'https://www.shivamtaneja.com/project/career-guidance',
       lastModified: new Date(),
     },
     {
-      url: 'https://shivamtaneja.com/project/chat-bot',
+      url: 'https://www.shivamtaneja.com/project/chat-bot',
       lastModified: new Date(),
     },
     {
-      url: 'https://shivamtaneja.com/project/chat-mingle',
+      url: 'https://www.shivamtaneja.com/project/chat-mingle',
       lastModified: new Date(),
     },
     {
-      url: 'https://shivamtaneja.com/project/circle-catcher',
+      url: 'https://www.shivamtaneja.com/project/circle-catcher',
       lastModified: new Date(),
     },
     {
-      url: 'https://shivamtaneja.com/project/tilt-bot',
+      url: 'https://www.shivamtaneja.com/project/tilt-bot',
       lastModified: new Date(),
     },
   ]
