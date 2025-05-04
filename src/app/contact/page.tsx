@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { RESUME_LINK } from '@/lib/constants/about-me';
 import { defaultMetadata } from '@/lib/constants/metadata';
 
 import ContactForm from '@/components/contact-form';
@@ -53,7 +54,7 @@ const ContactPage = () => {
                   <span className="text-white">New Delhi, India</span>
                 </div>
 
-                <Link href={"https://drive.google.com/file/d/1Bu1yLkTMJu807xkhoDK4FxVdmjGG7Dgz/view?usp=sharing"} target='_blank' className="flex md:justify-start justify-center w-full items-center gap-3 text-muted-foreground">
+                <Link href={RESUME_LINK} target='_blank' className="flex md:justify-start justify-center w-full items-center gap-3 text-muted-foreground">
                   <FileText className="h-5 w-5 text-white shrink-0" />
                   <span className="text-white">Download Resume</span>
                 </Link>

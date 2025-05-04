@@ -7,3 +7,5 @@ export const aboutMeContent = [
   "Passionate about tech, software engineering, and UI/UX design.",
   "Always learning and adapting to new tech."
 ];
+
+export const RESUME_LINK = "https://drive.google.com/file/d/1wiDvL2y5cA61ecaOddR1fBy_pcBpWERY/view?usp=sharing"

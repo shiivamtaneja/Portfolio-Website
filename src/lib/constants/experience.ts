@@ -3,7 +3,7 @@ export const experiences = [
     title: 'Associate Software Development Engineer',
     companyName: 'NTT Data',
     workLocation: "Remote",
-    desc: "",
+    desc: "Modernizing Nebula, a cloud billing and provisioning platform for NTT affiliates.",
     start: 'June, 2024',
     end: null,
   },
