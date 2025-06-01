@@ -21,7 +21,6 @@ const Wrapper = ({
 }: {
   children: React.ReactNode
 }) => {
-
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isFirstLoad = useIsFirstLoad();
 
@@ -42,7 +41,6 @@ const Wrapper = ({
           <Nav />
 
           {children}
-
         </main>
 
         <ChatBot />
