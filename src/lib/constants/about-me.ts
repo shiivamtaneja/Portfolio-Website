@@ -1,5 +1,7 @@
+import { calculateAge } from "../utils";
+
 export const aboutMeContent = [
-  "22-year-old B-Tech graduate from India.",
+  `${calculateAge('2002-05-31')}-year-old B-Tech graduate from India.`,
   "Specializing in full-stack development with expertise in MERN.",
   "Working as an Associate Software Developer at NTT Data.",
   "Currently pursuing certifications in AWS and Microsoft Azure.",

@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import { differenceInYears, parseISO } from "date-fns";
+
 import { pathNames } from "./constants/path-names";
 
 import { serverEnv } from "./env/server";
@@ -51,9 +53,17 @@ export async function verifyRecaptchaToken(token: string) {
 
   return {
     success: data.success as boolean,
-    score: data.score as number,
-    action: data.action as string,
-    challengeTs: data.challenge_ts as string,
-    hostname: data.hostname as string
+    score: data.score as number | undefined,
+    action: data.action as string | undefined,
+    challengeTs: data.challenge_ts as string | undefined,
+    hostname: data.hostname as string | undefined,
+    errorCodes: data['error-codes'] as string[] | undefined
   };
+}
+
+export function calculateAge(dob: string) {
+  const birthday = parseISO(dob);
+  const today = new Date();
+
+  return differenceInYears(today, birthday);
 }
