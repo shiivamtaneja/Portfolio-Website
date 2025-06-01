@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 declare global {
   interface Window {
@@ -16,11 +16,17 @@ interface UseRecaptchaReturn {
 }
 
 function useRecaptcha(): UseRecaptchaReturn {
+  const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
+    if (document.querySelector('#recaptcha-script'))
+      return;
+
     // Create and load the reCAPTCHA script
     const script = document.createElement('script');
     script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY}`;
     script.async = true;
+    script.onload = () => setIsReady(true);
 
     document.head.appendChild(script);
 
@@ -31,6 +37,9 @@ function useRecaptcha(): UseRecaptchaReturn {
   }, []);
 
   const executeRecaptcha = useCallback(async () => {
+    if (!isReady)
+      throw new Error('reCAPTCHA not ready');
+
     return new Promise<string>((resolve, reject) => {
       window.grecaptcha.ready(function () {
         window.grecaptcha
@@ -39,11 +48,13 @@ function useRecaptcha(): UseRecaptchaReturn {
             resolve(token);
           })
           .catch((error: unknown) => {
+            console.error('[Recaptcha Error]', error);
+
             reject(error);
           });
       });
     });
-  }, []);
+  }, [isReady]);
 
   return { executeRecaptcha };
 }
