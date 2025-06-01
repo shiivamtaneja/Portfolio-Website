@@ -9,7 +9,7 @@ import { FormDataWithRecaptcha } from '@/schema/contact'
 
 import ContactFormEmail from '@/components/emails/contact-form-email'
 
-const resend = new Resend(serverEnv().RECAPTCHA_SECRET_KEY)
+const resend = new Resend(serverEnv().RESEND_API_KEY)
 
 export async function sendEmail(formData: FormDataWithRecaptcha) {
   try {
@@ -18,11 +18,12 @@ export async function sendEmail(formData: FormDataWithRecaptcha) {
     const recaptchaResponse = await verifyRecaptchaToken(recaptchaToken);
 
     if (!recaptchaResponse.success) {
+      console.error('reCAPTCHA failed', recaptchaResponse);
       throw new Error('reCAPTCHA verification failed');
     }
 
     // If the score is too low, reject the submission
-    if (recaptchaResponse.score < 0.5) {
+    if (recaptchaResponse.score === undefined || recaptchaResponse.score < 0.5) {
       throw new Error('Spam detection triggered. Please try again later.');
     }
 

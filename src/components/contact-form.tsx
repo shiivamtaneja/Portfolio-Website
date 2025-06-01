@@ -37,6 +37,7 @@ const ContactForm = () => {
 
   async function onSubmit(values: ContactFormSchema) {
     setIsSubmitting(true);
+    
     try {
       // Execute reCAPTCHA and get token
       const recaptchaToken = await executeRecaptcha();
