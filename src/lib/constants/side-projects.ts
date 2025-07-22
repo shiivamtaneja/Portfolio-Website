@@ -1,11 +1,19 @@
 export const sideProjects = [
   {
+    title: 'NagarIQ',
+    projLink: 'https://nagar-iq.shivamtaneja.com/',
+    desc: "an AI-powered system that understands the world around it.",
+    descLink: "/project/nagar-iq/",
+    userCount: null,
+    activelyWorking: true,
+  },
+  {
     title: 'Tilt Bot',
     projLink: 'https://tilt-bot.shivamtaneja.com/',
     desc: "an AI-powered gaming roast generator for witty, non-toxic comebacks.",
     descLink: "/project/tilt-bot/",
     userCount: '05 users',
-    activelyWorking: true,
+    activelyWorking: false,
   },
   {
     title: 'Chat Mingle',

@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useChatbotHighlight } from '@/provider/chatbot-highlight';
 
 import { ExternalLink, Info } from 'lucide-react';
-import { GoDotFill } from 'react-icons/go';
+// import { GoDotFill } from 'react-icons/go';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 const ChatBotProject = () => {
@@ -34,7 +34,7 @@ const ChatBotProject = () => {
       <div className='flex flex-col gap-2 flex-1'>
         <div className='flex gap-2 items-center flex-wrap'>
           <p className='text-white'>
-            1.
+            2.
           </p>
           <div className="flex items-center gap-2">
             <div
@@ -78,14 +78,14 @@ const ChatBotProject = () => {
         <div className='flex gap-2 items-center shrink-0'>
           <p>{data.count} users</p>
 
-          <Tooltip delayDuration={50}>
+          {/* <Tooltip delayDuration={50}>
             <TooltipTrigger asChild>
               <GoDotFill size={15} className='hover:scale-110 scale-100 transition duration-75 ease-in-out text-green-500' />
             </TooltipTrigger>
             <TooltipContent>
               <p className='p-2 bg-gray-500 text-white rounded'>Actively working on it</p>
             </TooltipContent>
-          </Tooltip>
+          </Tooltip> */}
         </div>
       }
     </li>
