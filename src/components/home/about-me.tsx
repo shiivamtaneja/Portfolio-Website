@@ -13,9 +13,8 @@ const AboutMeSection = () => {
             <li
               className='text-neutral-500 font-semibold'
               key={item}
-            >
-              {item}
-            </li>
+              dangerouslySetInnerHTML={{ __html: item }}
+            />
           ))}
         </ul>
       </div>
