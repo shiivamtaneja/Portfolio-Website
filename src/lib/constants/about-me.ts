@@ -4,7 +4,7 @@ export const aboutMeContent = [
   `${calculateAge('2002-05-31')}-year-old B.Tech graduate from India.`,
   "Full-stack developer with hands-on experience in the MERN stack.",
   "Currently working as an Associate Software Developer at NTT Data.",
-  `I also create content. Come say <a href="https://www.youtube.com/@shiivcodes?sub_confirmation=1" target="_blank" class="hover-animation relative">hi on YouTube</a>!`,
+  `I also create content. Come say <a href="https://www.youtube.com/@codesbyshivam?sub_confirmation=1" target="_blank" class="hover-animation relative">hi on YouTube</a>!`,
   "Actively pursuing certifications in Microsoft Azure to level up my cloud skills.",
   "Outside of coding, I enjoy gaming, video editing, music, and content creation.",
   "I'm passionate about building clean UIs, smooth UX, and robust software.",
@@ -12,4 +12,4 @@ export const aboutMeContent = [
 ];
 
 
-export const RESUME_LINK = "https://drive.google.com/file/d/1wiDvL2y5cA61ecaOddR1fBy_pcBpWERY/view?usp=sharing"
+export const RESUME_LINK = "https://drive.google.com/file/d/1pyDRkrKAhqzWIIVoWbtMbInQbBigCIJa/view?usp=sharing"

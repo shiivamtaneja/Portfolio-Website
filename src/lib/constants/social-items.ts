@@ -7,12 +7,12 @@ export const socialItems = [
     heading: 'Linkedin'
   },
   {
-    link: 'https://github.com/shiivamtaneja/',
+    link: 'https://github.com/shivam-taneja/',
     icon: FaGithub,
     heading: 'Github'
   },
   {
-    link: 'https://twitter.com/shiivamtaneja/',
+    link: 'https://twitter.com/codesbyshivam/',
     icon: FaTwitter,
     heading: 'Twitter / X'
   }
