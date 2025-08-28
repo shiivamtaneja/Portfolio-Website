@@ -1,6 +1,7 @@
+import { Analytics } from '@vercel/analytics/next';
+
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
-import Script from "next/script";
 
 import "./globals.css";
 
@@ -41,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      {/* <head>
         <Script id="gtm-init" strategy="afterInteractive">
           {`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -51,25 +52,28 @@ export default function RootLayout({
         })(window,document,'script','dataLayer','GTM-WVPS3JFL');
       `}
         </Script>
-      </head>
+      </head> */}
       <body
         className={`${spaceGrotesk.className} antialiased bg-zinc-900`}
       >
         {/* Google Tag Manager (noscript */}
-        <noscript>
+        {/* <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-WVPS3JFL"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
           />
-        </noscript>
+        </noscript> */}
 
         <GrainyFilter />
         <ToastContainer theme="dark" />
         <SmoothScroll>
           {children}
         </SmoothScroll>
+
+        {/* Vercel Analytics */}
+        <Analytics />
       </body>
     </html>
   );
