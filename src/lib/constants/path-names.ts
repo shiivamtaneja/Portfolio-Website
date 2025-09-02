@@ -9,6 +9,8 @@ export const pathNames = {
     'career-guidance': 'Project | Career Guidance',
     'chat-bot': 'Project | Ask Shivam',
     'tilt-bot': 'Project | Tilt Bot',
+    'nagar-iq': 'Project | Nagar IQ',
+    'collab-write': 'Project | Collab Write',
   },
 };
 

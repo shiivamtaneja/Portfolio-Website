@@ -1,5 +1,13 @@
 export const sideProjects = [
   {
+    title: 'CollabWrite',
+    projLink: 'https://collabwrite.appwrite.network/',
+    desc: "an open source, real-time collaborative knowledge-sharing platform.",
+    descLink: "/project/collab-write/",
+    userCount: '10 users',
+    activelyWorking: true,
+  },
+  {
     title: 'NagarIQ',
     projLink: 'https://nagar-iq.shivamtaneja.com/',
     desc: "an AI-powered system that understands the world around it.",
