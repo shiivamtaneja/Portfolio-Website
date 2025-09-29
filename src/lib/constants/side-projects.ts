@@ -1,19 +1,35 @@
 export const sideProjects = [
   {
+    title: 'EZNotify',
+    projLink: 'https://www.eznotify.dev/',
+    desc: "a developer friendly SDK for sending multi-channel notifications like email, SMS, WhatsApp, push and more built for reliability at scale.",
+    descLink: "/project/eznotify/",
+    userCount: null,
+    activelyWorking: true,
+  },
+  {
+    title: 'DecodeMyCode',
+    projLink: 'https://www.decodemycode.com/',
+    desc: "an AI powered SaaS that turns any code into clear explanations, flowcharts and summaries.",
+    descLink: "/project/decode-mycode/",
+    userCount: '5 users',
+    activelyWorking: false,
+  },
+  {
     title: 'CollabWrite',
     projLink: 'https://collabwrite.appwrite.network/',
     desc: "an open source, real-time collaborative knowledge-sharing platform.",
     descLink: "/project/collab-write/",
     userCount: '10 users',
-    activelyWorking: true,
+    activelyWorking: false,
   },
   {
     title: 'NagarIQ',
     projLink: 'https://nagar-iq.shivamtaneja.com/',
     desc: "an AI-powered system that understands the world around it.",
     descLink: "/project/nagar-iq/",
-    userCount: null,
-    activelyWorking: true,
+    userCount: '12 users',
+    activelyWorking: false,
   },
   {
     title: 'Tilt Bot',

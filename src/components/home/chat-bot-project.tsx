@@ -34,7 +34,7 @@ const ChatBotProject = () => {
       <div className='flex flex-col gap-2 flex-1'>
         <div className='flex gap-2 items-center flex-wrap'>
           <p className='text-white'>
-            2.
+            1.
           </p>
           <div className="flex items-center gap-2">
             <div

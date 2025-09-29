@@ -2,6 +2,7 @@ export const pathNames = {
   common: {
     '/contact': 'Contact',
     '/experience': 'Experience',
+    '/projects': 'Projects',
   },
   projects: {
     'chat-mingle': 'Project | Chat Mingle',
@@ -11,6 +12,8 @@ export const pathNames = {
     'tilt-bot': 'Project | Tilt Bot',
     'nagar-iq': 'Project | Nagar IQ',
     'collab-write': 'Project | Collab Write',
+    'decode-mycode': 'Project | DecodeMyCode',
+    'eznotify': 'Project | EZNotify',
   },
 };
 

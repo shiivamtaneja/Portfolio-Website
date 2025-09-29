@@ -1,30 +1,47 @@
-import React from 'react';
-
+import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { defaultMetadata } from '@/lib/constants/metadata';
 import { sideProjects } from '@/lib/constants/side-projects';
 
-import ChatBotProject from './chat-bot-project';
+import Wrapper from '@/components/wrapper';
+import ChatBotProject from '@/components/home/chat-bot-project';
 
 import { ExternalLink, Info } from 'lucide-react';
 import { GoDotFill } from "react-icons/go";
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
-const SideProjectsSection = () => {
+export const metadata: Metadata = {
+  ...defaultMetadata,
+  title: "Projects | Shivam Taneja - Full Stack Developer",
+  description: "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
+  openGraph: {
+    title: "Projects | Shivam Taneja - Full Stack Developer",
+    description: "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
+    ...defaultMetadata.openGraph,
+  },
+  twitter: {
+    title: "Projects | Shivam Taneja",
+    description: "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
+    ...defaultMetadata.twitter
+  },
+};
+
+const ProjectsPage = () => {
   return (
-    <section>
-      <div className='flex flex-col gap-2'>
-        <div className="flex gap-2 items-center">
-          <h3 className='text-xl font-bold'>Side Projects</h3>
-          <Link href={'/projects'} className='underline p-0 text-sm'>
-            View More
-          </Link>
+    <Wrapper>
+      <div className='flex flex-col gap-6'>
+        <div className="flex flex-col gap-2">
+          <h1 className='text-3xl font-bold'>All Projects</h1>
+          <p className='text-neutral-400'>
+            A collection of projects I've built, ranging from AI-powered tools to collaborative platforms.
+          </p>
         </div>
 
         <ul className="flex flex-col gap-4">
           <ChatBotProject />
 
-          {sideProjects.slice(0, 4).map((item, idx) => (
+          {sideProjects.map((item, idx) => (
             <li className='text-neutral-500 flex w-full gap-4 items-start justify-between' key={idx}>
               <div className='flex flex-col gap-2 flex-1'>
                 <div className='flex gap-2 items-center flex-wrap'>
@@ -90,8 +107,8 @@ const SideProjectsSection = () => {
           ))}
         </ul>
       </div>
-    </section>
+    </Wrapper>
   )
 }
 
-export default SideProjectsSection
+export default ProjectsPage
