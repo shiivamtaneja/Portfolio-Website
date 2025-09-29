@@ -12,4 +12,4 @@ export const aboutMeContent = [
 ];
 
 
-export const RESUME_LINK = "https://drive.google.com/file/d/1ttyfYqTiyINDHmlYD2D--ocwySTrS4oh/view?usp=sharing"
+export const RESUME_LINK = "https://drive.google.com/file/d/1NuMZwqPv3u_ch8zmQJBS741gHZgrcBep/view?usp=sharing"
