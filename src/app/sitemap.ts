@@ -12,6 +12,10 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
+      url: 'https://www.shivamtaneja.com/projects',
+      lastModified: new Date(),
+    },
+    {
       url: 'https://www.shivamtaneja.com/project/career-guidance',
       lastModified: new Date(),
     },
@@ -25,6 +29,22 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: 'https://www.shivamtaneja.com/project/circle-catcher',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.shivamtaneja.com/project/collab-write',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.shivamtaneja.com/project/decode-mycode',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.shivamtaneja.com/project/eznotify',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://www.shivamtaneja.com/project/nagar-iq',
       lastModified: new Date(),
     },
     {
