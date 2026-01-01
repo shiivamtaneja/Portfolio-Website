@@ -1,35 +1,12 @@
-# Portfolio Website
+# Portfolio Website (Legacy Code)
 
-This is my portfolio website built with React.js and multiple libraries. The website showcases my work, skills, and experiences.
+> This branch contains **old / archived code**.
+>  
+> The **active and latest version** of the website is in the `design-v2` branch.
 
-## Accessing the Website
+## Important
 
-The portfolio website is hosted on the web and can be accessed using the following link:
+This branch is **not maintained** and exists **only for fun/memory**.
 
-[Portfolio Website](https://www.shivamtaneja.in/)
-
-## Libraries used
-
-- React.js
-- React Router Dom
-- React Router Hash Link
-- Tailwind CSS
-- Framer Motion
-- React Simple Typerwriter
-- React Social Icons
-- React Icons
-- Email JS
-- React Toastify
-- Sanity
-- Axios 
-
-## Features 
-
-- Home page with a hero section and a brief introduction
-- About page with information about myself, my skills, and my experience
-- Projects page with my recent projects and their descriptions
-- Contact page with a contact form and my contact information
-
-## Contributions
-
-Contributions are welcome. If you want to contribute to this project, please fork the repository and submit a pull request.
+➡️ **Use this branch instead:**  
+https://github.com/shivam-taneja/Portfolio-Website/tree/design-v2
