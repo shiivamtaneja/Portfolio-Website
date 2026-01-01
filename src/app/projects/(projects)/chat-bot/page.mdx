@@ -1,6 +1,22 @@
 import Wrapper from '@/components/wrapper';
 import HighlightChatbot from './highlight-chatbot'
 
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="AI-Powered Portfolio Chatbot"
+  description="An AI chatbot integrated into a portfolio website using vector search and LLMs to answer questions about work and experience."
+  url="https://www.shivamtaneja.com/projects/chat-bot"
+  tech={[
+    "Next.js",
+    "React",
+    "MongoDB",
+    "Groq AI",
+    "LangChain",
+    "Vertex AI"
+  ]}
+/>
+
 export const metadata = {
   title: "AI-Powered Portfolio Chatbot",
   description: "An AI chatbot integrated into my portfolio site that uses Groq AI, Vertex AI to generate embeddings and MongoDB vector search to provide smart, contextual answers about my work, skills, and experience in real-time.",
@@ -20,7 +36,7 @@ export const metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://www.shivamtaneja.com/project/chat-bot",
+    url: "https://www.shivamtaneja.com/projects/chat-bot",
     images: [
       {
         url: "/projects/og-image-chat-bot.png",

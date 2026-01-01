@@ -1,5 +1,20 @@
 import Wrapper from '@/components/wrapper';
 
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="Chat Mingle"
+  description="A real-time chat application built with React and Firebase featuring authentication and instant messaging."
+  url="https://www.shivamtaneja.com/projects/chat-mingle"
+  repo="https://github.com/shiivamtaneja/chat-mingle"
+  tech={[
+    "React",
+    "Firebase",
+    "SASS",
+    "Vite"
+  ]}
+/>
+
 export const metadata = {
   title: "Chat Mingle",
   description: "Chat Mingle is a fun, real-time chat application built with React and Firebase. It provides user authentication, instant messaging, and message history functionality, offering an engaging chatting experience while exploring modern web technologies.",
@@ -17,7 +32,7 @@ export const metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://www.shivamtaneja.com/project/chat-mingle",
+    url: "https://www.shivamtaneja.com/projects/chat-mingle",
     images: [
       {
         url: "/projects/og-image-chat-mingle.png",

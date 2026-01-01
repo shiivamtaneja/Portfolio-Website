@@ -1,5 +1,20 @@
 import Wrapper from '@/components/wrapper';
 
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="Tilt-Bot - AI Gaming Roast Generator"
+  description="An AI-powered gaming roast generator that creates witty, non-toxic comebacks for gamers."
+  url="https://www.shivamtaneja.com/projects/tilt-bot"
+  tech={[
+    "Next.js",
+    "React",
+    "NestJS",
+    "Groq AI",
+    "Prisma"
+  ]}
+/>
+
 export const metadata = {
   title: "Tilt-Bot - AI Gaming Roast Generator",
     description: "An AI-powered gaming roast generator that creates witty, non-toxic comebacks for gamers, using Groq AI to help maintain a positive gaming environment while preserving the fun of competitive banter.",
@@ -19,7 +34,7 @@ export const metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://www.shivamtaneja.com/project/tilt-bot",
+    url: "https://www.shivamtaneja.com/projects/tilt-bot",
     images: [
       {
         url: "/projects/og-image-tilt-bot.png",

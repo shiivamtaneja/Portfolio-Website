@@ -1,5 +1,21 @@
 import Wrapper from '@/components/wrapper';
 
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="CollabWrite"
+  description="An open-source, real-time collaborative knowledge-sharing platform inspired by Wikipedia and Notion."
+  url="https://www.shivamtaneja.com/projects/collab-write"
+  repo="https://github.com/shivam-taneja/CollabWrite"
+  tech={[
+    "Next.js",
+    "React",
+    "Appwrite",
+    "Tiptap",
+    "Tailwind CSS"
+  ]}
+/>
+
 export const metadata = {
   title: "CollabWrite - Collaborative Knowledge Sharing",
   description:
@@ -20,7 +36,7 @@ export const metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://www.shivamtaneja.com/project/collab-write",
+    url: "https://www.shivamtaneja.com/projects/collab-write",
     images: [
       {
         url: "/projects/og-image-collab-write.png",

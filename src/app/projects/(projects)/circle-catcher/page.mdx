@@ -1,5 +1,19 @@
 import Wrapper from '@/components/wrapper';
 
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="Circle Catcher - The Circle Game"
+  description="A browser-based arcade game built with vanilla JavaScript and HTML Canvas."
+  url="https://www.shivamtaneja.com/projects/circle-catcher"
+  repo="https://github.com/shiivamtaneja/circle-game"
+  tech={[
+    "JavaScript",
+    "HTML5 Canvas",
+    "CSS"
+  ]}
+/>
+
 export const metadata = {
   title: "Circle Catcher - The Circle Game",
   description: "Circle Catcher is a fun and addictive game where the player controls a white circle to eat smaller circles, increasing its size while avoiding being eaten by larger circles. Play through three difficulty modes in this simple yet challenging game.",
@@ -16,7 +30,7 @@ export const metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://www.shivamtaneja.com/project/circle-catcher",
+    url: "https://www.shivamtaneja.com/projects/circle-catcher",
     images: [
       {
         url: "/projects/og-image-circle-game.png",
