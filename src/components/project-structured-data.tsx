@@ -30,6 +30,7 @@ export default function ProjectStructuredData({
 
   return (
     <Script
+      id="project-structured-data"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
