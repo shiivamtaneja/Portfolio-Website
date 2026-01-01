@@ -1,23 +1,12 @@
-```Note: In this branch I will be redesigning my website and migrating from ReactJS to NextJS```
+# Portfolio Website (Legacy Code)
 
-# Portfolio Website
+> This branch contains **old / archived code**.
+>  
+> The **active and latest version** of the website is in the `design-v2` branch.
 
-This is my portfolio website built with Next.js and multiple libraries. The website showcases my work, skills, and experiences.
+## Important
 
-## Accessing the Website
+This branch is **not maintained** and exists **only for fun/memory**.
 
-The portfolio website is hosted on the web and can be accessed using the following link:
-
-[Portfolio Website](https://www.shivamtaneja.in/)
-
-## Libraries used
-
-- To be added soon
-
-## Features 
-
-- To be added soon
-
-## Contributions
-
-Contributions are welcome. If you want to contribute to this project, please fork the repository and submit a pull request.
+➡️ **Use this branch instead:**  
+https://github.com/shivam-taneja/Portfolio-Website/tree/design-v2
