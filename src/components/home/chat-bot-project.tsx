@@ -55,7 +55,7 @@ const ChatBotProject = () => {
             </div>
 
             <Link
-              href={'/project/chat-bot'}
+              href={'/projects/chat-bot'}
               className="text-neutral-400 hover:text-white transition-colors"
             >
               <Tooltip delayDuration={50}>

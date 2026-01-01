@@ -16,39 +16,39 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/career-guidance',
+      url: 'https://www.shivamtaneja.com/projects/career-guidance',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/chat-bot',
+      url: 'https://www.shivamtaneja.com/projects/chat-bot',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/chat-mingle',
+      url: 'https://www.shivamtaneja.com/projects/chat-mingle',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/circle-catcher',
+      url: 'https://www.shivamtaneja.com/projects/circle-catcher',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/collab-write',
+      url: 'https://www.shivamtaneja.com/projects/collab-write',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/decode-mycode',
+      url: 'https://www.shivamtaneja.com/projects/decode-mycode',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/eznotify',
+      url: 'https://www.shivamtaneja.com/projects/eznotify',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/nagar-iq',
+      url: 'https://www.shivamtaneja.com/projects/nagar-iq',
       lastModified: new Date(),
     },
     {
-      url: 'https://www.shivamtaneja.com/project/tilt-bot',
+      url: 'https://www.shivamtaneja.com/projects/tilt-bot',
       lastModified: new Date(),
     },
   ]

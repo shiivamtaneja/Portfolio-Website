@@ -23,8 +23,8 @@ export function matchPath(pathname: string, isFirstLoad: boolean) {
       `<${pathNames.common[pathname as keyof typeof pathNames.common]} />`
   }
 
-  if (pathname.startsWith('/project')) {
-    const slug = pathname.split('/project/')[1];
+  if (pathname.startsWith('/projects')) {
+    const slug = pathname.split('/projects/')[1];
 
     if (slug && pathNames.projects[slug as keyof typeof pathNames.projects]) {
       return isFirstLoad ?
