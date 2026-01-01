@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { usePathname } from 'next/navigation';
 
@@ -13,7 +13,7 @@ const SmoothScroll = ({
 }: {
   children: React.ReactNode
 }) => {
-  const queryClient = new QueryClient()
+  const [queryClient] = useState(() => new QueryClient());
 
   const countRef = useRef(0);
   const pathname = usePathname();
