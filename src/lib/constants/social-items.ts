@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 
 export const socialItems = [
   {
@@ -15,5 +15,10 @@ export const socialItems = [
     link: 'https://twitter.com/codesbyshivam/',
     icon: FaTwitter,
     heading: 'Twitter / X'
-  }
+  },
+  {
+    link: 'https://www.youtube.com/@codesbyshivam',
+    icon: FaYoutube,
+    heading: 'YouTube'
+  },
 ];
