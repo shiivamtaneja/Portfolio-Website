@@ -12,6 +12,7 @@ import { defaultMetadata } from "@/lib/constants/metadata";
 
 import GrainyFilter from "@/components/grainy-filter";
 import SmoothScroll from "@/components/smooth-scroll";
+import StructuredData from '@/components/structured-data';
 
 const spaceGrotesk = Space_Grotesk({
   weight: ['300', '400', '500', '700'],
@@ -65,6 +66,8 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript> */}
+
+        <StructuredData />
 
         <GrainyFilter />
         <ToastContainer theme="dark" />
