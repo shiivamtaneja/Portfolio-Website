@@ -56,7 +56,11 @@ const ContactPage = () => {
 
                 <Link href={RESUME_LINK} target='_blank' className="flex md:justify-start justify-center w-full items-center gap-3 text-muted-foreground">
                   <FileText className="h-5 w-5 text-white shrink-0" />
-                  <span className="text-white">Download Resume</span>
+                  <p className="text-white relative overflow-hidden">
+                    <span className='hover-animation'>
+                      Download Resume
+                    </span>
+                  </p>
                 </Link>
               </div>
             </div>

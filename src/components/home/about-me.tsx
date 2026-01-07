@@ -1,12 +1,24 @@
-import React from 'react'
+import React from 'react';
 
-import { aboutMeContent } from '@/lib/constants/about-me'
+import { aboutMeContent, RESUME_LINK } from '@/lib/constants/about-me';
 
 const AboutMeSection = () => {
   return (
     <section>
       <div className='flex flex-col gap-2'>
-        <h1 className='text-2xl font-bold'>Hi, I&apos;m Shivam Taneja</h1>
+        <div className='flex gap-2 items-center'>
+          <h1 className='text-2xl font-bold'>Hi, I&apos;m Shivam Taneja - </h1>
+
+          <a
+            href={RESUME_LINK}
+            target='_blank'
+            className="text-white relative overflow-hidden"
+          >
+            <span className="highlight">
+              Resume
+            </span>
+          </a>
+        </div>
 
         <ul className='flex list-disc ml-4 flex-col gap-2'>
           {aboutMeContent.map((item) => (
