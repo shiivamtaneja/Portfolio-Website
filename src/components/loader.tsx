@@ -55,7 +55,7 @@ const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
   return (
     <section
       ref={containerRef}
-      className='fixed top-0 left-0 bg-black flex h-svh w-screen items-center justify-center font-bold leading-[115%] z-[999999] text-white'
+      className='fixed top-0 left-0 dark:bg-black bg-white flex h-svh w-screen items-center justify-center font-bold leading-[115%] z-[999999] dark:text-white text-zinc-900'
     >
       <div className="z-50 flex flex-col items-center">
         <span className={`${isFirstLoad ? "overflow-hidden" : ""}`}>

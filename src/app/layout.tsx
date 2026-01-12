@@ -5,8 +5,7 @@ import { Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ThemeProvider } from '@/provider/theme-provider';
 
 import { defaultMetadata } from "@/lib/constants/metadata";
 
@@ -42,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {/* <head>
         <Script id="gtm-init" strategy="afterInteractive">
           {`
@@ -55,7 +54,7 @@ export default function RootLayout({
         </Script>
       </head> */}
       <body
-        className={`${spaceGrotesk.className} antialiased bg-zinc-900`}
+        className={`${spaceGrotesk.className} antialiased dark:bg-zinc-900 bg-zinc-100`}
       >
         {/* Google Tag Manager (noscript */}
         {/* <noscript>
@@ -70,10 +69,17 @@ export default function RootLayout({
         <StructuredData />
 
         <GrainyFilter />
-        <ToastContainer theme="dark" />
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </ThemeProvider>
 
         {/* Vercel Analytics */}
         <Analytics />

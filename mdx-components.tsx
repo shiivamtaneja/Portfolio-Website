@@ -12,31 +12,31 @@ type AnchorProps = ComponentPropsWithoutRef<'a'>;
 
 const components: MDXComponents = {
   h1: (props: HeadingProps) => (
-    <h1 className="text-2xl font-bold" {...props} />
+    <h1 className="text-2xl font-bold dark:text-white text-zinc-900" {...props} />
   ),
   h2: (props: HeadingProps) => (
-    <h2 className="text-xl" {...props} />
+    <h2 className="text-xl dark:text-white text-zinc-900" {...props} />
   ),
   h3: (props: HeadingProps) => (
-    <h3 className="text-lg" {...props} />
+    <h3 className="text-lg dark:text-white text-zinc-900" {...props} />
   ),
   h4: (props: HeadingProps) => (
-    <h4 className="text-base" {...props} />
+    <h4 className="text-base dark:text-white text-zinc-900" {...props} />
   ),
   p: (props: ParagraphProps) => (
-    <p className="text-neutral-400" {...props} />
+    <p className="dark:text-neutral-400 text-neutral-600" {...props} />
   ),
   ul: (props: ListProps) => (
     <ul className="flex list-disc ml-4 flex-col gap-2" {...props} />
   ),
-  li: (props: ListItemProps) => <li className="text-neutral-400" {...props} />,
+  li: (props: ListItemProps) => <li className="dark:text-neutral-400 text-neutral-600" {...props} />,
   a: ({ href, children, ...props }: AnchorProps) => {
     return (
       <Link
         href={href || "/"}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-white relative overflow-hidden"
+        className="dark:text-white text-zinc-900 relative overflow-hidden"
         {...props}
       >
         <span className='hover-animation'>{children}</span>
@@ -52,7 +52,7 @@ declare global {
 export function SubSection({ children, title }: { children: React.ReactNode, title: string }) {
   return <section>
     <div className='flex flex-col gap-2'>
-      <h2 className="text-xl">{title}</h2>
+      <h2 className="text-xl dark:text-white text-zinc-900">{title}</h2>
 
       {children}
     </div>

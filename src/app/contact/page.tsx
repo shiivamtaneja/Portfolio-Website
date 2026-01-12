@@ -28,20 +28,20 @@ const ContactPage = () => {
   return (
     <Wrapper>
       <section>
-        <div className="py-6">
+        <div>
           <div className="grid md:grid-cols-2 md:gap-0 gap-10">
             <div className="space-y-6 md:text-start text-center">
               <div className="space-y-4">
-                <h1 className="text-4xl font-bold">Stay Connected.</h1>
-                <p className="text-muted-foreground">Bring your ideas to life, together. ✨</p>
+                <h1 className="text-4xl font-bold dark:text-white text-zinc-900">Stay Connected.</h1>
+                <p className="dark:text-muted-foreground text-neutral-600">Bring your ideas to life, together. ✨</p>
               </div>
 
               <div className="space-y-4">
-                <div className="flex md:justify-start justify-center w-full items-center gap-3 text-muted-foreground">
-                  <MailIcon className="h-5 w-5 text-white shrink-0" />
+                <div className="flex md:justify-start justify-center w-full items-center gap-3 dark:text-muted-foreground text-neutral-600">
+                  <MailIcon className="h-5 w-5 dark:text-white text-zinc-900 shrink-0" />
                   <a
                     href="mailto:business.shivamtaneja@gmail.com"
-                    className="text-white relative overflow-hidden"
+                    className="dark:text-white text-zinc-900 relative overflow-hidden"
                   >
                     <span className="hover-animation">
                       business.shivamtaneja@gmail.com
@@ -49,14 +49,14 @@ const ContactPage = () => {
                   </a>
                 </div>
 
-                <div className="flex md:justify-start justify-center w-full items-center gap-3 text-muted-foreground">
-                  <MapPin className="h-5 w-5 text-white shrink-0" />
-                  <span className="text-white">New Delhi, India</span>
+                <div className="flex md:justify-start justify-center w-full items-center gap-3 dark:text-muted-foreground text-neutral-600">
+                  <MapPin className="h-5 w-5 dark:text-white text-zinc-900 shrink-0" />
+                  <span className="dark:text-white text-zinc-900">New Delhi, India</span>
                 </div>
 
-                <Link href={RESUME_LINK} target='_blank' className="flex md:justify-start justify-center w-full items-center gap-3 text-muted-foreground">
-                  <FileText className="h-5 w-5 text-white shrink-0" />
-                  <p className="text-white relative overflow-hidden">
+                <Link href={RESUME_LINK} target='_blank' className="flex md:justify-start justify-center w-full items-center gap-3 dark:text-muted-foreground text-neutral-600">
+                  <FileText className="h-5 w-5 dark:text-white text-zinc-900 shrink-0" />
+                  <p className="dark:text-white text-zinc-900 relative overflow-hidden">
                     <span className='hover-animation'>
                       Download Resume
                     </span>

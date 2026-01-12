@@ -37,7 +37,7 @@ const ContactForm = () => {
 
   async function onSubmit(values: ContactFormSchema) {
     setIsSubmitting(true);
-    
+
     try {
       // Execute reCAPTCHA and get token
       const recaptchaToken = await executeRecaptcha();
@@ -88,7 +88,7 @@ const ContactForm = () => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full Name *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">Full Name *</FormLabel>
               <FormControl>
                 <Input placeholder="John Doe" {...field} disabled={isSubmitting} />
               </FormControl>
@@ -101,7 +101,7 @@ const ContactForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">Email *</FormLabel>
               <FormControl>
                 <Input placeholder="john@example.com" {...field} disabled={isSubmitting} />
               </FormControl>
@@ -114,7 +114,7 @@ const ContactForm = () => {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">Subject *</FormLabel>
               <FormControl>
                 <Input placeholder="Project Discussion" {...field} disabled={isSubmitting} />
               </FormControl>
@@ -127,7 +127,7 @@ const ContactForm = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">Message *</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Tell me more about your project..."
@@ -140,7 +140,7 @@ const ContactForm = () => {
             </FormItem>
           )}
         />
-        <Button className='w-full bg-zinc-800 border-none outline-none md:px-4 px-2' variant="outline" type='submit' disabled={isSubmitting}>
+        <Button className='w-full dark:bg-zinc-800 bg-zinc-900 border-none outline-none md:px-4 px-2 text-white dark:hover:bg-zinc-700 hover:bg-zinc-800' variant="outline" type='submit' disabled={isSubmitting}>
           {
             isSubmitting ?
               <>
@@ -152,13 +152,13 @@ const ContactForm = () => {
           }
         </Button>
 
-        <div className='text-xs text-white/50'>
+        <div className='text-xs dark:text-white/50 text-zinc-500'>
           This site is protected by reCAPTCHA and the Google{' '}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className='underline'>
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className='underline dark:hover:text-white/70 hover:text-zinc-700'>
             Privacy Policy
           </a>{' '}
           and{' '}
-          <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className='underline'>
+          <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className='underline dark:hover:text-white/70 hover:text-zinc-700'>
             Terms of Service
           </a>{' '}
           apply.

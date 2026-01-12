@@ -6,7 +6,14 @@ import { usePathname } from 'next/navigation';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import { useTheme } from 'next-themes';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { useIsMobile } from '@/hooks/use-mobile';
+
 import { useIsFirstLoad, useSetFirstLoad } from '@/store/loading-store';
+import { ThemeToggle } from './theme-toggle';
 
 const SmoothScroll = ({
   children
@@ -15,9 +22,12 @@ const SmoothScroll = ({
 }) => {
   const [queryClient] = useState(() => new QueryClient());
 
+  const { resolvedTheme } = useTheme()
+
   const countRef = useRef(0);
   const pathname = usePathname();
 
+  const isMobile = useIsMobile(850)
   const isFirstLoad = useIsFirstLoad();
   const setIsFirstLoad = useSetFirstLoad();
 
@@ -36,9 +46,19 @@ const SmoothScroll = ({
   }, [pathname]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
+    <>
+      <ToastContainer theme={resolvedTheme === "dark" ? "dark" : "light"} />
+
+      <QueryClientProvider client={queryClient}>
+        {children}
+      </QueryClientProvider>
+
+      {!isMobile && (
+        <div className='right-4 top-6 fixed'>
+          <ThemeToggle />
+        </div>
+      )}
+    </>
   );
 };
 

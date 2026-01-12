@@ -87,7 +87,7 @@ export const MessageItem = ({ message }: { message: ConversationMessage }) => {
     >
       <Avatar className={cn(
         "h-8 w-8 flex justify-center items-center",
-        message.type === 'user' ? 'bg-primary' : 'bg-muted'
+        message.type === 'user' ? 'dark:bg-primary bg-zinc-900' : 'bg-muted'
       )}>
         {message.type === 'user'
           ? <User className="h-4 w-4 text-primary-foreground" />
@@ -102,14 +102,14 @@ export const MessageItem = ({ message }: { message: ConversationMessage }) => {
         <div
           className={cn(
             "rounded-lg max-w-[80%] p-3 flex justify-center",
-            message.type === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'
+            message.type === 'user' ? 'dark:bg-primary bg-zinc-900 text-primary-foreground' : 'bg-muted'
           )}
         >
-          <p>{message.message}</p>
+          <p className={cn(message.type === 'user' && 'text-white')}>{message.message}</p>
         </div>
 
         {message.createdAt && (
-          <p className="text-xs text-gray-500 pl-1">
+          <p className="text-xs dark:text-gray-500 text-gray-600 pl-1">
             {isRecent
               ? `${formatDistanceToNow(new Date(message.createdAt), { addSuffix: true })}`
               : format(new Date(message.createdAt), 'MMM d, yyyy h:mm a')}
@@ -119,6 +119,13 @@ export const MessageItem = ({ message }: { message: ConversationMessage }) => {
     </div>
   )
 };
+
+const SUGGESTED_QUESTIONS = [
+  "What projects have you worked on?",
+  "What are your technical skills?",
+  "Tell me about your experience",
+  "How can I contact you?"
+];
 
 const ChatBot = () => {
   const [messages, setMessages] = useState<ConversationMessage[]>([]);
@@ -202,6 +209,11 @@ const ChatBot = () => {
     }
   }
 
+  const handleSuggestedQuestion = (question: string) => {
+    form.setValue('message', question);
+    onSubmit({ chatId: chatId ?? '', message: question });
+  };
+
   // Scroll to bottom after any new message
   useEffect(() => {
     if (!open)
@@ -261,7 +273,7 @@ const ChatBot = () => {
           <Button
             ref={buttonRef}
             className={cn(
-              "border border-white h-12 w-12 rounded-full p-0 hover:bg-black",
+              "h-12 w-12 rounded-full p-0 dark:hover:bg-black hover:bg-zinc-300 dark:bg-zinc-700 bg-white dark:text-white text-zinc-900",
               isHighlighted && "ring-4 ring-green-400"
             )}
           >
@@ -270,15 +282,15 @@ const ChatBot = () => {
         </div>
       </PopoverTrigger>
 
-      <PopoverContent className='mx-4 mb-2 text-sm min-w-96 max-w-96 w-full p-0'>
-        <div className="flex items-center justify-between border-b p-4">
+      <PopoverContent className='mx-4 mb-2 text-sm min-w-96 max-w-96 w-full p-0 dark:bg-black bg-white dark:border-zinc-800 border-zinc-200'>
+        <div className="flex items-center justify-between border-b dark:border-zinc-800 border-zinc-200 p-4">
           {chatDocument?.chat?.title ?
             <div className='flex gap-1 items-center'>
-              <h3 className="font-semibold">{chatDocument?.chat?.title}</h3>
+              <h3 className="font-semibold dark:text-white text-zinc-900">{chatDocument?.chat?.title}</h3>
 
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Ellipsis size={15} className='cursor-pointer' />
+                  <Ellipsis size={15} className='cursor-pointer dark:text-white text-zinc-900' />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem className='cursor-pointer' onClick={() => resetChatId()}>Reset Chat</DropdownMenuItem>
@@ -286,9 +298,10 @@ const ChatBot = () => {
               </DropdownMenu>
             </div>
             :
-            <h3>Chat Assistant</h3>
+            <h3 className="dark:text-white text-zinc-900">Chat Assistant</h3>
           }
-          <Button variant="ghost" size="icon" onClick={() => setOpen(false)}>
+
+          <Button variant="ghost" size="icon" onClick={() => setOpen(false)} className="dark:text-white text-zinc-900 dark:hover:bg-zinc-800 hover:bg-zinc-100">
             <X className="h-4 w-4" />
           </Button>
         </div>
@@ -296,15 +309,35 @@ const ChatBot = () => {
         <ScrollArea className="h-[400px] p-4">
           <div className="space-y-4" ref={scrollRef}>
             {error ?
-              <div className=''>
+              <div className='dark:text-white text-zinc-900'>
                 <p>{error.message}</p>
-                <p>Click <span className='underline cursor-pointer' onClick={() => resetChatId()}>here</span> to reset</p>
+                <p>Click <span className='underline cursor-pointer dark:hover:text-neutral-300 hover:text-zinc-600' onClick={() => resetChatId()}>here</span> to reset</p>
               </div>
               :
               <>
                 {messages.map((message, i) => (
                   <MessageItem key={i} message={message} />
                 ))}
+
+                {messages.length === 1 && !isLoading && (
+                  <div className="space-y-3">
+                    <p className="text-sm dark:text-gray-400 text-gray-600 mb-3">
+                      You can ask me:
+                    </p>
+
+                    <div className="space-y-2">
+                      {SUGGESTED_QUESTIONS.map((question, i) => (
+                        <button
+                          key={i}
+                          onClick={() => handleSuggestedQuestion(question)}
+                          className="w-full text-left p-3 rounded-lg dark:bg-zinc-800 bg-zinc-100 dark:hover:bg-zinc-700 hover:bg-zinc-200 dark:text-white text-zinc-900 transition-colors text-sm"
+                        >
+                          {question}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {isLoading || isPending &&
                   <div className="flex items-start gap-3">
@@ -323,7 +356,7 @@ const ChatBot = () => {
         </ScrollArea>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 border-t flex w-full gap-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 border-t dark:border-zinc-800 border-zinc-200 flex w-full gap-2">
             <FormField
               control={form.control}
               name="message"
@@ -336,7 +369,7 @@ const ChatBot = () => {
               )}
             />
 
-            <Button type="submit" size='icon' disabled={isPending} className="cursor-pointer">
+            <Button type="submit" size='icon' disabled={isPending} className="cursor-pointer dark:bg-zinc-800 bg-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-800 text-white">
               {isPending ?
                 <Loader2 className="animate-spin" />
                 :
@@ -347,7 +380,7 @@ const ChatBot = () => {
         </Form>
 
         <div className='flex justify-center pb-3'>
-          <p className='text-center text-xs'>Note: Responses aren&apos;t always accurate or complete.</p>
+          <p className='text-center text-xs dark:text-neutral-500 text-neutral-600'>Note: Responses aren&apos;t always accurate or complete.</p>
         </div>
       </PopoverContent>
     </Popover>
