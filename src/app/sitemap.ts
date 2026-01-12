@@ -5,7 +5,7 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
     {
       url: 'https://www.shivamtaneja.com/',
       lastModified: new Date(),
-      priority: 1.0
+      priority: 1.0,
     },
     {
       url: 'https://www.shivamtaneja.com/contact',
@@ -15,6 +15,12 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       url: 'https://www.shivamtaneja.com/projects',
       lastModified: new Date(),
     },
+    {
+      url: 'https://www.shivamtaneja.com/resume.pdf',
+      lastModified: new Date(),
+    },
+
+    // projects
     {
       url: 'https://www.shivamtaneja.com/projects/career-guidance',
       lastModified: new Date(),
@@ -51,5 +57,5 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       url: 'https://www.shivamtaneja.com/projects/tilt-bot',
       lastModified: new Date(),
     },
-  ]
+  ];
 }

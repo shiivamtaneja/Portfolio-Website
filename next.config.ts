@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["mdx", "ts", "tsx"],
-  
+
   async redirects() {
     return [
       {
@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
         destination: "/projects/:slug",
         permanent: true, // 301 redirect
       },
+      { source: '/resume', destination: '/resume.pdf', permanent: true },
+      { source: '/cv', destination: '/resume.pdf', permanent: true },
+      { source: '/shivam-resume', destination: '/resume.pdf', permanent: true },
     ];
   },
 };
