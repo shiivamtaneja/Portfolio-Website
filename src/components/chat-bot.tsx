@@ -105,7 +105,7 @@ export const MessageItem = ({ message }: { message: ConversationMessage }) => {
             message.type === 'user' ? 'dark:bg-primary bg-zinc-900 text-primary-foreground' : 'bg-muted'
           )}
         >
-          <p className={cn(message.type === 'user' && 'text-white')}>{message.message}</p>
+          <p>{message.message}</p>
         </div>
 
         {message.createdAt && (
