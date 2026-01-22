@@ -142,7 +142,17 @@ const Nav = () => {
                             <Link href={item.link} target='_blank' key={idx}>
                               <Tooltip delayDuration={50}>
                                 <TooltipTrigger asChild>
-                                  <item.icon size={25} className='rounded-md hover:scale-110 scale-100 transition duration-75 ease-in-out dark:text-white text-zinc-900' />
+                                  <motion.div
+                                    whileHover={{ rotate: 18 }}
+                                    initial={{ rotate: 0 }}
+                                    transition={{
+                                      type: "spring",
+                                      stiffness: 300,
+                                      damping: 10
+                                    }}
+                                  >
+                                    <item.icon size={25} className='rounded-md dark:text-white text-zinc-900' />
+                                  </motion.div>
                                 </TooltipTrigger>
                                 <TooltipContent>
                                   <p>{item.heading}</p>
@@ -163,7 +173,17 @@ const Nav = () => {
                 <Link href={item.link} target='_blank' key={idx}>
                   <Tooltip delayDuration={50}>
                     <TooltipTrigger asChild>
-                      <item.icon size={25} className='rounded-md hover:scale-110 scale-100 transition duration-75 ease-in-out dark:text-white text-zinc-900' />
+                      <motion.div
+                        whileHover={{ rotate: 18 }}
+                        initial={{ rotate: 0 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 10
+                        }}
+                      >
+                        <item.icon size={25} className='rounded-md dark:text-white text-zinc-900' />
+                      </motion.div>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{item.heading}</p>
