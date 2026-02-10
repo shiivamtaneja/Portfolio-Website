@@ -1,15 +1,13 @@
-import { calculateAge } from "../utils";
-
 export const aboutMeContent = [
-  `${calculateAge('2002-05-31')}-year-old B.Tech graduate from India.`,
-  "Full-stack developer with hands-on experience in the MERN stack.",
-  "Currently working as an Associate Software Developer at NTT Data.",
-  `I also create content. Come say <a href="https://www.youtube.com/@codesbyshivam?sub_confirmation=1" target="_blank" class="highlight-yt relative">hi on YouTube</a>!`,
-  "Actively pursuing certifications in Cloud/AI to level up my cloud skills.",
-  "Outside of coding, I enjoy gaming, video editing, music, and content creation.",
-  "I'm passionate about building clean UIs, smooth UX, and robust software.",
-  "Always curious, always learning!"
+  // `${calculateAge('2002-05-31')}-year-old B.Tech graduate from India.`,
+  "Software engineer crafting production-grade solutions.",
+  "Working as an Associate Software Developer at NTT Data.",
+  "Currently open to software engineering roles.",
+  "Crafting real-world SaaS, SDKs, and robust APIs.",
+  "Focused on building tools that genuinely help people and teams.",
+  `I document what I build, come say hi on <a href="https://www.youtube.com/@codesbyshivam?sub_confirmation=1" target="_blank" class="highlight-yt relative">YouTube</a> or <a href="https://www.instagram.com/codesbyshivam" target="_blank" class="highlight-yt relative">Instagram</a>.`,
+  "Actively leveling up in Cloud and AI engineering.",
+  "Always curious, always shipping."
 ];
 
-
-export const RESUME_LINK = "/resume"
+export const RESUME_LINK = "/resume";

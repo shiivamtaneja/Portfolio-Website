@@ -1,24 +1,35 @@
-import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+  FaYoutube
+} from "react-icons/fa";
 
 export const socialItems = [
   {
-    link: 'https://www.linkedin.com/in/shivam-taneja/',
+    link: "https://www.linkedin.com/in/shivam-taneja/",
     icon: FaLinkedin,
-    heading: 'Linkedin'
+    heading: "LinkedIn"
   },
   {
-    link: 'https://github.com/shivam-taneja/',
+    link: "https://github.com/shivam-taneja/",
     icon: FaGithub,
-    heading: 'Github'
+    heading: "GitHub"
   },
   {
-    link: 'https://twitter.com/codesbyshivam/',
+    link: "https://twitter.com/codesbyshivam/",
     icon: FaTwitter,
-    heading: 'Twitter / X'
+    heading: "Twitter / X"
   },
   {
-    link: 'https://www.youtube.com/@codesbyshivam',
+    link: "https://www.youtube.com/@codesbyshivam",
     icon: FaYoutube,
-    heading: 'YouTube'
+    heading: "YouTube"
   },
+  {
+    link: "https://www.instagram.com/codesbyshivam",
+    icon: FaInstagram,
+    heading: "Instagram"
+  }
 ];
