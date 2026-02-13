@@ -6,6 +6,35 @@ This is the official repository for my personal website built with Next.js 15, f
 
 This branch (`design-v2`) contains the latest design updates for my portfolio website. The site showcases my work, skills, and provides a unique way for visitors to interact with an AI assistant that can answer questions about me and my work.
 
+## 🧊 Visual Effects
+
+### 3D Folding Scroll ("The Origami Effect")
+
+The home page features a custom-built 3D folding scroll effect. This creates the illusion of the website being a continuous sheet of paper folding through space as you scroll.
+
+**How it works:**
+1.  **Three Layers:** The content is rendered onto three distinct layers:
+    *   **Top Fold:** Rotated -90° (facing up).
+    *   **Center Fold:** Facing the user (viewport).
+    *   **Bottom Fold:** Rotated +90° (facing down).
+2.  **Synchronization:** A layout manager intercepts the native scroll position and synchronizes it with the `translateY` properties of all three layers instantly.
+3.  **The Illusion:** As content leaves the Center layer, it immediately enters the angled Top or Bottom layers, creating a seamless 3D folding animation.
+
+**Visual Diagram:**
+```text
+      /  <-- Top Copy (Tilted -90deg)
+     /       (Shows the content that has scrolled past)
+    /
+
+    |    <-- Center Copy (Flat)
+    |        (Shows the current content)
+    |
+
+    \
+     \       (Shows the content coming up next)
+      \  <-- Bottom Copy (Tilted +90deg)
+```
+
 ## ✨ Key Features
 
 - Modern, responsive design built with Next.js 15

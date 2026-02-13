@@ -10,8 +10,6 @@ import { useTheme } from 'next-themes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useIsMobile } from '@/hooks/use-mobile';
-
 import { useIsFirstLoad, useSetFirstLoad } from '@/store/loading-store';
 import { ThemeToggle } from './theme-toggle';
 
@@ -27,7 +25,6 @@ const SmoothScroll = ({
   const countRef = useRef(0);
   const pathname = usePathname();
 
-  const isMobile = useIsMobile(850)
   const isFirstLoad = useIsFirstLoad();
   const setIsFirstLoad = useSetFirstLoad();
 
@@ -53,11 +50,9 @@ const SmoothScroll = ({
         {children}
       </QueryClientProvider>
 
-      {!isMobile && (
-        <div className='right-4 top-6 fixed'>
-          <ThemeToggle />
-        </div>
-      )}
+      <div className='right-4 hidden xl:block fixed xl:top-6 z-[999]'>
+        <ThemeToggle />
+      </div>
     </>
   );
 };

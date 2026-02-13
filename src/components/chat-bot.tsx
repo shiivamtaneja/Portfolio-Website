@@ -266,14 +266,14 @@ const ChatBot = () => {
         disableHighlight()
     }}>
       <PopoverTrigger asChild>
-        <div className='fixed bottom-4 right-4'>
+        <div className='fixed bottom-4 right-4 z-[999]'>
           {isHighlighted &&
             <ArrowDownRight size={40} className="animate-bounce absolute -left-6 -top-8 text-green-400" />
           }
           <Button
             ref={buttonRef}
             className={cn(
-              "h-12 w-12 rounded-full p-0 dark:hover:bg-black hover:bg-zinc-300 dark:bg-zinc-700 bg-white dark:text-white text-zinc-900",
+              "h-12 w-12 rounded-full p-0 dark:hover:bg-black hover:bg-zinc-300 dark:bg-zinc-700 bg-gray-200 dark:text-white text-zinc-900",
               isHighlighted && "ring-4 ring-green-400"
             )}
           >

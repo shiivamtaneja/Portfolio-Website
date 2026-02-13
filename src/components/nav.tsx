@@ -22,6 +22,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 const Nav = () => {
   const pathname = usePathname();
   const isMobile = useIsMobile(850);
+  const isXL = useIsMobile(1280);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -191,6 +192,10 @@ const Nav = () => {
                   </Tooltip>
                 </Link>
               ))}
+
+              {isXL && (
+                <ThemeToggle />
+              )}
             </>
           )}
         </div>

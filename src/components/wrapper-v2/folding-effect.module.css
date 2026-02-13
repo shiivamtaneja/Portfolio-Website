@@ -1,0 +1,70 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.wrapper3d {
+  position: relative;
+  perspective: 60vw;
+  transform-style: preserve-3d;
+}
+
+.fold {
+  overflow: hidden;
+
+  width: 100vw;
+
+  max-width: 1000px;
+
+  height: 85vh;
+
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+
+  pointer-events: auto;
+}
+
+.foldAlign {
+  width: 100%;
+  height: 100%;
+}
+
+.foldContent {
+  width: 100%;
+  will-change: transform;
+}
+
+.foldTop {
+  transform-origin: bottom center;
+  transform: rotateX(-90deg);
+}
+
+.foldTop .foldAlign {
+  transform: translateY(100%);
+}
+
+.foldBottom {
+  transform-origin: top center;
+  transform: rotateX(90deg);
+}
+
+.foldBottom .foldAlign {
+  transform: translateY(-100%);
+}
+
+@media only screen and (max-width: 768px) {
+  .fold {
+    width: 100vw;
+    height: 85vh;
+  }
+}
