@@ -64,7 +64,7 @@ export default function FoldingLayout({ children }: { children: React.ReactNode 
         </div>
 
         {/* CENTER FOLD */}
-        <div className={`${styles.fold}`} id="center-fold">
+        <div className={`${styles.fold} ${styles.foldCenter}`} id="center-fold">
           <div className={styles.foldAlign}>
             <div className={styles.foldContent} ref={centerRef}>
               {/* Measure this div */}

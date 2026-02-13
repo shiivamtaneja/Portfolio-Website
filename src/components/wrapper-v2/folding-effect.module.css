@@ -15,23 +15,23 @@
   position: relative;
   perspective: 60vw;
   transform-style: preserve-3d;
+
+  -webkit-transform-style: preserve-3d;
+  -webkit-perspective: 60vw;
 }
 
 .fold {
   overflow: hidden;
-
   width: 100vw;
-
   max-width: 1000px;
-
   height: 85vh;
-
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
-
   pointer-events: auto;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .foldAlign {
@@ -47,15 +47,22 @@
 .foldTop {
   transform-origin: bottom center;
   transform: rotateX(-90deg);
+  z-index: 0;
 }
 
 .foldTop .foldAlign {
   transform: translateY(100%);
 }
 
+.foldCenter {
+  z-index: 10;
+  transform: translateZ(0.1px);
+}
+
 .foldBottom {
   transform-origin: top center;
   transform: rotateX(90deg);
+  z-index: 0;
 }
 
 .foldBottom .foldAlign {
@@ -66,5 +73,13 @@
   .fold {
     width: 100vw;
     height: 85vh;
+  }
+
+  .foldTop {
+    transform: rotateX(-90.1deg);
+  }
+
+  .foldBottom {
+    transform: rotateX(90.1deg);
   }
 }
