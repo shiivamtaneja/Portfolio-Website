@@ -1,0 +1,107 @@
+import Wrapper from "@/components/wrapper";
+
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="GraphMySelf"
+  description="A personal AI memory layer that syncs your identity across every AI tool and model you use."
+  url="https://www.shivamtaneja.com/projects/graphmyself"
+  tech={[
+    "NestJS",
+    "Next.js",
+    "PostgreSQL",
+    "pgvector",
+    "Redis",
+    "BullMQ",
+    "Google Vertex AI",
+    "MCP Server",
+    "React Flow",
+    "Turborepo",
+  ]}
+/>
+
+export const metadata = {
+  title: "GraphMySelf - Personal AI Memory Layer",
+  description:
+    "GraphMySelf is a personal AI memory layer that syncs your identity across every AI tool and model you use. Connect your resume, GitHub, LinkedIn, and Notion once and every AI you use stops starting from zero.",
+  keywords: [
+    "personal AI memory",
+    "AI context layer",
+    "RAG as a service",
+    "personal knowledge graph",
+    "MCP server",
+    "AI personalization",
+    "vector embeddings",
+    "pgvector",
+    "AI identity graph",
+    "personal context AI",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://www.shivamtaneja.com/projects/graphmyself",
+    images: [
+      {
+        url: "/projects/og-image-graphmyself.png",
+        alt: "GraphMySelf - Personal AI Memory Layer | Shivam Taneja",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/projects/og-image-graphmyself.png"],
+  },
+};
+
+<Wrapper>
+  # GraphMySelf
+
+**A personal AI memory layer that syncs your identity across every AI tool and model you use.**
+
+- [Visit GraphMySelf](https://www.graphmyself.com/)
+
+<SubSection title="The Problem">
+  Every AI tool you open starts from zero. It does not know your projects, your
+  experiences, your writing style, or how you think. You end up re-explaining
+  yourself hundreds of times a year across ChatGPT, Claude, Cursor, and every
+  other tool you use. It is repetitive, it breaks your flow, and it makes AI
+  feel generic even when it should feel personal.
+</SubSection>
+
+<SubSection title="The Solution">
+  GraphMySelf builds a semantic knowledge graph of who you are from the sources
+  that already define you. Connect your resume, GitHub, LinkedIn, and Notion
+  once. From that point on, every AI tool you use knows you.
+</SubSection>
+
+  <SubSection title="Key Features">
+    **Personal Knowledge Graph**
+    Your identity is parsed, chunked, and stored as vector embeddings in a semantic graph. The system understands relationships between your skills, projects, experiences, and context, not just keywords.
+
+    **Visual Graph Dashboard**
+    An interactive node-based UI built with React Flow lets you see exactly how you are represented. You can edit any node and the system re-embeds it instantly to keep your context accurate.
+
+    **Works Across Every Model**
+    GraphMySelf is model-agnostic. Whether you use ChatGPT, Claude, Gemini, or anything else, your memory layer works the same way across all of them.
+
+    **MCP Server Integration**
+    GraphMySelf exposes an MCP server so AI tools like Cursor and Claude Desktop can query your identity natively in real time, with no copy-paste required.
+
+  </SubSection>
+
+<SubSection title="How It Works">
+  You connect your data sources once. GraphMySelf parses everything using Apache
+  Tika, runs it through an async job pipeline via BullMQ, generates vector
+  embeddings via Google Vertex AI, and stores them in PostgreSQL with pgvector.
+  At query time it retrieves the most semantically relevant chunks of your
+  identity and passes them to whichever model you are using.
+</SubSection>
+
+  <SubSection title="Impact">
+    GraphMySelf removes the single most annoying friction point in daily AI usage. You stop being a stranger to your own tools. The more you add to it, the more useful every AI interaction becomes.
+
+    Currently in active development. Version 1 ships with the resume pipeline and MCP server support.
+
+  </SubSection>
+</Wrapper>

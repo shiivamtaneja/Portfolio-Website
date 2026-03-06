@@ -14,6 +14,7 @@ export const pathNames = {
     'collab-write': 'Project | Collab Write',
     'decode-mycode': 'Project | DecodeMyCode',
     'eznotify': 'Project | EZNotify',
+    'graphmyself': 'Project | GraphMySelf',
   },
 };
 

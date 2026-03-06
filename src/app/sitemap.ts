@@ -57,5 +57,9 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       url: 'https://www.shivamtaneja.com/projects/tilt-bot',
       lastModified: new Date(),
     },
+    {
+      url: 'https://www.shivamtaneja.com/projects/graphmyself',
+      lastModified: new Date(),
+    },
   ];
 }
