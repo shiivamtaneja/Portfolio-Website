@@ -1,4 +1,4 @@
-import Wrapper from '@/components/wrapper';
+import Wrapper from "@/components/wrapper";
 
 import ProjectStructuredData from "@/components/project-structured-data";
 
@@ -6,12 +6,7 @@ import ProjectStructuredData from "@/components/project-structured-data";
   name="DecodeMyCode"
   description="An AI-powered SaaS that transforms complex code into clear explanations, visual flowcharts, and concise summaries."
   url="https://www.shivamtaneja.com/projects/decode-mycode"
-  tech={[
-    "AI",
-    "Code Analysis",
-    "Developer Tools",
-    "SaaS"
-  ]}
+  tech={["AI", "Code Analysis", "Developer Tools", "SaaS"]}
 />
 
 export const metadata = {
@@ -26,7 +21,7 @@ export const metadata = {
     "code visualization",
     "flowcharts",
     "code understanding",
-    "developer tools"
+    "developer tools",
   ],
   openGraph: {
     type: "website",
@@ -47,61 +42,64 @@ export const metadata = {
 };
 
 <Wrapper>
-  # DecodeMyCode
+  <article className="flex flex-col gap-6">
+    # DecodeMyCode
 
-  **An AI-powered SaaS that turns any code into clear explanations, flowcharts and summaries.**
+    **An AI-powered SaaS that turns any code into clear explanations, flowcharts and summaries.**
 
-  - [Visit DecodeMyCode](https://www.decodemycode.com/)
+    - [Visit DecodeMyCode](https://www.decodemycode.com/)
 
-  <SubSection title="The Problem">
-    Reading and understanding complex or unfamiliar code can be time-consuming and intimidating, especially for:
-    - Developers new to programming
-    - Teams working with legacy codebases
-    - Educators teaching programming concepts
-    - Professionals reviewing third-party code
+    <SubSection title="The Problem">
+      Reading and understanding complex or unfamiliar code can be time-consuming and intimidating, especially for:
+      - Developers new to programming
+      - Teams working with legacy codebases
+      - Educators teaching programming concepts
+      - Professionals reviewing third-party code
 
-    Instead of spending hours deciphering raw syntax, developers need a way to quickly grasp what code does and how it works.
-  </SubSection>
-  
-  <SubSection title="The Solution">
-    DecodeMyCode bridges the gap between raw code and human understanding by automatically translating technical details into clear insights:
-  </SubSection>
+      Instead of spending hours deciphering raw syntax, developers need a way to quickly grasp what code does and how it works.
+    </SubSection>
 
-  <SubSection title="Key Features">
-    **Line-by-Line Explanations**
-    - Generates plain English explanations for every line of code
-    - Works with any programming language
-    - Handles complex logic and syntax
+    <SubSection title="The Solution">
+      DecodeMyCode bridges the gap between raw code and human understanding by automatically translating technical details into clear insights:
+    </SubSection>
 
-    **Visual Flowcharts**
-    - Creates interactive flowcharts showing control flow
-    - Illustrates program logic visually
-    - Makes complex algorithms easier to understand
+    <SubSection title="Key Features">
+      **Line-by-Line Explanations**
+      - Generates plain English explanations for every line of code
+      - Works with any programming language
+      - Handles complex logic and syntax
 
-    **Concise Summaries**
-    - Provides high-level overviews of code functionality
-    - Highlights key purposes and features
-    - Perfect for quick code reviews
-  </SubSection>
+      **Visual Flowcharts**
+      - Creates interactive flowcharts showing control flow
+      - Illustrates program logic visually
+      - Makes complex algorithms easier to understand
 
-  <SubSection title="Use Cases">
-    **For Students & Learners**
-    - Understand difficult programming concepts
-    - Learn from real-world code examples
-    - Get instant explanations for homework or tutorials
+      **Concise Summaries**
+      - Provides high-level overviews of code functionality
+      - Highlights key purposes and features
+      - Perfect for quick code reviews
+    </SubSection>
 
-    **For Educators**
-    - Create teaching materials from code examples
-    - Generate visual aids for lectures
-    - Help students understand complex algorithms
+    <SubSection title="Use Cases">
+      **For Students & Learners**
+      - Understand difficult programming concepts
+      - Learn from real-world code examples
+      - Get instant explanations for homework or tutorials
 
-    **For Professional Developers**
-    - Faster onboarding to new codebases
-    - Easier code reviews and documentation
-    - Quick understanding of legacy systems
-  </SubSection>
+      **For Educators**
+      - Create teaching materials from code examples
+      - Generate visual aids for lectures
+      - Help students understand complex algorithms
 
-  <SubSection title="Impact">
-    DecodeMyCode makes programming more accessible by removing the barrier of code comprehension. Whether you're learning to code, teaching others, or working with unfamiliar systems, it transforms intimidating code into clear, understandable insights.
-  </SubSection>
+      **For Professional Developers**
+      - Faster onboarding to new codebases
+      - Easier code reviews and documentation
+      - Quick understanding of legacy systems
+    </SubSection>
+
+    <SubSection title="Impact">
+      DecodeMyCode makes programming more accessible by removing the barrier of code comprehension. Whether you're learning to code, teaching others, or working with unfamiliar systems, it transforms intimidating code into clear, understandable insights.
+    </SubSection>
+
+  </article>
 </Wrapper>

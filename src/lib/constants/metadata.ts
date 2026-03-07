@@ -30,12 +30,12 @@ export const defaultMetadata: Partial<Metadata> = {
   icons: {
     icon: [
       {
-        media: '(prefers-color-scheme: light)',
-        url: '/logo.svg',
+        media: "(prefers-color-scheme: light)",
+        url: "/logo.svg",
       },
       {
-        media: '(prefers-color-scheme: dark)',
-        url: '/logo-dark.svg',
+        media: "(prefers-color-scheme: dark)",
+        url: "/logo-dark.svg",
       },
     ],
   },
@@ -43,4 +43,5 @@ export const defaultMetadata: Partial<Metadata> = {
     canonical: "https://www.shivamtaneja.com",
   },
   robots: "index, follow",
-}
+  authors: [{ name: "Shivam Taneja" }],
+};

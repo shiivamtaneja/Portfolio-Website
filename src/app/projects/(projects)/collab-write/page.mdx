@@ -1,4 +1,4 @@
-import Wrapper from '@/components/wrapper';
+import Wrapper from "@/components/wrapper";
 
 import ProjectStructuredData from "@/components/project-structured-data";
 
@@ -7,13 +7,7 @@ import ProjectStructuredData from "@/components/project-structured-data";
   description="An open-source, real-time collaborative knowledge-sharing platform inspired by Wikipedia and Notion."
   url="https://www.shivamtaneja.com/projects/collab-write"
   repo="https://github.com/shivam-taneja/CollabWrite"
-  tech={[
-    "Next.js",
-    "React",
-    "Appwrite",
-    "Tiptap",
-    "Tailwind CSS"
-  ]}
+  tech={["Next.js", "React", "Appwrite", "Tiptap", "Tailwind CSS"]}
 />
 
 export const metadata = {
@@ -32,7 +26,7 @@ export const metadata = {
     "Notion alternative",
     "Google Docs style editor",
     "open learning tools",
-    "collaborative writing"
+    "collaborative writing",
   ],
   openGraph: {
     type: "website",
@@ -53,75 +47,78 @@ export const metadata = {
 };
 
 <Wrapper>
-  # CollabWrite - Collaborative Knowledge Sharing
+  <article className="flex flex-col gap-6">
+    # CollabWrite - Collaborative Knowledge Sharing
 
-  - [View Live Project](https://collabwrite.appwrite.network/)
-  - [View Source Code](https://github.com/shivam-taneja/CollabWrite)
+    - [View Live Project](https://collabwrite.appwrite.network/)
+    - [View Source Code](https://github.com/shivam-taneja/CollabWrite)
 
-  <SubSection title="About The Project">
-    - CollabWrite is an open source knowledge-sharing platform where anyone can explore posts without logging in.
-    - Registered users can create, edit, and collaborate on posts in real-time using a rich text editor, similar to Google Docs-style collaboration.
-    - The feed updates automatically when new knowledge posts are added, making it a living, community-driven knowledge base.
-  </SubSection>
+    <SubSection title="About The Project">
+      - CollabWrite is an open source knowledge-sharing platform where anyone can explore posts without logging in.
+      - Registered users can create, edit, and collaborate on posts in real-time using a rich text editor, similar to Google Docs-style collaboration.
+      - The feed updates automatically when new knowledge posts are added, making it a living, community-driven knowledge base.
+    </SubSection>
 
-  <SubSection title="Inspiration">
-    - The idea is inspired by creating a "Wikipedia meets Notion".
-    - I wanted to build something more open and community-driven than traditional note-taking apps.
-    - While tools like Google Docs and Notion are great, they are usually private and siloed.
-    - CollabWrite brings the best of both worlds:
+    <SubSection title="Inspiration">
+      - The idea is inspired by creating a "Wikipedia meets Notion".
+      - I wanted to build something more open and community-driven than traditional note-taking apps.
+      - While tools like Google Docs and Notion are great, they are usually private and siloed.
+      - CollabWrite brings the best of both worlds:
       - The openness of a public knowledge feed
       - The power of collaborative editing
       - The simplicity of contributing knowledge without barriers
-  </SubSection>
+    </SubSection>
 
-  <SubSection title="Technologies Used">
-    ### Frontend -
-    - Next.js 15 (App Router)
-    - React 19
-    - TailwindCSS
-    - Shadcn/UI
-    - Zod
-    - React Hook Form
+    <SubSection title="Technologies Used">
+      ### Frontend -
+      - Next.js 15 (App Router)
+      - React 19
+      - TailwindCSS
+      - Shadcn/UI
+      - Zod
+      - React Hook Form
 
-    <br />
+      <br />
 
-    ### Rich Text Editor -
-    - Tiptap (for real-time collaborative editing)
+      ### Rich Text Editor -
+      - Tiptap (for real-time collaborative editing)
 
-    <br />
+      <br />
 
-    ### Backend & Infra -
-    - Appwrite (Auth, Database, Realtime, Deployment)
-    - Appwrite Auth (GitHub / Google / Email login)
+      ### Backend & Infra -
+      - Appwrite (Auth, Database, Realtime, Deployment)
+      - Appwrite Auth (GitHub / Google / Email login)
 
-    <br />
+      <br />
 
-    ### Deployment -
-    - Appwrite Sites
-  </SubSection>
+      ### Deployment -
+      - Appwrite Sites
+    </SubSection>
 
-  <SubSection title="Features">
-    - **Open Access**: Anyone can explore posts without signing in
-    - **Real-Time Collaboration**: Multiple users can edit posts simultaneously (Google Docs style)
-    - **Rich Text Editing**: Powered by Tiptap for flexible, modern editing
-    - **Community-Driven Knowledge Base**: A feed that evolves with contributions
-    - **Authentication**: GitHub, Google, or Email login via Appwrite
-    - **Auto-Updating Feed**: New knowledge appears instantly, no refresh needed
-  </SubSection>
+    <SubSection title="Features">
+      - **Open Access**: Anyone can explore posts without signing in
+      - **Real-Time Collaboration**: Multiple users can edit posts simultaneously (Google Docs style)
+      - **Rich Text Editing**: Powered by Tiptap for flexible, modern editing
+      - **Community-Driven Knowledge Base**: A feed that evolves with contributions
+      - **Authentication**: GitHub, Google, or Email login via Appwrite
+      - **Auto-Updating Feed**: New knowledge appears instantly, no refresh needed
+    </SubSection>
 
-  <SubSection title="How It Works">
-    - **Explore**: Visitors can browse posts without logging in
-    - **Sign Up**: Register with GitHub, Google, or Email
-    - **Collaborate**: Create and edit posts in real-time using the Tiptap editor
-    - **Realtime Updates**: Posts sync instantly across users via Appwrite Realtime
-    - **Knowledge Flow**: The feed automatically updates with new or edited content
-  </SubSection>
+    <SubSection title="How It Works">
+      - **Explore**: Visitors can browse posts without logging in
+      - **Sign Up**: Register with GitHub, Google, or Email
+      - **Collaborate**: Create and edit posts in real-time using the Tiptap editor
+      - **Realtime Updates**: Posts sync instantly across users via Appwrite Realtime
+      - **Knowledge Flow**: The feed automatically updates with new or edited content
+    </SubSection>
 
-  <SubSection title="Future Improvements">
-    - **Tagging & Categorization**: Organize posts into topics for easier discovery
-    - **Version History**: Track edits and allow rollback to previous versions
-    - **Community Moderation**: Upvotes, flags, and editor roles for quality control
-    - **Better Discovery**: Search and filter across the knowledge base
-    - **Integrations**: Export to Notion, Obsidian, or other knowledge tools
-  </SubSection>
+    <SubSection title="Future Improvements">
+      - **Tagging & Categorization**: Organize posts into topics for easier discovery
+      - **Version History**: Track edits and allow rollback to previous versions
+      - **Community Moderation**: Upvotes, flags, and editor roles for quality control
+      - **Better Discovery**: Search and filter across the knowledge base
+      - **Integrations**: Export to Notion, Obsidian, or other knowledge tools
+    </SubSection>
+
+  </article>
 </Wrapper>

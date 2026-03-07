@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-import { defaultMetadata } from '@/lib/constants/metadata';
+import { defaultMetadata } from "@/lib/constants/metadata";
 
 export const metadata: Metadata = {
   title: {
-    default: 'Shivam Taneja',
-    template: '%s | Shivam Taneja',
+    default: "Shivam Taneja",
+    template: "%s | Shivam Taneja",
   },
-  ...defaultMetadata
+  ...defaultMetadata,
 };
 
 export default function RootLayout({
@@ -15,5 +15,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (children);
+  return children;
 }

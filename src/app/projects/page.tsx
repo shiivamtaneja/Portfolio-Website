@@ -1,30 +1,37 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Script from 'next/script';
+import { Metadata } from "next";
+import Link from "next/link";
+import Script from "next/script";
 
-import { defaultMetadata } from '@/lib/constants/metadata';
-import { sideProjects } from '@/lib/constants/side-projects';
+import { defaultMetadata } from "@/lib/constants/metadata";
+import { sideProjects } from "@/lib/constants/side-projects";
 
-import ChatBotProject from '@/components/home/chat-bot-project';
-import Wrapper from '@/components/wrapper';
+import ChatBotProject from "@/components/home/chat-bot-project";
+import Wrapper from "@/components/wrapper";
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { ExternalLink, Info } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { ExternalLink, Info } from "lucide-react";
 import { GoDotFill } from "react-icons/go";
 
 export const metadata: Metadata = {
   ...defaultMetadata,
   title: "Projects | Shivam Taneja - Full Stack Developer",
-  description: "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
+  description:
+    "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
   openGraph: {
     title: "Projects | Shivam Taneja - Full Stack Developer",
-    description: "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
+    description:
+      "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
     ...defaultMetadata.openGraph,
   },
   twitter: {
     title: "Projects | Shivam Taneja",
-    description: "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
-    ...defaultMetadata.twitter
+    description:
+      "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
+    ...defaultMetadata.twitter,
   },
 };
 
@@ -32,13 +39,13 @@ const ProjectsPage = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Projects by Shivam Taneja",
-    "url": "https://www.shivamtaneja.com/projects",
-    "description":
+    name: "Projects by Shivam Taneja",
+    url: "https://www.shivamtaneja.com/projects",
+    description:
       "A collection of projects built by Shivam Taneja including web applications, AI tools, and open source work.",
-    "about": {
-      "@id": "https://www.shivamtaneja.com/#person"
-    }
+    about: {
+      "@id": "https://www.shivamtaneja.com/#person",
+    },
   };
 
   return (
@@ -50,11 +57,12 @@ const ProjectsPage = () => {
       />
 
       <Wrapper>
-        <div className='flex flex-col gap-6'>
+        <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h1 className='text-3xl font-bold'>All Projects</h1>
-            <p className='text-neutral-400'>
-              A collection of projects I&apos;ve built, ranging from AI-powered tools to collaborative platforms.
+            <h1 className="text-3xl font-bold">All Projects</h1>
+            <p className="text-neutral-400">
+              A collection of projects I&apos;ve built, ranging from AI-powered
+              tools to collaborative platforms.
             </p>
           </div>
 
@@ -62,17 +70,22 @@ const ProjectsPage = () => {
             <ChatBotProject />
 
             {sideProjects.map((item, idx) => (
-              <li className='text-neutral-500 flex w-full gap-4 items-start justify-between' key={idx}>
-                <div className='flex flex-col gap-2 flex-1'>
-                  <div className='flex gap-2 items-center flex-wrap'>
-                    <p className='dark:text-white text-zinc-900'>
-                      {idx + 2}{"."}
+              <li
+                className="text-neutral-500 flex w-full gap-4 items-start justify-between"
+                key={idx}
+              >
+                <div className="flex flex-col gap-2 flex-1">
+                  <div className="flex gap-2 items-center flex-wrap">
+                    <p className="dark:text-white text-zinc-900">
+                      {idx + 2}
+                      {"."}
                     </p>
                     <div className="flex items-center gap-2">
                       <Link
                         href={item.projLink}
-                        className='dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors'
+                        className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors"
                         target="_blank"
+                        rel="noopener noreferrer"
                       >
                         <Tooltip delayDuration={50}>
                           <TooltipTrigger asChild>
@@ -102,20 +115,21 @@ const ProjectsPage = () => {
                       </Link>
                     </div>
                   </div>
-                  <p className='dark:text-neutral-400 text-neutral-600 break-words ml-4'>
+                  <p className="dark:text-neutral-400 text-neutral-600 break-words ml-4">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className='flex gap-2 items-center shrink-0'>
-                  {item.userCount &&
-                    <p>{item.userCount}</p>
-                  }
+                <div className="flex gap-2 items-center shrink-0">
+                  {item.userCount && <p>{item.userCount}</p>}
 
                   {item.activelyWorking && (
                     <Tooltip delayDuration={50}>
                       <TooltipTrigger asChild>
-                        <GoDotFill size={15} className='hover:scale-110 scale-100 transition duration-75 ease-in-out text-green-500' />
+                        <GoDotFill
+                          size={15}
+                          className="hover:scale-110 scale-100 transition duration-75 ease-in-out text-green-500"
+                        />
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>Actively working on it</p>
@@ -129,7 +143,7 @@ const ProjectsPage = () => {
         </div>
       </Wrapper>
     </>
-  )
-}
+  );
+};
 
-export default ProjectsPage
+export default ProjectsPage;

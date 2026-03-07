@@ -55,53 +55,56 @@ export const metadata = {
 };
 
 <Wrapper>
-  # GraphMySelf
+  <article className="flex flex-col gap-6">
+    # GraphMySelf
 
-**A personal AI memory layer that syncs your identity across every AI tool and model you use.**
+    **A personal AI memory layer that syncs your identity across every AI tool and model you use.**
 
-- [Visit GraphMySelf](https://www.graphmyself.com/)
+    - [Visit GraphMySelf](https://www.graphmyself.com/)
 
-<SubSection title="The Problem">
-  Every AI tool you open starts from zero. It does not know your projects, your
-  experiences, your writing style, or how you think. You end up re-explaining
-  yourself hundreds of times a year across ChatGPT, Claude, Cursor, and every
-  other tool you use. It is repetitive, it breaks your flow, and it makes AI
-  feel generic even when it should feel personal.
-</SubSection>
+    <SubSection title="The Problem">
+      Every AI tool you open starts from zero. It does not know your projects, your
+      experiences, your writing style, or how you think. You end up re-explaining
+      yourself hundreds of times a year across ChatGPT, Claude, Cursor, and every
+      other tool you use. It is repetitive, it breaks your flow, and it makes AI
+      feel generic even when it should feel personal.
+    </SubSection>
 
-<SubSection title="The Solution">
-  GraphMySelf builds a semantic knowledge graph of who you are from the sources
-  that already define you. Connect your resume, GitHub, LinkedIn, and Notion
-  once. From that point on, every AI tool you use knows you.
-</SubSection>
+    <SubSection title="The Solution">
+      GraphMySelf builds a semantic knowledge graph of who you are from the sources
+      that already define you. Connect your resume, GitHub, LinkedIn, and Notion
+      once. From that point on, every AI tool you use knows you.
+    </SubSection>
 
-  <SubSection title="Key Features">
-    **Personal Knowledge Graph**
-    Your identity is parsed, chunked, and stored as vector embeddings in a semantic graph. The system understands relationships between your skills, projects, experiences, and context, not just keywords.
+    <SubSection title="Key Features">
+      **Personal Knowledge Graph**
+      Your identity is parsed, chunked, and stored as vector embeddings in a semantic graph. The system understands relationships between your skills, projects, experiences, and context, not just keywords.
 
-    **Visual Graph Dashboard**
-    An interactive node-based UI built with React Flow lets you see exactly how you are represented. You can edit any node and the system re-embeds it instantly to keep your context accurate.
+      **Visual Graph Dashboard**
+      An interactive node-based UI built with React Flow lets you see exactly how you are represented. You can edit any node and the system re-embeds it instantly to keep your context accurate.
 
-    **Works Across Every Model**
-    GraphMySelf is model-agnostic. Whether you use ChatGPT, Claude, Gemini, or anything else, your memory layer works the same way across all of them.
+      **Works Across Every Model**
+      GraphMySelf is model-agnostic. Whether you use ChatGPT, Claude, Gemini, or anything else, your memory layer works the same way across all of them.
 
-    **MCP Server Integration**
-    GraphMySelf exposes an MCP server so AI tools like Cursor and Claude Desktop can query your identity natively in real time, with no copy-paste required.
+      **MCP Server Integration**
+      GraphMySelf exposes an MCP server so AI tools like Cursor and Claude Desktop can query your identity natively in real time, with no copy-paste required.
 
-  </SubSection>
+    </SubSection>
 
-<SubSection title="How It Works">
-  You connect your data sources once. GraphMySelf parses everything using Apache
-  Tika, runs it through an async job pipeline via BullMQ, generates vector
-  embeddings via Google Vertex AI, and stores them in PostgreSQL with pgvector.
-  At query time it retrieves the most semantically relevant chunks of your
-  identity and passes them to whichever model you are using.
-</SubSection>
+    <SubSection title="How It Works">
+      You connect your data sources once. GraphMySelf parses everything using Apache
+      Tika, runs it through an async job pipeline via BullMQ, generates vector
+      embeddings via Google Vertex AI, and stores them in PostgreSQL with pgvector.
+      At query time it retrieves the most semantically relevant chunks of your
+      identity and passes them to whichever model you are using.
+    </SubSection>
 
-  <SubSection title="Impact">
-    GraphMySelf removes the single most annoying friction point in daily AI usage. You stop being a stranger to your own tools. The more you add to it, the more useful every AI interaction becomes.
+    <SubSection title="Impact">
+      GraphMySelf removes the single most annoying friction point in daily AI usage. You stop being a stranger to your own tools. The more you add to it, the more useful every AI interaction becomes.
 
-    Currently in active development. Version 1 ships with the resume pipeline and MCP server support.
+      Currently in active development. Version 1 ships with the resume pipeline and MCP server support.
 
-  </SubSection>
+    </SubSection>
+
+  </article>
 </Wrapper>

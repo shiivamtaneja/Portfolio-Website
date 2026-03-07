@@ -1,26 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { useTheme } from 'next-themes';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useTheme } from "next-themes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { useIsFirstLoad, useSetFirstLoad } from '@/store/loading-store';
-import { ThemeToggle } from './theme-toggle';
+import { useIsFirstLoad, useSetFirstLoad } from "@/store/loading-store";
+import { ThemeToggle } from "./theme-toggle";
 
-const SmoothScroll = ({
-  children
-}: {
-  children: React.ReactNode
-}) => {
+const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(() => new QueryClient());
 
-  const { resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme();
 
   const countRef = useRef(0);
   const pathname = usePathname();
@@ -37,7 +33,7 @@ const SmoothScroll = ({
 
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
@@ -46,11 +42,9 @@ const SmoothScroll = ({
     <>
       <ToastContainer theme={resolvedTheme === "dark" ? "dark" : "light"} />
 
-      <QueryClientProvider client={queryClient}>
-        {children}
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 
-      <div className='right-4 hidden xl:block fixed xl:top-6 z-[999]'>
+      <div className="right-4 hidden xl:block fixed xl:top-6 z-[999]">
         <ThemeToggle />
       </div>
     </>

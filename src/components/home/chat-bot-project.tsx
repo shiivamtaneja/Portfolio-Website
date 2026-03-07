@@ -1,44 +1,41 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
-import { useChatbotHighlight } from '@/provider/chatbot-highlight';
+import { useChatbotHighlight } from "@/provider/chatbot-highlight";
 
-import { ExternalLink, Info } from 'lucide-react';
+import { ExternalLink, Info } from "lucide-react";
 // import { GoDotFill } from 'react-icons/go';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const ChatBotProject = () => {
   const { highlight } = useChatbotHighlight();
 
   const { data, error } = useQuery<{ count: number }>({
-    queryKey: ['chatBotUserCtn'],
+    queryKey: ["chatBotUserCtn"],
     queryFn: async () => {
-      const response = await fetch('/api/chat/count')
+      const response = await fetch("/api/chat/count");
 
-      if (!response.ok)
-        throw new Error('Error fetching user count')
+      if (!response.ok) throw new Error("Error fetching user count");
 
-      return response.json()
+      return response.json();
     },
     retry: false,
-    refetchOnWindowFocus: false
-  })
+    refetchOnWindowFocus: false,
+  });
 
   return (
-    <li className='dark:text-neutral-500 text-neutral-600 flex w-full gap-4 items-start justify-between'>
-      <div className='flex flex-col gap-2 flex-1'>
-        <div className='flex gap-2 items-center flex-wrap'>
-          <p className='dark:text-white text-zinc-900'>
-            1.
-          </p>
+    <li className="dark:text-neutral-500 text-neutral-600 flex w-full gap-4 items-start justify-between">
+      <div className="flex flex-col gap-2 flex-1">
+        <div className="flex gap-2 items-center flex-wrap">
+          <p className="dark:text-white text-zinc-900">1.</p>
           <div className="flex items-center gap-2">
             <div
-              className='dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors cursor-pointer'
+              className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors cursor-pointer"
               onClick={() => highlight()}
             >
               <Tooltip delayDuration={50}>
@@ -55,7 +52,7 @@ const ChatBotProject = () => {
             </div>
 
             <Link
-              href={'/projects/chat-bot'}
+              href={"/projects/chat-bot"}
               className="dark:text-neutral-400 text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors"
             >
               <Tooltip delayDuration={50}>
@@ -69,13 +66,13 @@ const ChatBotProject = () => {
             </Link>
           </div>
         </div>
-        <p className='dark:text-neutral-400 text-neutral-600 break-words ml-4'>
+        <p className="dark:text-neutral-400 text-neutral-600 break-words ml-4">
           a site-embedded AI assistant trained on my portfolio content.
         </p>
       </div>
 
-      {!error && data &&
-        <div className='flex gap-2 items-center shrink-0'>
+      {!error && data && (
+        <div className="flex gap-2 items-center shrink-0">
           <p>{data.count} users</p>
 
           {/* <Tooltip delayDuration={50}>
@@ -87,9 +84,9 @@ const ChatBotProject = () => {
             </TooltipContent>
           </Tooltip> */}
         </div>
-      }
+      )}
     </li>
-  )
-}
+  );
+};
 
-export default ChatBotProject
+export default ChatBotProject;

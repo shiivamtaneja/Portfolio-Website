@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Loader from "@/components/loader";
 import { useIsFirstLoad } from "@/store/loading-store";
