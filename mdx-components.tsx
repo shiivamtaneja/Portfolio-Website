@@ -72,10 +72,38 @@ export function SubSection({
   );
 }
 
+export function Video({
+  src,
+  poster,
+  autoPlay = false,
+}: {
+  src: string;
+  poster?: string;
+  autoPlay?: boolean;
+}) {
+  return (
+    <div className="my-6 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+      <video
+        controls
+        playsInline
+        autoPlay={autoPlay}
+        muted={autoPlay}
+        loop={autoPlay}
+        poster={poster}
+        className="w-full h-auto object-cover"
+      >
+        <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  );
+}
+
 export function useMDXComponents(otherComponens: MDXComponents) {
   return {
     ...components,
     ...otherComponens,
     SubSection,
+    Video
   };
 }
