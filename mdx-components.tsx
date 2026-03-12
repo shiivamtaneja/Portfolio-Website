@@ -82,7 +82,7 @@ export function Video({
   autoPlay?: boolean;
 }) {
   return (
-    <div className="my-6 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
+    <div className="relative z-[100] my-6 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
       <video
         controls
         playsInline
