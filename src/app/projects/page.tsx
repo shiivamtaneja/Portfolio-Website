@@ -60,7 +60,7 @@ const ProjectsPage = () => {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-bold">All Projects</h1>
-            <p className="text-neutral-400">
+            <p>
               A collection of projects I&apos;ve built, ranging from AI-powered
               tools to collaborative platforms.
             </p>
