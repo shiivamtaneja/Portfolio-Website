@@ -10,7 +10,8 @@ import { useQuery } from '@tanstack/react-query'
 import { chatIdRegex } from '@/lib/constants/path-names'
 
 import SiteHeader from '@/components/admin/header'
-import { fetchMessages, MessageItem } from '@/components/chat-bot'
+import { MessageItem } from '@/components/chat-message-item'
+import { fetchMessages } from '@/hooks/use-chat-bot'
 import { ArrowLeft, Loader } from 'lucide-react'
 
 const ChatPage = () => {
