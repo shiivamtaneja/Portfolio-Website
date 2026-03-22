@@ -8,46 +8,47 @@ import { pathNames } from "./constants/path-names";
 import { serverEnv } from "./env/server";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function matchPath(pathname: string, isFirstLoad: boolean) {
-  if (pathname === '/') {
+  if (pathname === "/") {
     return isFirstLoad ? "Shivam Taneja" : "<Home />";
   }
 
   if (pathname in pathNames.common) {
-    return isFirstLoad ?
-      pathNames.common[pathname as keyof typeof pathNames.common]
-      :
-      `<${pathNames.common[pathname as keyof typeof pathNames.common]} />`
+    return isFirstLoad
+      ? pathNames.common[pathname as keyof typeof pathNames.common]
+      : `<${pathNames.common[pathname as keyof typeof pathNames.common]} />`;
   }
 
-  if (pathname.startsWith('/projects')) {
-    const slug = pathname.split('/projects/')[1];
+  if (pathname.startsWith("/projects")) {
+    const slug = pathname.split("/projects/")[1];
 
     if (slug && pathNames.projects[slug as keyof typeof pathNames.projects]) {
-      return isFirstLoad ?
-        pathNames.projects[slug as keyof typeof pathNames.projects]
-        :
-        `<${pathNames.projects[slug as keyof typeof pathNames.projects]} />`
+      return isFirstLoad
+        ? pathNames.projects[slug as keyof typeof pathNames.projects]
+        : `<${pathNames.projects[slug as keyof typeof pathNames.projects]} />`;
     }
   }
 
-  return 'Not Found';
+  return "Not Found";
 }
 
 export async function verifyRecaptchaToken(token: string) {
-  const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+  const response = await fetch(
+    "https://www.google.com/recaptcha/api/siteverify",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        secret: serverEnv().RECAPTCHA_SECRET_KEY,
+        response: token,
+      }),
     },
-    body: new URLSearchParams({
-      secret: serverEnv().RECAPTCHA_SECRET_KEY,
-      response: token
-    })
-  });
+  );
 
   const data = await response.json();
 
@@ -57,7 +58,7 @@ export async function verifyRecaptchaToken(token: string) {
     action: data.action as string | undefined,
     challengeTs: data.challenge_ts as string | undefined,
     hostname: data.hostname as string | undefined,
-    errorCodes: data['error-codes'] as string[] | undefined
+    errorCodes: data["error-codes"] as string[] | undefined,
   };
 }
 

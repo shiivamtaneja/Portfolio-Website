@@ -5,16 +5,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
 import { cn } from "@/lib/utils";
-import { differenceInMinutes, format, formatDistanceToNow } from "date-fns";
 
 import { useChatbotHighlight } from "@/provider/chatbot-highlight";
-
-import { useChatBotActions, useChatBotId } from "@/store/chatbot-store";
-
-import { ChatDocument, ConversationMessage } from "@/types/chats.types";
+import { useChatBot } from "@/hooks/use-chat-bot";
+import { MessageItem } from "@/components/chat-message-item";
 
 import { chatSchema, ChatSchemaT } from "@/schema/chat";
 
@@ -41,104 +36,8 @@ import {
   Loader2,
   MessageCircle,
   Send,
-  User,
   X,
 } from "lucide-react";
-
-export async function fetchMessages(
-  chatId: string,
-): Promise<{ chat: ChatDocument }> {
-  const response = await fetch(`/api/chat/${chatId}`);
-
-  if (!response.ok) {
-    let errMsg = "Failed to fetch messages";
-
-    if (response.status === 404) {
-      errMsg += ": Chat not found";
-    }
-
-    throw new Error(errMsg);
-  }
-
-  return response.json();
-}
-
-async function sendMessage(chatId: string | null, content: string) {
-  if (!chatId) return;
-
-  const response = await fetch(`/api/chat`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: content, chatId }),
-  });
-
-  if (!response.ok) throw new Error("Failed to send message");
-
-  return response.json();
-}
-
-async function initializeChat(): Promise<{ chatId: string }> {
-  const response = await fetch(`/api/chat/initialize`, {
-    method: "GET",
-  });
-
-  if (!response.ok) throw new Error("Failed to initialize chat");
-
-  return response.json();
-}
-
-export const MessageItem = ({ message }: { message: ConversationMessage }) => {
-  const isRecent =
-    differenceInMinutes(new Date(), new Date(message.createdAt)) < 60;
-
-  return (
-    <div
-      className={cn(
-        "flex items-start gap-3",
-        message.type === "user" ? "flex-row-reverse" : "",
-      )}
-    >
-      <Avatar
-        className={cn(
-          "h-8 w-8 flex justify-center items-center",
-          message.type === "user" ? "dark:bg-primary bg-zinc-900" : "bg-muted",
-        )}
-      >
-        {message.type === "user" ? (
-          <User className="h-4 w-4 text-primary-foreground" />
-        ) : (
-          <Bot className="h-4 w-4 text-muted-foreground" />
-        )}
-      </Avatar>
-
-      <div
-        className={cn(
-          "flex flex-col gap-2",
-          message.type === "user" ? "items-end" : "",
-        )}
-      >
-        <div
-          className={cn(
-            "rounded-lg max-w-[80%] p-3 flex justify-center",
-            message.type === "user"
-              ? "dark:bg-primary bg-zinc-900 text-primary-foreground"
-              : "bg-muted",
-          )}
-        >
-          <p>{message.message}</p>
-        </div>
-
-        {message.createdAt && (
-          <p className="text-xs dark:text-gray-500 text-gray-600 pl-1">
-            {isRecent
-              ? `${formatDistanceToNow(new Date(message.createdAt), { addSuffix: true })}`
-              : format(new Date(message.createdAt), "MMM d, yyyy h:mm a")}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-};
 
 const SUGGESTED_QUESTIONS = [
   "What projects have you worked on?",
@@ -148,39 +47,23 @@ const SUGGESTED_QUESTIONS = [
 ];
 
 const ChatBot = () => {
-  const [messages, setMessages] = useState<ConversationMessage[]>([]);
   const [open, setOpen] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const chatId = useChatBotId();
-  const { setChatId, resetChatId } = useChatBotActions();
-
   const { isHighlighted, disableHighlight } = useChatbotHighlight();
 
-  const queryClient = useQueryClient();
-
-  // Fetch chat history if chatId exists
   const {
-    data: chatDocument,
-    refetch: refetchChat,
+    messages,
     isLoading,
+    isPending,
     error,
-  } = useQuery({
-    queryKey: ["chat", chatId],
-    queryFn: () => fetchMessages(chatId!),
-    enabled: !!chatId,
-    retry: false,
-    refetchOnWindowFocus: false,
-  });
-
-  // Populate messages on load
-  useEffect(() => {
-    if (chatDocument?.chat.conversation) {
-      setMessages(chatDocument.chat.conversation);
-    }
-  }, [chatDocument]);
+    chatId,
+    chatDocument,
+    handleResetChat,
+    sendMessageStream,
+  } = useChatBot(open);
 
   const form = useForm<ChatSchemaT>({
     resolver: zodResolver(chatSchema),
@@ -191,50 +74,9 @@ const ChatBot = () => {
     mode: "all",
   });
 
-  const { isPending, mutateAsync } = useMutation<
-    { chatId: string },
-    Error,
-    string
-  >({
-    mutationFn: (message) => sendMessage(chatId, message),
-    onSuccess: async () => {
-      if (chatId && open) {
-        // Always refetch the conversation
-        await refetchChat();
-      }
-    },
-    onError: (error) => {
-      console.error(error);
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          message: "Sorry, something went wrong. Please try again.",
-          type: "bot",
-          createdAt: new Date().toString(),
-        },
-      ]);
-    },
-  });
-
   const onSubmit = async (values: ChatSchemaT) => {
-    const userMessage: ConversationMessage = {
-      message: values.message,
-      type: "user",
-      createdAt: new Date().toISOString(),
-    };
-
-    // Append user message immediately
-    setMessages((prev) => [...prev, userMessage]);
-
-    // Reset input
     form.reset();
-
-    try {
-      await mutateAsync(values.message);
-    } catch (error) {
-      console.error(error);
-    }
+    await sendMessageStream(values.message);
   };
 
   const handleSuggestedQuestion = (question: string) => {
@@ -253,29 +95,12 @@ const ChatBot = () => {
         top: scrollContainer.scrollHeight,
         behavior: "smooth",
       });
-    }, 100); // Give time for panel to open and content to render
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, [messages, open]);
 
-  // Chat initialization
-  const { mutate: initChat } = useMutation({
-    mutationFn: () => initializeChat(),
-    onSuccess: async (res) => {
-      setChatId(res.chatId);
-
-      queryClient.invalidateQueries({ queryKey: ["allChats"] });
-      queryClient.invalidateQueries({ queryKey: ["chatBotUserCtn"] });
-    },
-    onError: (err) => {
-      console.error("Failed to initialize chat", err);
-    },
-  });
-
-  useEffect(() => {
-    if (open && !chatId) initChat();
-  }, [open, chatId, initChat]);
-
+  // Sync form chatId
   useEffect(() => {
     if (chatId) form.reset({ chatId, message: "" });
   }, [chatId, form]);
@@ -291,10 +116,7 @@ const ChatBot = () => {
       open={open}
       onOpenChange={(value) => {
         setOpen(value);
-
-        if (value)
-          // turn off highlight once opened
-          disableHighlight();
+        if (value) disableHighlight();
       }}
     >
       <PopoverTrigger asChild>
@@ -338,7 +160,7 @@ const ChatBot = () => {
                 <DropdownMenuContent>
                   <DropdownMenuItem
                     className="cursor-pointer"
-                    onClick={() => resetChatId()}
+                    onClick={() => handleResetChat()}
                   >
                     Reset Chat
                   </DropdownMenuItem>
@@ -368,7 +190,7 @@ const ChatBot = () => {
                   Click{" "}
                   <span
                     className="underline cursor-pointer dark:hover:text-neutral-300 hover:text-zinc-600"
-                    onClick={() => resetChatId()}
+                    onClick={() => handleResetChat()}
                   >
                     here
                   </span>{" "}

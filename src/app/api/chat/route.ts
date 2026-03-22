@@ -1,193 +1,222 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import Groq from 'groq-sdk';
-
 import { getServerSession } from "next-auth";
 
-import { initGCPAuth } from "@/lib/auth/gcp-auth";
 import { authOptions } from "@/lib/auth/next-auth";
-import { processAIResponse } from "@/lib/chat";
 import { generateEmbedding } from "@/lib/embedding";
 import { serverEnv } from "@/lib/env/server";
 import {
   appendToConversation,
   getChatsCollection,
   getDbClient,
-  getEmbeddingsCollection
 } from "@/lib/mongo";
 
 import { chatSchema } from "@/schema/chat";
 
-import { ChatDocument } from "@/types/chats.types";
+import {
+  findRelevantContent,
+  generateChatTitle,
+  groq,
+  prepareHistoryForAI,
+  SYSTEM_PROMPT,
+} from "@/lib/chat";
 
-const groq = new Groq({ apiKey: serverEnv().GROQ_API_KEY })
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+  const page = parseInt(searchParams.get("page") || "1", 10);
+  const limit = parseInt(searchParams.get("limit") || "10", 10);
+  const skip = (page - 1) * limit;
 
-export async function GET() {
-  if (serverEnv().NODE_ENV !== 'development') {
+  if (serverEnv().NODE_ENV !== "development") {
     const session = await getServerSession(authOptions);
 
-    if (!session || session.user?.email !== serverEnv().ALLOWED_DASHBOARD_EMAIL) {
+    if (
+      !session ||
+      session.user?.email !== serverEnv().ALLOWED_DASHBOARD_EMAIL
+    ) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }
 
   try {
-    const chatsCollection = await getChatsCollection()
+    const chatsCollection = await getChatsCollection();
 
-    const chats = await chatsCollection.find().project({ chatId: 1, title: 1, createdAt: 1 }).sort({ createdAt: -1 }).toArray();
+    const totalDocs = await chatsCollection.countDocuments();
 
-    return NextResponse.json({ chats });
+    const chats = await chatsCollection
+      .find()
+      .project({ chatId: 1, title: 1, createdAt: 1 })
+      .sort({ _id: -1 })
+      .skip(skip)
+      .limit(limit)
+      .toArray();
+
+    return NextResponse.json({
+      chats,
+      pagination: {
+        total: totalDocs,
+        page,
+        limit,
+        totalPages: Math.ceil(totalDocs / limit),
+      },
+    });
   } catch (error) {
     console.error("Failed to get chats: ", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }
 
 export async function POST(req: NextRequest) {
-  initGCPAuth();
-
-  const client = await getDbClient()
+  const client = await getDbClient();
   const session = client.startSession();
   const chatsCollection = await getChatsCollection();
 
   try {
     // Parse and validate incoming request
-    const { error, data } = chatSchema.safeParse(await req.json());
+    const { error, data } = await chatSchema.safeParseAsync(await req.json());
     if (error) {
-      return NextResponse.json({ error: "Message is required." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Message is required." },
+        { status: 400 },
+      );
     }
 
-    const { message, chatId } = data
+    const { message, chatId } = data;
 
-    await session.withTransaction(async () => {
-      const [queryEmbedding, existingChat] = await Promise.all([
-        generateEmbedding(message),
-        chatsCollection.findOne({ chatId })
-      ]);
+    const [queryEmbedding, existingChat] = await Promise.all([
+      generateEmbedding(message),
+      chatsCollection.findOne({ chatId }),
+    ]);
 
-      // Prepare chat history if it exists
-      const chatHistory = prepareHistoryForAI(existingChat);
+    // Save user message immediately
+    await appendToConversation(chatId, message, null, "user", session);
 
-      // Search for relevant content using vector search
-      const relevantContent = await findRelevantContent(queryEmbedding);
-
-      if (!relevantContent) {
-        await appendToConversation(chatId, "Hey! How can I assist?", null, "bot", session);
-        await appendToConversation(chatId, message, null, "user", session)
-        await appendToConversation(chatId, "I don't have enough information to answer that question. Feel free to ask me something else about me!", "No Information Available", 'bot', session)
-
-        return NextResponse.json({ chatId });
-      }
-
-      const answer = await groq.chat.completions.create({
-        model: 'llama-3.1-8b-instant', // Best lightweight model for speed
-        messages: [
-          {
-            role: 'system',
-            content: `
-             You are an AI assistant that represents me (Shivam Taneja) on my personal website. Your purpose is to answer questions and engage with visitors as if you were me, based on the content from my website. Be natural, friendly, and helpful.
-             If you don't know something or if the information isn't in the provided context, simply say you don't have that information yet. Don't make up facts about me or my work. Keep responses concise but informative.
-             When discussing technical topics, convey my expertise and passion for technology. If asked about personal preferences or opinions, base your responses on the context provided from my website.
-             `
-          },
-          ...chatHistory,
-          {
-            role: 'user',
-            content: `
-             Here is information from my website that might help answer the user's question:
-             
-             Context: ${relevantContent}
-             User question: ${message}
-             
-             Please respond in a conversational manner as if you are me (Shivam Taneja).
-             
-             Additionally, generate a **short 5-word title** (maximum of 5 words) that summarizes the main topic of this conversation. The title should be concise and accurately reflect the content of the conversation.
-             
-             Please separate the title from the response. For example:
-             title: [Generated Title]. Make sure this is a string.
-             response: [Generated response]. Make sure this is a string.
- 
-             Ensure your response is **valid JSON**. No extra explanations—only return the JSON object.
-             `
-          },
-        ],
-        frequency_penalty: 0.5, // Reduces repetition
-        presence_penalty: 0.5, // Encourages diverse outputs
-        temperature: 0.7,
-        max_tokens: 400,
-        response_format: { type: 'json_object' }
-      })
-
-      const { response, title } = processAIResponse(answer.choices[0].message.content?.trim() || '{}');
-
-      if (!existingChat?.title) {
-        // Set title only if not set already
+    // Generate title in background if it's a new chat
+    if (!existingChat?.title) {
+      generateChatTitle(message).then(async (title) => {
         await chatsCollection.updateOne(
           { chatId },
           { $set: { title } },
-          { session }
+          { session },
         );
-      }
+      });
+    }
 
-      await appendToConversation(chatId, message, null, "user", session)
-      await appendToConversation(chatId, response, null, 'bot', session)
-    })
+    // Prepare history and find relevant content
+    const chatHistory = prepareHistoryForAI(existingChat);
+    const relevantContent = await findRelevantContent(queryEmbedding);
 
-    return NextResponse.json({ chatId });
+    // Fallback if no relevant content found
+    if (!relevantContent) {
+      const fallbackResponse =
+        "I don't have enough information to answer that question. Feel free to ask me something else about me!";
+
+      const stream = new ReadableStream({
+        async start(controller) {
+          const encoder = new TextEncoder();
+          controller.enqueue(
+            encoder.encode(`data: ${JSON.stringify(fallbackResponse)}\n\n`),
+          );
+          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+
+          try {
+            await appendToConversation(
+              chatId,
+              fallbackResponse,
+              null,
+              "bot",
+              session,
+            );
+          } catch (e) {
+            console.error("Failed to append fallback bot response", e);
+          }
+
+          controller.close();
+        },
+      });
+
+      return new Response(stream, {
+        headers: {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
+        },
+      });
+    }
+
+    // Stream the AI response
+    const aiStreamResponse = await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant",
+      messages: [
+        {
+          role: "system",
+          content: SYSTEM_PROMPT,
+        },
+        ...chatHistory,
+        {
+          role: "user",
+          content: `CONTEXT (Information about Shivam Taneja):\n---\n${relevantContent}\n---\n\nVISITOR'S MESSAGE: ${message}\n\nPlease respond in the first person ("I", "my") as Shivam Taneja using the context above. Use standard markdown formatting.`,
+        },
+      ],
+      frequency_penalty: 0.5,
+      presence_penalty: 0.5,
+      temperature: 0.7,
+      max_tokens: 400,
+      stream: true,
+    });
+
+    const stream = new ReadableStream({
+      async start(controller) {
+        const encoder = new TextEncoder();
+        let fullBotResponse = "";
+
+        try {
+          for await (const chunk of aiStreamResponse) {
+            const content = chunk.choices[0]?.delta?.content || "";
+            if (content) {
+              fullBotResponse += content;
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify(content)}\n\n`),
+              );
+            }
+          }
+        } catch (streamError) {
+          console.error("Stream generation error:", streamError);
+          controller.error(streamError);
+        } finally {
+          try {
+            await appendToConversation(
+              chatId,
+              fullBotResponse,
+              null,
+              "bot",
+              session,
+            );
+          } catch (e) {
+            console.error("Failed to append bot response to chat history", e);
+          }
+          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+          controller.close();
+        }
+      },
+    });
+
+    return new Response(stream, {
+      headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+      },
+    });
   } catch (error) {
     console.error("Chat error: ", error);
 
     return NextResponse.json(
       { error: "Something went wrong." },
-      { status: 500 }
+      { status: 500 },
     );
   }
-}
-
-/**
- * Finds relevant content by performing vector search
- * @param queryEmbedding The embedding of the user's query
- * @returns The most relevant content or null if none found
- */
-async function findRelevantContent(queryEmbedding: number[]): Promise<string | null> {
-  const embeddingsCollection = await getEmbeddingsCollection()
-
-  const results = await embeddingsCollection.aggregate([
-    {
-      $vectorSearch: {
-        index: serverEnv().MONGODB_VECTOR_INDEX_NAME,
-        path: serverEnv().MONGODB_VECTOR_PATH_NAME,
-        queryVector: queryEmbedding,
-        numCandidates: 100,
-        limit: 5,
-        similarity: "cosine",
-      }
-    }
-  ]).toArray();
-
-  if (!results || results.length === 0) {
-    return null
-  }
-
-  return results[0].content;
-}
-
-/**
- * Prepares chat history for AI input
- * @param existingChat The existing chat document from the database
- * @returns Array of messages formatted for the AI
- */
-function prepareHistoryForAI(existingChat: ChatDocument | null) {
-  const chatHistory: { role: 'user' | 'assistant', content: string }[] = [];
-
-  if (existingChat) {
-    for (const msg of existingChat.conversation) {
-      chatHistory.push({
-        role: msg.type === 'user' ? 'user' : 'assistant',
-        content: msg.message,
-      });
-    }
-  }
-
-  return chatHistory;
 }

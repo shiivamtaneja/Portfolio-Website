@@ -1,7 +1,7 @@
 import { VertexAIEmbeddings } from "@langchain/google-vertexai";
 
 const model = new VertexAIEmbeddings({
-  model: "text-embedding-004"
+  model: "text-embedding-004",
 });
 
 // Helper: Generate embedding for given text
@@ -24,9 +24,9 @@ export async function generateEmbedding(text: string): Promise<number[]> {
     // Make the embedding request
     const embeddingResponse = await model.embedQuery(text);
 
-    return embeddingResponse
+    return embeddingResponse;
   } catch (error) {
-    console.error('Error generating embedding: ', error);
+    console.error("Error generating embedding: ", error);
     throw error;
   }
 }

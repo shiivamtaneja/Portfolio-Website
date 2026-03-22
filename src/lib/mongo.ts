@@ -5,7 +5,7 @@ import { CrawlingMetaData } from "@/types/crawl.types";
 
 import { serverEnv } from "./env/server";
 
-let client: MongoClient | null = null
+let client: MongoClient | null = null;
 let db: ReturnType<MongoClient["db"]> | null = null;
 
 async function connectToDatabase() {
@@ -40,15 +40,17 @@ async function getEmbeddingsCollection() {
 
 async function getCrawlingMetaDataCollection() {
   const db = await connectToDatabase();
-  return db.collection<CrawlingMetaData>(serverEnv().MONGODB_COLLECTION_CRAWLING_META);
+  return db.collection<CrawlingMetaData>(
+    serverEnv().MONGODB_COLLECTION_CRAWLING_META,
+  );
 }
 
 async function appendToConversation(
   sessionId: string,
   message: string,
   title: string | null,
-  type: 'bot' | 'user',
-  mongoSession?: ClientSession
+  type: "bot" | "user",
+  mongoSession?: ClientSession,
 ) {
   const chatsCollection = await getChatsCollection();
 
@@ -73,15 +75,17 @@ async function appendToConversation(
     },
   };
 
-  await chatsCollection.updateOne(
-    { chatId: sessionId },
-    update,
-    { upsert: true, session: mongoSession }
-  );
+  await chatsCollection.updateOne({ chatId: sessionId }, update, {
+    upsert: true,
+    session: mongoSession,
+  });
 }
 
 export {
   appendToConversation,
-  connectToDatabase, getChatsCollection,
-  getCrawlingMetaDataCollection, getDbClient, getEmbeddingsCollection
+  connectToDatabase,
+  getChatsCollection,
+  getCrawlingMetaDataCollection,
+  getDbClient,
+  getEmbeddingsCollection,
 };
