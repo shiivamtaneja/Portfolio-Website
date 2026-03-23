@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { getServerSession } from "next-auth";
 
+import { initGCPAuth } from "@/lib/auth/gcp-auth";
+
 import { authOptions } from "@/lib/auth/next-auth";
 import { generateEmbedding } from "@/lib/embedding";
 import { serverEnv } from "@/lib/env/server";
@@ -70,6 +72,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  initGCPAuth();
+
   const client = await getDbClient();
   const session = client.startSession();
   const chatsCollection = await getChatsCollection();
