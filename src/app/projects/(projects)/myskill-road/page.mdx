@@ -1,0 +1,103 @@
+import Wrapper from "@/components/wrapper";
+import ProjectStructuredData from "@/components/project-structured-data";
+
+export const title = "MySkillRoad";
+export const subtitle =
+  "Your personalized learning roadmap built around you, not everyone else.";
+
+<ProjectStructuredData
+  name="MySkillRoad"
+  description="Your personalized learning roadmap built around you, not everyone else."
+  url="https://www.shivamtaneja.com/projects/myskill-road"
+  tech={[
+    "Next.js 16",
+    "React 19",
+    "Prisma",
+    "PostgreSQL",
+    "Tailwind CSS v4",
+    "Mem0 AI",
+    "Framer Motion",
+    "NextAuth",
+    "TanStack Query",
+    "Radix UI",
+  ]}
+/>
+
+export const metadata = {
+  title: "MySkillRoad - Your Personalized Learning Roadmap",
+  description:
+    "MySkillRoad builds a living picture of your knowledge across platforms and tells you exactly what to learn next to reach your goal. It's a cross-platform, memory-backed career GPS.",
+  keywords: [
+    "personalized learning",
+    "learning roadmap",
+    "AI roadmap",
+    "skill tracking",
+    "developer growth",
+    "career path",
+    "self-directed learning",
+    "Mem0 AI",
+    "Next.js",
+    "Prisma",
+    "individual learning path",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://www.shivamtaneja.com/projects/myskill-road",
+    images: [
+      {
+        url: "/projects/og-image-myskill-road.png",
+        alt: "MySkillRoad - Your Personalized Learning Roadmap | Shivam Taneja",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/projects/og-image-myskill-road.png"],
+  },
+};
+
+<Wrapper>
+  <article className="flex flex-col gap-6">
+    # MySkillRoad
+
+    **Your personalized learning roadmap built around you, not everyone else.**
+
+    - [Visit MySkillRoad](https://www.myskillroad.com/)
+
+    <SubSection title="The Problem">
+      Every developer trying to grow has felt the "stare at the screen" moment after finishing a course. Generic roadmaps are static flowcharts that assume everyone starts from the same place. They don't know that you already know Python, that you skipped Docker, or that you're aiming for a mid-level backend role rather than research. Traditional platforms are siloed - Coursera only knows what you do on Coursera.
+    </SubSection>
+
+    <SubSection title="The Solution">
+      MySkillRoad acts as a career GPS. It sits on top of all your learning platforms, building a persistent memory layer of your knowledge. Instead of a 50-step to-do list, it generates a living roadmap of the next 5-7 most impactful things you need to learn to reach your specific goal.
+    </SubSection>
+
+    <SubSection title="Key Features">
+      **Cross-Platform Memory Layer**
+      Using Mem0 AI, the system builds an evolving picture of your knowledge that updates continuously and decays old knowledge appropriately. It tracks your progress across multiple platforms to see the full picture.
+
+      **Goal-Anchored Navigation**
+      You define your destination - whether it's "AI Engineer" or "Backend Developer" - and the tool figures out the route from exactly where you are starting today.
+
+      **Living Roadmap**
+      The roadmap isn't a static document. As you learn through a browser extension or manual logs, the path shifts. It focuses on direction rather than comprehensive lists, showing you only what's next.
+
+      **Explainable Recommendations**
+      Every suggestion comes with context. It doesn't just say "Learn Docker"; it explains that your target role requires containerization and that your current backend knowledge makes this the logical next step.
+
+    </SubSection>
+
+    <SubSection title="How It Works">
+      The tool integrates as a layer over your existing habits. Through a browser extension, it tracks activity on platforms like Udemy or Coursera. This data is fed into a skill profile managed by Prisma and PostgreSQL. The intelligence layer then synthesizes your current state against your goal to generate a prioritized, 7-item actionable roadmap.
+    </SubSection>
+
+    <SubSection title="Impact">
+      MySkillRoad removes the cognitive load of "what should I learn next." It transforms motivated, self-directed learners from people who "collect content" into people who "acquire skills" efficiently.
+
+      The project is currently in active development, focusing on core roadmap generation and initial platform integrations.
+    </SubSection>
+
+  </article>
+</Wrapper>

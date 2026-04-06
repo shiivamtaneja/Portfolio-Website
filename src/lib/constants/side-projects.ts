@@ -8,12 +8,20 @@ export const sideProjects = [
     activelyWorking: true,
   },
   {
+    title: "MySkillRoad",
+    projLink: "https://www.myskillroad.com/",
+    desc: "a personalized learning roadmap that tracks your growth across platforms and tells you exactly what to learn next.",
+    descLink: "/projects/myskill-road/",
+    userCount: null,
+    activelyWorking: true,
+  },
+  {
     title: "EZNotify",
     projLink: "https://www.eznotify.dev/",
     desc: "a developer friendly SDK for sending multi-channel notifications like email, SMS, WhatsApp, push and more built for reliability at scale.",
     descLink: "/projects/eznotify/",
     userCount: null,
-    activelyWorking: true,
+    activelyWorking: false,
   },
   {
     title: "DecodeMyCode",

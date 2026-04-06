@@ -16,6 +16,7 @@ export const pathNames = {
     "decode-mycode": "Project | DecodeMyCode",
     eznotify: "Project | EZNotify",
     graphmyself: "Project | GraphMySelf",
+    "myskill-road": "Project | MySkillRoad",
   },
 };
 
