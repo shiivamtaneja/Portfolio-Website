@@ -19,13 +19,18 @@ export const defaultMetadata: Partial<Metadata> = {
   },
   keywords: [
     "Shivam Taneja",
+    "shivamtaneja",
+    "shivamtaneja.com",
     "Full Stack Developer Portfolio",
     "Web Developer Portfolio",
     "Full Stack Developer",
+    "Shivam Taneja Developer",
     "Shivam Taneja Projects",
+    "Shivam Taneja NTT Data",
     "Hire Shivam Taneja",
     "Full Stack Development",
     "React Developer Portfolio",
+    "codesbyshivam",
   ],
   icons: {
     icon: [

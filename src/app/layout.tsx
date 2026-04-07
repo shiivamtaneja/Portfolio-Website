@@ -23,7 +23,13 @@ export const metadata: Metadata = {
   ...defaultMetadata,
   title: "Shivam Taneja - Full Stack Developer | Portfolio",
   description:
-    "Welcome to Shivam Taneja's portfolio. Explore my projects, skills, and journey as a full-stack developer passionate about building innovative digital experiences.",
+    "Shivam Taneja (shivamtaneja) is a Full Stack Developer and Associate SDE at NTT Data. Explore projects, skills, and experience in React, Next.js, and Node.js.",
+  keywords: [
+    ...(defaultMetadata.keywords as string[]),
+    "Shivam Taneja portfolio",
+    "Shivam Taneja full stack developer",
+    "Shivam Taneja NTT Data",
+  ],
   openGraph: {
     title: "Shivam Taneja - Full Stack Developer | Portfolio",
     description:
