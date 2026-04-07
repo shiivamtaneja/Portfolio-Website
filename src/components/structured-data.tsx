@@ -26,6 +26,7 @@ const StructuredData = () => {
         worksFor: {
           "@type": "Organization",
           name: "NTT Data",
+          url: "https://www.nttdata.com",
         },
         alumniOf: {
           "@type": "EducationalOrganization",

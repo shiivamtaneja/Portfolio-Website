@@ -5,9 +5,12 @@ import { CircleDot } from "lucide-react";
 
 const ExperienceSection = () => {
   return (
-    <section>
+    <section aria-labelledby="experience-heading">
       <div className="flex flex-col gap-2">
-        <h2 className="text-xl font-bold dark:text-white text-zinc-900">
+        <h2
+          className="text-xl font-bold dark:text-white text-zinc-900"
+          id="experience-heading"
+        >
           Experience
         </h2>
 

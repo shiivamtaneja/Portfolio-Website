@@ -3,67 +3,96 @@ import { MetadataRoute } from "next";
 export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
   return [
     {
-      url: 'https://www.shivamtaneja.com/',
+      url: "https://www.shivamtaneja.com/",
       lastModified: new Date(),
       priority: 1.0,
+      changeFrequency: "monthly",
     },
     {
-      url: 'https://www.shivamtaneja.com/contact',
+      url: "https://www.shivamtaneja.com/contact",
       lastModified: new Date(),
+      priority: 0.8,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects',
+      url: "https://www.shivamtaneja.com/projects",
       lastModified: new Date(),
+      priority: 0.9,
+      changeFrequency: "monthly",
     },
     {
-      url: 'https://www.shivamtaneja.com/resume.pdf',
+      url: "https://www.shivamtaneja.com/certificates",
       lastModified: new Date(),
+      priority: 0.7,
+      changeFrequency: "yearly",
     },
 
     // projects
     {
-      url: 'https://www.shivamtaneja.com/projects/career-guidance',
+      url: "https://www.shivamtaneja.com/projects/career-guidance",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/chat-bot',
+      url: "https://www.shivamtaneja.com/projects/chat-bot",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/chat-mingle',
+      url: "https://www.shivamtaneja.com/projects/chat-mingle",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/circle-catcher',
+      url: "https://www.shivamtaneja.com/projects/circle-catcher",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/collab-write',
+      url: "https://www.shivamtaneja.com/projects/collab-write",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/decode-mycode',
+      url: "https://www.shivamtaneja.com/projects/decode-mycode",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/eznotify',
+      url: "https://www.shivamtaneja.com/projects/eznotify",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/nagar-iq',
+      url: "https://www.shivamtaneja.com/projects/graphmyself",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/tilt-bot',
+      url: "https://www.shivamtaneja.com/projects/myskill-road",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/projects/graphmyself',
+      url: "https://www.shivamtaneja.com/projects/nagar-iq",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
     {
-      url: 'https://www.shivamtaneja.com/certificates',
+      url: "https://www.shivamtaneja.com/projects/tilt-bot",
       lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
     },
   ];
 }

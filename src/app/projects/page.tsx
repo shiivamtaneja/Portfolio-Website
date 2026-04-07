@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   title: "Projects | Shivam Taneja - Full Stack Developer",
   description:
     "Explore all projects by Shivam Taneja including web applications, AI tools, and open source contributions.",
+  alternates: {
+    canonical: "https://www.shivamtaneja.com/projects",
+  },
   openGraph: {
     title: "Projects | Shivam Taneja - Full Stack Developer",
     description:

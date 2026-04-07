@@ -12,10 +12,13 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const SideProjectsSection = () => {
   return (
-    <section>
+    <section aria-labelledby="projects-heading">
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 items-center">
-          <h2 className="text-xl font-bold dark:text-white text-zinc-900">
+          <h2
+            className="text-xl font-bold dark:text-white text-zinc-900"
+            id="projects-heading"
+          >
             Side Projects
           </h2>
           <Link
