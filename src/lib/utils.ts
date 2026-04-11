@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { differenceInYears, parseISO } from "date-fns";
+import { differenceInMonths, differenceInYears, parseISO } from "date-fns";
 
 import { pathNames } from "./constants/path-names";
 
@@ -67,4 +67,39 @@ export function calculateAge(dob: string) {
   const today = new Date();
 
   return differenceInYears(today, birthday);
+}
+
+export function calculateTotalExperience(
+  experiences: { startISO: string; endISO: string | null }[],
+) {
+  let totalMonths = 0;
+
+  experiences.forEach((exp) => {
+    const start = parseISO(exp.startISO);
+    const end = exp.endISO ? parseISO(exp.endISO) : new Date();
+    // Adding 1 because if you work from Jan to Jan, it should be 1 month in resume terms
+    totalMonths += differenceInMonths(end, start) + 1;
+  });
+
+  const years = Math.floor(totalMonths / 12);
+  const remainingMonths = totalMonths % 12;
+
+  let result = "";
+  if (years > 0) result += `${years} year${years > 1 ? "s" : ""}`;
+  if (remainingMonths > 0) {
+    if (result) result += " ";
+    result += `${remainingMonths} month${remainingMonths > 1 ? "s" : ""}`;
+  }
+
+  return result || "0 months";
+}
+
+export function appendUTM(link: string) {
+  const utmString = "utm_source=portfolio_website&utm_medium=referral";
+
+  if (link.includes("?")) {
+    return `${link}&${utmString}`;
+  }
+
+  return `${link}?${utmString}`;
 }

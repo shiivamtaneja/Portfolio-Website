@@ -15,6 +15,12 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
     },
     {
+      url: "https://www.shivamtaneja.com/experience",
+      lastModified: new Date(),
+      priority: 0.9,
+      changeFrequency: "monthly",
+    },
+    {
       url: "https://www.shivamtaneja.com/projects",
       lastModified: new Date(),
       priority: 0.9,
@@ -25,6 +31,12 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       priority: 0.7,
       changeFrequency: "yearly",
+    },
+    {
+      url: "https://www.shivamtaneja.com/mentorship",
+      lastModified: new Date(),
+      priority: 0.7,
+      changeFrequency: "monthly",
     },
 
     // projects
