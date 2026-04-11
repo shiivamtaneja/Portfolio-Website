@@ -30,4 +30,9 @@ export const mentorships: Mentorship[] = [
     role: "Judge & Mentor",
     link: "https://www.linkedin.com/in/shivam-taneja/",
   },
+  {
+    title: "HackBVP 7.0",
+    role: "Judge & Mentor",
+    link: "https://www.linkedin.com/in/shivam-taneja/",
+  },
 ];
