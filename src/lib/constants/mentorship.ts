@@ -35,4 +35,9 @@ export const mentorships: Mentorship[] = [
     role: "Judge & Mentor",
     link: "https://www.linkedin.com/in/shivam-taneja/",
   },
+  {
+    title: "Code Wizards 2.0",
+    role: "Mentor",
+    link: "https://www.linkedin.com/in/shivam-taneja/",
+  },
 ];
