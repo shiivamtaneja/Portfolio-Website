@@ -38,6 +38,6 @@ export const mentorships: Mentorship[] = [
   {
     title: "Code Wizards 2.0",
     role: "Mentor",
-    link: "https://www.linkedin.com/in/shivam-taneja/",
+    link: "https://www.linkedin.com/posts/shivam-taneja_hackathon-mentorship-innovation-ugcPost-7451927109914066944-uIjy",
   },
 ];
