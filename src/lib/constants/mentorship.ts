@@ -23,7 +23,7 @@ export const mentorships: Mentorship[] = [
   {
     title: "HackNovate 7.0",
     role: "Judge & Mentor",
-    link: "https://www.linkedin.com/in/shivam-taneja/",
+    link: "https://www.linkedin.com/posts/shivam-taneja_hacknovate7-hackathon-mentorship-share-7452669002763636736-jp7e",
   },
   {
     title: "HackMSIT 1.0",
