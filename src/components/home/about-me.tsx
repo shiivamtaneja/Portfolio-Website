@@ -18,7 +18,7 @@ const AboutMeSection = () => {
         <ul className="flex list-disc ml-4 flex-col gap-2">
           {aboutMeContent.map((item) => (
             <li
-              className="dark:text-neutral-500 text-neutral-600 font-semibold"
+              className="dark:text-neutral-400 text-neutral-600 font-semibold"
               key={item}
               dangerouslySetInnerHTML={{ __html: item }}
             />

@@ -21,7 +21,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
   Popover,
@@ -120,29 +126,33 @@ const ChatBot = () => {
       }}
     >
       <PopoverTrigger asChild>
-        <div
-          className="fixed bottom-4 right-4 z-[999]"
+        <Button
+          ref={buttonRef}
           aria-label="Open chat assistant"
+          aria-expanded={open}
+          aria-controls="chat-assistant-panel"
+          className={cn(
+            "fixed bottom-4 right-4 z-[999] h-12 w-12 rounded-full p-0 dark:hover:bg-black hover:bg-zinc-300 dark:bg-zinc-700 bg-gray-200 dark:text-white text-zinc-900",
+            isHighlighted && "ring-4 ring-green-400",
+          )}
         >
           {isHighlighted && (
             <ArrowDownRight
-              size={40}
-              className="animate-bounce absolute -left-6 -top-8 text-green-400"
+              aria-hidden="true"
+              size={60}
+              className="animate-bounce absolute -left-3 -top-5 text-green-400"
             />
           )}
-          <Button
-            ref={buttonRef}
-            className={cn(
-              "h-12 w-12 rounded-full p-0 dark:hover:bg-black hover:bg-zinc-300 dark:bg-zinc-700 bg-gray-200 dark:text-white text-zinc-900",
-              isHighlighted && "ring-4 ring-green-400",
-            )}
-          >
-            <MessageCircle className="h-6 w-6" />
-          </Button>
-        </div>
+          <MessageCircle className="h-6 w-6" aria-hidden="true" />
+        </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="mx-4 mb-2 text-sm min-w-96 max-w-96 w-full p-0 dark:bg-black bg-white dark:border-zinc-800 border-zinc-200">
+      <PopoverContent
+        id="chat-assistant-panel"
+        role="dialog"
+        aria-label="Chat assistant"
+        className="mx-4 mb-2 text-sm min-w-96 max-w-96 w-full p-0 dark:bg-black bg-white dark:border-zinc-800 border-zinc-200"
+      >
         <div className="flex items-center justify-between border-b dark:border-zinc-800 border-zinc-200 p-4">
           {chatDocument?.chat?.title ? (
             <div className="flex gap-1 items-center">
@@ -151,7 +161,7 @@ const ChatBot = () => {
               </h3>
 
               <DropdownMenu>
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger aria-label="Chat options">
                   <Ellipsis
                     size={15}
                     className="cursor-pointer dark:text-white text-zinc-900"
@@ -176,24 +186,32 @@ const ChatBot = () => {
             size="icon"
             onClick={() => setOpen(false)}
             className="dark:text-white text-zinc-900 dark:hover:bg-zinc-800 hover:bg-zinc-100"
+            aria-label="Close chat assistant"
           >
-            <X className="h-4 w-4" />
+            <X className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>
 
         <ScrollArea className="h-[400px] p-4">
-          <div className="space-y-4" ref={scrollRef}>
+          <div
+            className="space-y-4"
+            ref={scrollRef}
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions text"
+          >
             {error ? (
               <div className="dark:text-white text-zinc-900">
                 <p>{error.message}</p>
                 <p>
                   Click{" "}
-                  <span
+                  <button
+                    type="button"
                     className="underline cursor-pointer dark:hover:text-neutral-300 hover:text-zinc-600"
                     onClick={() => handleResetChat()}
                   >
                     here
-                  </span>{" "}
+                  </button>{" "}
                   to reset
                 </p>
               </div>
@@ -227,11 +245,18 @@ const ChatBot = () => {
                   (isPending && (
                     <div className="flex items-start gap-3">
                       <Avatar className="h-8 w-8 flex justify-center items-center bg-muted">
-                        <Bot className="h-4 w-4 text-muted-foreground" />
+                        <Bot
+                          className="h-4 w-4 text-muted-foreground"
+                          aria-hidden="true"
+                        />
                       </Avatar>
 
-                      <div className="rounded-lg px-3 py-2 max-w-[80%] bg-muted">
-                        <Loader2 className="animate-spin" />
+                      <div
+                        className="rounded-lg px-3 py-2 max-w-[80%] bg-muted"
+                        role="status"
+                        aria-label="Assistant is typing"
+                      >
+                        <Loader2 className="animate-spin" aria-hidden="true" />
                       </div>
                     </div>
                   ))}
@@ -250,6 +275,7 @@ const ChatBot = () => {
               name="message"
               render={({ field }) => (
                 <FormItem className="w-full">
+                  <FormLabel className="sr-only">Message</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -266,18 +292,19 @@ const ChatBot = () => {
               size="icon"
               disabled={isPending}
               className="cursor-pointer dark:bg-zinc-800 bg-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-800 text-white"
+              aria-label="Send message"
             >
               {isPending ? (
-                <Loader2 className="animate-spin" />
+                <Loader2 className="animate-spin" aria-hidden="true" />
               ) : (
-                <Send className="h-4 w-4" />
+                <Send className="h-4 w-4" aria-hidden="true" />
               )}
             </Button>
           </form>
         </Form>
 
         <div className="flex justify-center pb-3">
-          <p className="text-center text-xs dark:text-neutral-500 text-neutral-600">
+          <p className="text-center text-xs dark:text-neutral-400 text-neutral-600">
             Note: Responses aren&apos;t always accurate or complete.
           </p>
         </div>

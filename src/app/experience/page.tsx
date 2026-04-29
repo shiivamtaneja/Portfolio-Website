@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Experience | Shivam Taneja - Full Stack Developer",
   description:
     "Detailed professional experience and career journey of Shivam Taneja.",
+  alternates: {
+    canonical: "https://www.shivamtaneja.com/experience",
+  },
   openGraph: {
     title: "Experience | Shivam Taneja - Full Stack Developer",
     description:
@@ -65,11 +68,14 @@ const ExperiencePage = () => {
             <ul className="flex flex-col gap-8 ml-4">
               {experiences.map((item, idx) => (
                 <li
-                  className="dark:text-neutral-500 text-neutral-600 flex w-full gap-4 items-start justify-between relative"
+                  className="dark:text-neutral-400 text-neutral-600 flex w-full gap-4 items-start justify-between relative"
                   key={idx}
                 >
                   <div className="absolute -left-[21px] top-1">
-                    <CircleDot className="h-4 w-4 dark:text-white text-zinc-900" />
+                    <CircleDot
+                      className="h-4 w-4 dark:text-white text-zinc-900"
+                      aria-hidden="true"
+                    />
                   </div>
 
                   <div className="flex flex-col gap-4 flex-1">

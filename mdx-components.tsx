@@ -61,10 +61,14 @@ export function SubSection({
   children: React.ReactNode;
   title: string;
 }) {
+  const headingId = `${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`;
+
   return (
-    <section>
+    <section aria-labelledby={headingId}>
       <div className="flex flex-col gap-2">
-        <h2 className="text-xl dark:text-white text-zinc-900">{title}</h2>
+        <h2 className="text-xl dark:text-white text-zinc-900" id={headingId}>
+          {title}
+        </h2>
 
         {children}
       </div>
@@ -104,6 +108,6 @@ export function useMDXComponents(otherComponens: MDXComponents) {
     ...components,
     ...otherComponens,
     SubSection,
-    Video
+    Video,
   };
 }

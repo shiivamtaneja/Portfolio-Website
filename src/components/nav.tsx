@@ -53,34 +53,40 @@ const Nav = () => {
         aria-label="Main navigation"
       >
         <div className="flex gap-4">
-          <Link href={RESUME_LINK} target="_blank" rel="noopener noreferrer">
-            <Button
-              className={
-                "dark:bg-zinc-800 bg-zinc-200 border-none outline-none md:px-4 px-2 dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300"
-              }
-              variant="outline"
-            >
+          <Button
+            asChild
+            className={
+              "dark:bg-zinc-800 bg-zinc-200 border-none md:px-4 px-2 dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300"
+            }
+            variant="outline"
+          >
+            <Link href={RESUME_LINK} target="_blank" rel="noopener noreferrer">
               <FileText />
               <span>Download Resume</span>
-            </Button>
-          </Link>
+            </Link>
+          </Button>
 
           {!isMobile && (
             <>
               {navItems.map((item, idx) => (
-                <Link href={item.link} key={idx}>
-                  <Button
-                    className={cn(
-                      "dark:bg-zinc-800 bg-zinc-200 border-none outline-none md:px-4 px-2 dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300",
-                      pathname === item.link &&
-                        "dark:bg-zinc-700 dark:text-accent-foreground bg-zinc-900 text-white",
-                    )}
-                    variant="outline"
+                <Button
+                  asChild
+                  key={idx}
+                  className={cn(
+                    "dark:bg-zinc-800 bg-zinc-200 border-none md:px-4 px-2 dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300",
+                    pathname === item.link &&
+                      "dark:bg-zinc-700 dark:text-accent-foreground bg-zinc-900 text-white",
+                  )}
+                  variant="outline"
+                >
+                  <Link
+                    href={item.link}
+                    aria-current={pathname === item.link ? "page" : undefined}
                   >
                     <item.icon size={20} />
                     <span>{item.heading}</span>
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               ))}
             </>
           )}
@@ -95,8 +101,11 @@ const Nav = () => {
                 <Button
                   ref={buttonRef}
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="dark:bg-zinc-800 bg-zinc-200 border-none outline-none px-2 dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300"
+                  className="dark:bg-zinc-800 bg-zinc-200 border-none px-2 dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300"
                   variant="outline"
+                  aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isMenuOpen}
+                  aria-controls="mobile-navigation-menu"
                 >
                   <motion.div
                     animate={{ rotate: isMenuOpen ? 180 : 0 }}
@@ -109,6 +118,7 @@ const Nav = () => {
                 <AnimatePresence>
                   {isMenuOpen && (
                     <motion.div
+                      id="mobile-navigation-menu"
                       ref={menuRef}
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -124,22 +134,26 @@ const Nav = () => {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.05, duration: 0.2 }}
                           >
-                            <Link
-                              href={item.link}
-                              onClick={() => setIsMenuOpen(false)}
+                            <Button
+                              asChild
+                              className={cn(
+                                "w-full justify-start dark:bg-zinc-800 bg-zinc-200 border-none dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300",
+                                pathname === item.link &&
+                                  "dark:bg-accent dark:text-accent-foreground bg-zinc-900 text-white",
+                              )}
+                              variant="outline"
                             >
-                              <Button
-                                className={cn(
-                                  "w-full justify-start dark:bg-zinc-800 bg-zinc-200 border-none outline-none dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300",
-                                  pathname === item.link &&
-                                    "dark:bg-accent dark:text-accent-foreground bg-zinc-900 text-white",
-                                )}
-                                variant="outline"
+                              <Link
+                                href={item.link}
+                                onClick={() => setIsMenuOpen(false)}
+                                aria-current={
+                                  pathname === item.link ? "page" : undefined
+                                }
                               >
                                 <item.icon size={20} />
                                 <span>{item.heading}</span>
-                              </Button>
-                            </Link>
+                              </Link>
+                            </Button>
                           </motion.div>
                         ))}
 
@@ -192,7 +206,13 @@ const Nav = () => {
           ) : (
             <>
               {socialItems.map((item, idx) => (
-                <Link href={item.link} target="_blank" key={idx}>
+                <Link
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.heading}
+                  key={idx}
+                >
                   <Tooltip delayDuration={50}>
                     <TooltipTrigger asChild>
                       <motion.div

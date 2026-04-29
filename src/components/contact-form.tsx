@@ -144,7 +144,7 @@ const ContactForm = () => {
           {
             isSubmitting ?
               <>
-                <Loader2 className='animate-spin' />
+                <Loader2 className='animate-spin' aria-hidden="true" />
                 Submitting...
               </>
               :

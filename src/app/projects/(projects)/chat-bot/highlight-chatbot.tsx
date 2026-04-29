@@ -1,30 +1,37 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 
 import { useChatbotHighlight } from "@/provider/chatbot-highlight";
 
 function HighlightChatbot() {
-  const { highlight } = useChatbotHighlight()
+  const { highlight } = useChatbotHighlight();
 
   return (
     <ul className="flex list-disc ml-4 flex-col gap-2">
-      <li className='relative w-fit' onClick={() => highlight()}>
-        <span className="cursor-pointer hover-animation">View Live Project</span>
+      <li className="relative w-fit">
+        <button
+          type="button"
+          className="border-0 bg-transparent p-0 font-inherit cursor-pointer hover-animation"
+          onClick={() => highlight()}
+        >
+          View Live Project
+        </button>
       </li>
 
-      <li className='relative w-fit' onClick={() => highlight()}>
+      <li className="relative w-fit">
         <Link
           href="https://github.com/shiivamtaneja/Portfolio-Website/tree/design-v2"
           rel="noopener noreferrer"
           target="_blank"
           className="relative overflow-hidden"
+          onClick={() => highlight()}
         >
           <span className="hover-animation">View source code</span>
         </Link>
       </li>
     </ul>
-  )
+  );
 }
 
-export default HighlightChatbot
+export default HighlightChatbot;

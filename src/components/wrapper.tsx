@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -14,11 +15,15 @@ import ChatbotHighlightProvider from "@/provider/chatbot-highlight";
 
 import { useIsFirstLoad } from "@/store/loading-store";
 
-import ChatBot from "./chat-bot";
 import Nav from "./nav";
 
 import { ArrowLeft } from "lucide-react";
 import { TooltipProvider } from "./ui/tooltip";
+
+const ChatBot = dynamic(() => import("./chat-bot"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -43,8 +48,17 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <TooltipProvider>
       <ChatbotHighlightProvider>
+        <Link
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1000] focus:rounded-md focus:bg-zinc-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white dark:focus:bg-white dark:focus:text-zinc-900"
+        >
+          Skip to main content
+        </Link>
+
         <main
+          id="main-content"
           ref={wrapperRef}
+          tabIndex={-1}
           className="mx-auto max-w-3xl pt-6 pb-12 flex flex-col gap-6 px-4 dark:text-white text-zinc-900"
         >
           <Nav />

@@ -24,6 +24,7 @@ const SideProjectsSection = () => {
           <Link
             href={"/projects"}
             className="underline p-0 text-sm dark:text-white text-zinc-900"
+            aria-label="View more side projects"
           >
             View More
           </Link>
@@ -34,7 +35,7 @@ const SideProjectsSection = () => {
 
           {sideProjects.slice(0, 4).map((item, idx) => (
             <li
-              className="dark:text-neutral-500 text-neutral-600 flex w-full gap-4 items-start justify-between"
+              className="dark:text-neutral-400 text-neutral-600 flex w-full gap-4 items-start justify-between"
               key={idx}
             >
               <div className="flex flex-col gap-2 flex-1">
@@ -48,12 +49,16 @@ const SideProjectsSection = () => {
                       href={item.projLink}
                       className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Tooltip delayDuration={50}>
                         <TooltipTrigger asChild>
                           <div>
                             {item.title}
-                            <ExternalLink className="inline-block ml-1 w-3 h-3" />
+                            <ExternalLink
+                              className="inline-block ml-1 w-3 h-3"
+                              aria-hidden="true"
+                            />
                           </div>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -65,10 +70,11 @@ const SideProjectsSection = () => {
                     <Link
                       href={item.descLink}
                       className="dark:text-neutral-400 text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors"
+                      aria-label={`View details for ${item.title}`}
                     >
                       <Tooltip delayDuration={50}>
                         <TooltipTrigger asChild>
-                          <Info className="w-4 h-4" />
+                          <Info className="w-4 h-4" aria-hidden="true" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <p>View project details</p>
@@ -91,6 +97,7 @@ const SideProjectsSection = () => {
                       <GoDotFill
                         size={15}
                         className="hover:scale-110 scale-100 transition duration-75 ease-in-out text-green-500"
+                        aria-hidden="true"
                       />
                     </TooltipTrigger>
                     <TooltipContent>

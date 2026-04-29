@@ -9,15 +9,19 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const CertificationsSection = () => {
   return (
-    <section>
+    <section aria-labelledby="certifications-heading">
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 items-center">
-          <h2 className="text-xl font-bold dark:text-white text-zinc-900">
+          <h2
+            className="text-xl font-bold dark:text-white text-zinc-900"
+            id="certifications-heading"
+          >
             Certifications
           </h2>
           <Link
             href={"/certificates"}
             className="underline p-0 text-sm dark:text-white text-zinc-900"
+            aria-label="View more certifications"
           >
             View More
           </Link>
@@ -26,7 +30,7 @@ const CertificationsSection = () => {
         <ul className="flex flex-col gap-4">
           {certifications.slice(0, 3).map((item, idx) => (
             <li
-              className="dark:text-neutral-500 text-neutral-600 flex w-full gap-4 items-start justify-between"
+              className="dark:text-neutral-400 text-neutral-600 flex w-full gap-4 items-start justify-between"
               key={idx}
             >
               <div className="flex flex-col gap-2 flex-1">
@@ -40,12 +44,16 @@ const CertificationsSection = () => {
                       href={item.link}
                       className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Tooltip delayDuration={50}>
                         <TooltipTrigger asChild>
                           <div>
                             {item.title}
-                            <ExternalLink className="inline-block ml-1 w-3 h-3" />
+                            <ExternalLink
+                              className="inline-block ml-1 w-3 h-3"
+                              aria-hidden="true"
+                            />
                           </div>
                         </TooltipTrigger>
                         <TooltipContent>

@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 
 export const defaultMetadata: Partial<Metadata> = {
+  metadataBase: new URL("https://www.shivamtaneja.com"),
   openGraph: {
     type: "website",
     url: "https://www.shivamtaneja.com",
+    siteName: "Shivam Taneja",
+    locale: "en_US",
     images: [
       {
         url: "/og-image.png",
@@ -15,6 +18,7 @@ export const defaultMetadata: Partial<Metadata> = {
   },
   twitter: {
     card: "summary_large_image",
+    creator: "@codesbyshivam",
     images: ["/og-image.png"],
   },
   keywords: [

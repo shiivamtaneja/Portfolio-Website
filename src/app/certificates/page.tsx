@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   ...defaultMetadata,
   title: "Certificates | Shivam Taneja - Full Stack Developer",
   description: "Explore all certificates and achievements by Shivam Taneja.",
+  alternates: {
+    canonical: "https://www.shivamtaneja.com/certificates",
+  },
   openGraph: {
     title: "Certificates | Shivam Taneja - Full Stack Developer",
     description: "Explore all certificates and achievements by Shivam Taneja.",
@@ -62,7 +65,7 @@ const CertificatesPage = () => {
           <ul className="flex flex-col gap-4">
             {certifications.map((item, idx) => (
               <li
-                className="text-neutral-500 flex w-full gap-4 items-start justify-between"
+                className="dark:text-neutral-400 text-neutral-600 flex w-full gap-4 items-start justify-between"
                 key={idx}
               >
                 <div className="flex flex-col gap-2 flex-1">
@@ -82,7 +85,10 @@ const CertificatesPage = () => {
                           <TooltipTrigger asChild>
                             <div>
                               {item.title}
-                              <ExternalLink className="inline-block ml-1 w-3 h-3" />
+                              <ExternalLink
+                                className="inline-block ml-1 w-3 h-3"
+                                aria-hidden="true"
+                              />
                             </div>
                           </TooltipTrigger>
                           <TooltipContent>
