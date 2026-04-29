@@ -33,16 +33,7 @@ export const defaultMetadata: Partial<Metadata> = {
     "codesbyshivam",
   ],
   icons: {
-    icon: [
-      {
-        media: "(prefers-color-scheme: light)",
-        url: "/logo.svg",
-      },
-      {
-        media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-      },
-    ],
+    icon: "/logo-new.svg",
   },
   alternates: {
     canonical: "https://www.shivamtaneja.com/",
