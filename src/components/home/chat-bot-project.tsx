@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
-
-import { useQuery } from "@tanstack/react-query";
 
 import { useChatbotHighlight } from "@/provider/chatbot-highlight";
 
@@ -14,19 +12,45 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const ChatBotProject = () => {
   const { highlight } = useChatbotHighlight();
+  const [userCount, setUserCount] = useState<number | null>(null);
 
-  const { data, error } = useQuery<{ count: number }>({
-    queryKey: ["chatBotUserCtn"],
-    queryFn: async () => {
+  useEffect(() => {
+    let cancelled = false;
+
+    const fetchUserCount = async () => {
       const response = await fetch("/api/chat/count");
 
       if (!response.ok) throw new Error("Error fetching user count");
 
-      return response.json();
-    },
-    retry: false,
-    refetchOnWindowFocus: false,
-  });
+      const data = (await response.json()) as { count: number };
+      if (!cancelled) setUserCount(data.count);
+    };
+
+    const scheduleFetch = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(() => {
+          fetchUserCount().catch(() => {
+            if (!cancelled) setUserCount(null);
+          });
+        });
+        return;
+      }
+
+      globalThis.setTimeout(() => {
+        fetchUserCount().catch(() => {
+          if (!cancelled) setUserCount(null);
+        });
+      }, 1);
+    };
+
+    scheduleFetch();
+    window.addEventListener("chatbot-user-count-updated", fetchUserCount);
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("chatbot-user-count-updated", fetchUserCount);
+    };
+  }, []);
 
   return (
     <li className="dark:text-neutral-400 text-neutral-600 flex w-full gap-4 items-start justify-between">
@@ -76,9 +100,9 @@ const ChatBotProject = () => {
         </p>
       </div>
 
-      {!error && data && (
+      {userCount !== null && (
         <div className="flex gap-2 items-center shrink-0">
-          <p>{data.count} users</p>
+          <p>{userCount} users</p>
 
           {/* <Tooltip delayDuration={50}>
             <TooltipTrigger asChild>

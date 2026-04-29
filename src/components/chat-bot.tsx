@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -52,7 +53,7 @@ const SUGGESTED_QUESTIONS = [
   "How can I contact you?",
 ];
 
-const ChatBot = () => {
+const ChatBotContent = () => {
   const [open, setOpen] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -310,6 +311,16 @@ const ChatBot = () => {
         </div>
       </PopoverContent>
     </Popover>
+  );
+};
+
+const ChatBot = () => {
+  const [queryClient] = useState(() => new QueryClient());
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ChatBotContent />
+    </QueryClientProvider>
   );
 };
 

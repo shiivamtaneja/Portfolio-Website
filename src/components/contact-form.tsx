@@ -1,23 +1,30 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
 import { toast } from "react-toastify";
 
-import useRecaptcha from '@/hooks/use-recaptcha';
+import useRecaptcha from "@/hooks/use-recaptcha";
 
-import { sendEmail } from '@/app/actions/send-mail';
+import { sendEmail } from "@/app/actions/send-mail";
 
-import { contactFormSchema, ContactFormSchema } from '@/schema/contact';
+import { contactFormSchema, ContactFormSchema } from "@/schema/contact";
 
-import { Loader2 } from 'lucide-react';
-import { Button } from './ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
+import { Loader2 } from "lucide-react";
+import { Button } from "./ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,12 +34,12 @@ const ContactForm = () => {
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
-      email: '',
-      message: '',
-      name: '',
-      subject: ''
+      email: "",
+      message: "",
+      name: "",
+      subject: "",
     },
-    mode: 'all'
+    mode: "all",
   });
 
   async function onSubmit(values: ContactFormSchema) {
@@ -43,38 +50,41 @@ const ContactForm = () => {
       const recaptchaToken = await executeRecaptcha();
 
       // Send the form data with the reCAPTCHA token
-      await toast.promise(
-        sendEmail({
-          ...values,
-          recaptchaToken
-        }),
-        {
-          pending: 'Sending Message...',
-          success: {
-            render() {
-              setTimeout(() => {
-                form.reset();
+      await toast
+        .promise(
+          sendEmail({
+            ...values,
+            recaptchaToken,
+          }),
+          {
+            pending: "Sending Message...",
+            success: {
+              render() {
+                setTimeout(() => {
+                  form.reset();
 
-                window.scrollTo({
-                  top: 0,
-                  behavior: 'smooth'
-                });
-              }, 0);
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }, 0);
 
-              return 'Message sent successfully!'
-            }
+                return "Message sent successfully!";
+              },
+            },
+            error: {
+              render({ data }: { data: Error }) {
+                const errMsg =
+                  data.message || "Failed to send message. Please try again.";
+                return errMsg;
+              },
+            },
           },
-          error: {
-            render({ data }: { data: Error }) {
-              const errMsg = data.message || "Failed to send message. Please try again."
-              return errMsg;
-            }
-          }
-        })
+        )
         // Suppress error propagation since it's being handled in UI.
-        .catch(() => { });
+        .catch(() => {});
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -88,9 +98,15 @@ const ContactForm = () => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="dark:text-white text-zinc-900">Full Name *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">
+                Full Name *
+              </FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} disabled={isSubmitting} />
+                <Input
+                  placeholder="John Doe"
+                  {...field}
+                  disabled={isSubmitting}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -101,9 +117,15 @@ const ContactForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="dark:text-white text-zinc-900">Email *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">
+                Email *
+              </FormLabel>
               <FormControl>
-                <Input placeholder="john@example.com" {...field} disabled={isSubmitting} />
+                <Input
+                  placeholder="john@example.com"
+                  {...field}
+                  disabled={isSubmitting}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -114,9 +136,15 @@ const ContactForm = () => {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="dark:text-white text-zinc-900">Subject *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">
+                Subject *
+              </FormLabel>
               <FormControl>
-                <Input placeholder="Project Discussion" {...field} disabled={isSubmitting} />
+                <Input
+                  placeholder="Project Discussion"
+                  {...field}
+                  disabled={isSubmitting}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -127,7 +155,9 @@ const ContactForm = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="dark:text-white text-zinc-900">Message *</FormLabel>
+              <FormLabel className="dark:text-white text-zinc-900">
+                Message *
+              </FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Tell me more about your project..."
@@ -140,32 +170,46 @@ const ContactForm = () => {
             </FormItem>
           )}
         />
-        <Button className='w-full dark:bg-zinc-800 bg-zinc-900 border-none outline-none md:px-4 px-2 text-white dark:hover:bg-zinc-700 hover:bg-zinc-800' variant="outline" type='submit' disabled={isSubmitting}>
-          {
-            isSubmitting ?
-              <>
-                <Loader2 className='animate-spin' aria-hidden="true" />
-                Submitting...
-              </>
-              :
-              'Send message'
-          }
+        <Button
+          className="w-full dark:bg-zinc-800 bg-zinc-900 border-none outline-none md:px-4 px-2 text-white dark:hover:bg-zinc-700 hover:bg-zinc-800"
+          variant="outline"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="animate-spin" aria-hidden="true" />
+              Submitting...
+            </>
+          ) : (
+            "Send message"
+          )}
         </Button>
 
-        <div className='text-xs dark:text-white/50 text-zinc-500'>
-          This site is protected by reCAPTCHA and the Google{' '}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className='underline dark:hover:text-white/70 hover:text-zinc-700'>
+        <div className="text-xs dark:text-white/50 text-zinc-500">
+          This site is protected by reCAPTCHA and the Google{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline dark:hover:text-white/70 hover:text-zinc-700"
+          >
             Privacy Policy
-          </a>{' '}
-          and{' '}
-          <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className='underline dark:hover:text-white/70 hover:text-zinc-700'>
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline dark:hover:text-white/70 hover:text-zinc-700"
+          >
             Terms of Service
-          </a>{' '}
+          </a>{" "}
           apply.
         </div>
       </form>
     </Form>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

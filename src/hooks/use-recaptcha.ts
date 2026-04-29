@@ -1,12 +1,15 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from "react";
 
 declare global {
   interface Window {
     grecaptcha: {
       ready: (callback: () => void) => void;
-      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+      execute: (
+        siteKey: string,
+        options: { action: string },
+      ) => Promise<string>;
     };
   }
 }
@@ -16,47 +19,59 @@ interface UseRecaptchaReturn {
 }
 
 function useRecaptcha(): UseRecaptchaReturn {
-  const [isReady, setIsReady] = useState(false);
+  const loadRecaptcha = useCallback(() => {
+    const existingScript = document.querySelector("#recaptcha-script");
 
-  useEffect(() => {
-    if (document.querySelector('#recaptcha-script'))
-      return;
+    if (window.grecaptcha) {
+      return Promise.resolve();
+    }
 
-    // Create and load the reCAPTCHA script
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY}`;
-    script.async = true;
-    script.onload = () => setIsReady(true);
+    if (existingScript) {
+      return new Promise<void>((resolve, reject) => {
+        existingScript.addEventListener("load", () => resolve(), {
+          once: true,
+        });
+        existingScript.addEventListener(
+          "error",
+          () => reject(new Error("Failed to load reCAPTCHA")),
+          { once: true },
+        );
+      });
+    }
 
-    document.head.appendChild(script);
+    return new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.id = "recaptcha-script";
+      script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY}`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Failed to load reCAPTCHA"));
 
-    // Cleanup function to remove the script when component unmounts
-    return () => {
-      document.head.removeChild(script);
-    };
+      document.head.appendChild(script);
+    });
   }, []);
 
   const executeRecaptcha = useCallback(async () => {
-    if (!isReady)
-      throw new Error('reCAPTCHA not ready');
+    await loadRecaptcha();
 
     return new Promise<string>((resolve, reject) => {
       window.grecaptcha.ready(function () {
         window.grecaptcha
-          .execute(process.env.NEXT_PUBLIC_RECAPTCHA_KEY!, { action: 'submit' })
+          .execute(process.env.NEXT_PUBLIC_RECAPTCHA_KEY!, { action: "submit" })
           .then((token: string) => {
             resolve(token);
           })
           .catch((error: unknown) => {
-            console.error('[Recaptcha Error]', error);
+            console.error("[Recaptcha Error]", error);
 
             reject(error);
           });
       });
     });
-  }, [isReady]);
+  }, [loadRecaptcha]);
 
   return { executeRecaptcha };
 }
 
-export default useRecaptcha
+export default useRecaptcha;

@@ -1,21 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import { usePathname } from "next/navigation";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useIsFirstLoad, useSetFirstLoad } from "@/store/loading-store";
 
+import { ThemeToggle } from "./theme-toggle";
 import { useTheme } from "next-themes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useIsFirstLoad, useSetFirstLoad } from "@/store/loading-store";
-import { ThemeToggle } from "./theme-toggle";
-
 const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
-  const [queryClient] = useState(() => new QueryClient());
-
   const { resolvedTheme } = useTheme();
 
   const countRef = useRef(0);
@@ -40,9 +36,13 @@ const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <ToastContainer theme={resolvedTheme === "dark" ? "dark" : "light"} />
+      <ToastContainer
+        theme={resolvedTheme === "dark" ? "dark" : "light"}
+        newestOnTop
+        position="top-right"
+      />
 
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      {children}
 
       <div className="right-4 hidden xl:block fixed xl:top-6 z-[999]">
         <ThemeToggle />

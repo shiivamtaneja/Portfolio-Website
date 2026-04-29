@@ -58,6 +58,7 @@ export function useChatBot(open: boolean) {
       setChatId(res.chatId);
       queryClient.invalidateQueries({ queryKey: ["allChats"] });
       queryClient.invalidateQueries({ queryKey: ["chatBotUserCtn"] });
+      window.dispatchEvent(new Event("chatbot-user-count-updated"));
     },
     onError: (err) => {
       console.error("Failed to initialize chat", err);
