@@ -6,7 +6,7 @@ import { defaultMetadata } from "@/lib/constants/metadata";
 
 import ContactForm from "@/components/contact-form";
 import Wrapper from "@/components/wrapper";
-import { FileText, MailIcon, MapPin } from "lucide-react";
+import { Calendar, FileText, MailIcon, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
   ...defaultMetadata,
@@ -82,6 +82,21 @@ const ContactPage = () => {
               />
               <p className="dark:text-white text-zinc-900 relative overflow-hidden">
                 <span className="hover-animation">Download Resume</span>
+              </p>
+            </Link>
+
+            <Link
+              href="https://calendly.com/shivamtaneja/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex md:justify-start justify-center w-full items-center gap-3 dark:text-muted-foreground text-neutral-600"
+            >
+              <Calendar
+                className="h-5 w-5 dark:text-white text-zinc-900 shrink-0"
+                aria-hidden="true"
+              />
+              <p className="dark:text-white text-zinc-900 relative overflow-hidden">
+                <span className="hover-animation">Schedule a Call</span>
               </p>
             </Link>
           </div>
