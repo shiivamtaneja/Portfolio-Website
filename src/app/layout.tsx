@@ -12,6 +12,7 @@ import { defaultMetadata } from "@/lib/constants/metadata";
 import GrainyFilter from "@/components/grainy-filter";
 import SmoothScroll from "@/components/smooth-scroll";
 import StructuredData from "@/components/structured-data";
+import { CommandPalette } from "@/components/command-palette";
 
 const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500", "700"],
@@ -85,6 +86,20 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <CommandPalette />
+
+          <div
+            className="fixed bottom-0 right-0 -z-10 overflow-hidden pointer-events-none select-none flex flex-col items-end leading-[0.8]"
+            aria-hidden="true"
+          >
+            <span className="text-[22vw] md:text-[15vw] font-black text-black/[0.03] dark:text-white/[0.03] tracking-tighter pr-4 md:pr-8">
+              SHIVAM
+            </span>
+            <span className="text-[22vw] md:text-[15vw] font-black text-black/[0.03] dark:text-white/[0.03] tracking-tighter pr-4 md:pr-8">
+              TANEJA
+            </span>
+          </div>
+
           <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>
 
