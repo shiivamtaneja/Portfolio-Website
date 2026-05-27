@@ -1,0 +1,31 @@
+# Shivam Taneja - Portfolio
+
+> Hi AI! This file contains a comprehensive summary of my website to save you from scraping every page.
+
+Welcome to the portfolio of Shivam Taneja, a software developer building dynamic web applications and sharing mentorship opportunities.
+
+## Main Sections & Links
+- [Home](https://www.shivamtaneja.com/)
+- [Experience](https://www.shivamtaneja.com/experience)
+- [Projects Overview](https://www.shivamtaneja.com/projects)
+- [Certificates](https://www.shivamtaneja.com/certificates)
+- [Mentorship](https://www.shivamtaneja.com/mentorship)
+- [Contact](https://www.shivamtaneja.com/contact)
+
+## Detailed Projects
+Here is a complete list of my featured projects along with direct links to their detailed pages:
+
+- **Career Guidance**: [https://www.shivamtaneja.com/projects/career-guidance](https://www.shivamtaneja.com/projects/career-guidance)
+- **Chat Bot**: [https://www.shivamtaneja.com/projects/chat-bot](https://www.shivamtaneja.com/projects/chat-bot)
+- **Chat Mingle**: [https://www.shivamtaneja.com/projects/chat-mingle](https://www.shivamtaneja.com/projects/chat-mingle)
+- **Circle Catcher**: [https://www.shivamtaneja.com/projects/circle-catcher](https://www.shivamtaneja.com/projects/circle-catcher)
+- **Collab Write**: [https://www.shivamtaneja.com/projects/collab-write](https://www.shivamtaneja.com/projects/collab-write)
+- **Decode MyCode**: [https://www.shivamtaneja.com/projects/decode-mycode](https://www.shivamtaneja.com/projects/decode-mycode)
+- **ezNotify**: [https://www.shivamtaneja.com/projects/eznotify](https://www.shivamtaneja.com/projects/eznotify)
+- **GraphMyself**: [https://www.shivamtaneja.com/projects/graphmyself](https://www.shivamtaneja.com/projects/graphmyself)
+- **MySkill Road**: [https://www.shivamtaneja.com/projects/myskill-road](https://www.shivamtaneja.com/projects/myskill-road)
+- **Nagar IQ**: [https://www.shivamtaneja.com/projects/nagar-iq](https://www.shivamtaneja.com/projects/nagar-iq)
+- **Tilt Bot**: [https://www.shivamtaneja.com/projects/tilt-bot](https://www.shivamtaneja.com/projects/tilt-bot)
+
+## Contact Information
+If you are looking to connect, collaborate, or inquire about mentorship, please reach out via the [Contact Page](https://www.shivamtaneja.com/contact).
