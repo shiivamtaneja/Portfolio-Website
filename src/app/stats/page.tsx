@@ -13,9 +13,8 @@ import {
 import Wrapper from "@/components/wrapper";
 import { defaultMetadata } from "@/lib/constants/metadata";
 import { getStats } from "@/lib/stats";
-import { cn } from "@/lib/utils";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   ...defaultMetadata,
@@ -48,7 +47,6 @@ const fullNumberFormatter = new Intl.NumberFormat("en");
 
 export default async function StatsPage() {
   const stats = await getStats();
-  const maxActivity = Math.max(...stats.activity.map((day) => day.total), 1);
   const maxTraffic = Math.max(
     ...stats.trafficSources.map((source) => source.total),
     1,
@@ -211,47 +209,6 @@ export default async function StatsPage() {
             ))}
           </div>
         </section>
-
-        <section className="flex flex-col gap-4">
-          <SectionHeader
-            icon={BarChart3}
-            title="Activity grid"
-            detail="Daily pageviews and tracked events"
-          />
-          <div className="grid grid-cols-7 gap-1 sm:grid-cols-[repeat(14,minmax(0,1fr))]">
-            {stats.activity.map((day) => (
-              <div
-                key={day.date}
-                className={cn(
-                  "aspect-square rounded-sm border border-border",
-                  activityClass(day.total, maxActivity),
-                )}
-                title={`${day.date}: ${fullNumberFormatter.format(day.total)} events`}
-              />
-            ))}
-          </div>
-          <div className="flex items-center justify-between text-xs dark:text-muted-foreground text-neutral-500">
-            <span>
-              Since{" "}
-              {new Date(stats.activityStart).toLocaleDateString("en", {
-                month: "short",
-                day: "numeric",
-                timeZone: "UTC",
-              })}
-            </span>
-            <span>
-              Updated{" "}
-              {new Date(stats.generatedAt).toLocaleString("en", {
-                month: "short",
-                day: "numeric",
-                hour: "numeric",
-                minute: "2-digit",
-                timeZone: "UTC",
-              })}{" "}
-              UTC
-            </span>
-          </div>
-        </section>
       </section>
     </Wrapper>
   );
@@ -330,16 +287,4 @@ function EmptyState({ children }: { children: React.ReactNode }) {
       {children}
     </p>
   );
-}
-
-function activityClass(total: number, max: number) {
-  if (total === 0) return "bg-muted/40";
-
-  const intensity = total / max;
-
-  if (intensity > 0.75) return "bg-zinc-900 dark:bg-white";
-  if (intensity > 0.45) return "bg-zinc-700 dark:bg-neutral-300";
-  if (intensity > 0.2) return "bg-zinc-500 dark:bg-neutral-500";
-
-  return "bg-zinc-300 dark:bg-neutral-700";
 }
