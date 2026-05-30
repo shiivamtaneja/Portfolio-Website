@@ -10,7 +10,11 @@ Welcome to the portfolio of Shivam Taneja, a software developer building dynamic
 - [Projects Overview](https://www.shivamtaneja.com/projects)
 - [Certificates](https://www.shivamtaneja.com/certificates)
 - [Mentorship](https://www.shivamtaneja.com/mentorship)
+- [Stats](https://www.shivamtaneja.com/stats)
 - [Contact](https://www.shivamtaneja.com/contact)
+
+## Public Stats
+The stats page shows privacy-safe aggregate website activity only, such as monthly visits, project activity, traffic source buckets, and daily activity totals.
 
 ## Detailed Projects
 Here is a complete list of my featured projects along with direct links to their detailed pages:

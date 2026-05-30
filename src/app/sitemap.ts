@@ -38,6 +38,12 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
       changeFrequency: "monthly",
     },
+    {
+      url: "https://www.shivamtaneja.com/stats",
+      lastModified: new Date(),
+      priority: 0.5,
+      changeFrequency: "daily",
+    },
 
     // projects
     {

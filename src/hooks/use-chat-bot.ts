@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useChatBotActions, useChatBotId } from "@/store/chatbot-store";
 import { ChatDocument, ConversationMessage } from "@/types/chats.types";
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
 
 export async function fetchMessages(
   chatId: string,
@@ -56,6 +57,7 @@ export function useChatBot(open: boolean) {
     mutationFn: () => initializeChat(),
     onSuccess: async (res) => {
       setChatId(res.chatId);
+      captureEvent(analyticsEvents.chatbotConversationStarted);
       queryClient.invalidateQueries({ queryKey: ["chatBotUserCtn"] });
       window.dispatchEvent(new Event("chatbot-user-count-updated"));
     },
