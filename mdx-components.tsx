@@ -1,8 +1,9 @@
 import { ComponentPropsWithoutRef } from "react";
 
-import Link from "next/link";
-
 import type { MDXComponents } from "mdx/types";
+import TrackedLink from "@/components/tracked-link";
+import TrackedVideo from "@/components/tracked-video";
+import { analyticsEvents } from "@/lib/analytics";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
@@ -37,15 +38,20 @@ const components: MDXComponents = {
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     return (
-      <Link
+      <TrackedLink
         href={href || "/"}
         target="_blank"
         rel="noopener noreferrer"
         className="dark:text-white text-zinc-900 relative overflow-hidden"
+        analyticsEvent={analyticsEvents.outboundLinkClicked}
+        analyticsProperties={{
+          href: href || "/",
+          source: "project_detail",
+        }}
         {...props}
       >
         <span className="hover-animation">{children}</span>
-      </Link>
+      </TrackedLink>
     );
   },
 };
@@ -85,22 +91,7 @@ export function Video({
   poster?: string;
   autoPlay?: boolean;
 }) {
-  return (
-    <div className="relative z-[100] my-6 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm">
-      <video
-        controls
-        playsInline
-        autoPlay={autoPlay}
-        muted={autoPlay}
-        loop={autoPlay}
-        poster={poster}
-        className="w-full h-auto object-cover"
-      >
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  );
+  return <TrackedVideo src={src} poster={poster} autoPlay={autoPlay} />;
 }
 
 export function useMDXComponents(otherComponens: MDXComponents) {

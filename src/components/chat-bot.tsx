@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
 
 import { useChatbotHighlight } from "@/provider/chatbot-highlight";
 import { useChatBot } from "@/hooks/use-chat-bot";
@@ -81,14 +82,33 @@ const ChatBotContent = () => {
     mode: "all",
   });
 
-  const onSubmit = async (values: ChatSchemaT) => {
+  const submitMessage = async (
+    message: string,
+    source: "typed" | "suggested_question",
+  ) => {
     form.reset();
-    await sendMessageStream(values.message);
+    captureEvent(analyticsEvents.chatbotMessageSent, {
+      message_length: message.length,
+      source,
+    });
+    await sendMessageStream(message);
+  };
+
+  const onSubmit = async (values: ChatSchemaT) => {
+    await submitMessage(values.message, "typed");
   };
 
   const handleSuggestedQuestion = (question: string) => {
     form.setValue("message", question);
-    onSubmit({ chatId: chatId ?? "", message: question });
+    captureEvent(analyticsEvents.chatbotSuggestedQuestionClicked, {
+      question,
+    });
+    submitMessage(question, "suggested_question");
+  };
+
+  const resetChat = () => {
+    captureEvent(analyticsEvents.chatbotReset);
+    handleResetChat();
   };
 
   // Scroll to bottom after any new message
@@ -118,12 +138,23 @@ const ChatBotContent = () => {
     }
   }, [isHighlighted]);
 
+  useEffect(() => {
+    if (!error) return;
+
+    captureEvent(analyticsEvents.chatbotError, {
+      message: error.message,
+    });
+  }, [error]);
+
   return (
     <Popover
       open={open}
       onOpenChange={(value) => {
         setOpen(value);
-        if (value) disableHighlight();
+        if (value) {
+          captureEvent(analyticsEvents.chatbotOpened);
+          disableHighlight();
+        }
       }}
     >
       <PopoverTrigger asChild>
@@ -171,7 +202,7 @@ const ChatBotContent = () => {
                 <DropdownMenuContent>
                   <DropdownMenuItem
                     className="cursor-pointer"
-                    onClick={() => handleResetChat()}
+                    onClick={resetChat}
                   >
                     Reset Chat
                   </DropdownMenuItem>
@@ -209,7 +240,7 @@ const ChatBotContent = () => {
                   <button
                     type="button"
                     className="underline cursor-pointer dark:hover:text-neutral-300 hover:text-zinc-600"
-                    onClick={() => handleResetChat()}
+                    onClick={resetChat}
                   >
                     here
                   </button>{" "}

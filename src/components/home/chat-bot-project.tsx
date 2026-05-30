@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { useChatbotHighlight } from "@/provider/chatbot-highlight";
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
 
 import { ExternalLink, Info } from "lucide-react";
 // import { GoDotFill } from 'react-icons/go';
@@ -61,7 +62,13 @@ const ChatBotProject = () => {
             <button
               type="button"
               className="border-0 bg-transparent p-0 font-inherit dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors cursor-pointer"
-              onClick={() => highlight()}
+              onClick={() => {
+                captureEvent(analyticsEvents.projectLiveOpened, {
+                  project: "Chatbot",
+                  source: "project_list",
+                });
+                highlight();
+              }}
             >
               <Tooltip delayDuration={50}>
                 <TooltipTrigger asChild>
@@ -83,6 +90,12 @@ const ChatBotProject = () => {
               href={"/projects/chat-bot"}
               className="dark:text-neutral-400 text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors"
               aria-label="View details for Chatbot"
+              onClick={() =>
+                captureEvent(analyticsEvents.projectDetailOpened, {
+                  project: "Chatbot",
+                  source: "project_list",
+                })
+              }
             >
               <Tooltip delayDuration={50}>
                 <TooltipTrigger asChild>

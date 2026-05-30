@@ -1,11 +1,12 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import Script from "next/script";
 
 import { defaultMetadata } from "@/lib/constants/metadata";
 import { certifications } from "@/lib/constants/certifications";
 
 import Wrapper from "@/components/wrapper";
+import TrackedLink from "@/components/tracked-link";
+import { analyticsEvents } from "@/lib/analytics";
 
 import {
   Tooltip,
@@ -75,11 +76,16 @@ const CertificatesPage = () => {
                       {"."}
                     </p>
                     <div className="flex items-center gap-2">
-                      <Link
+                      <TrackedLink
                         href={item.link}
                         className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
+                        analyticsEvent={analyticsEvents.certificateOpened}
+                        analyticsProperties={{
+                          certificate: item.title,
+                          company: item.company,
+                        }}
                       >
                         <Tooltip delayDuration={50}>
                           <TooltipTrigger asChild>
@@ -95,7 +101,7 @@ const CertificatesPage = () => {
                             <p>View certificate</p>
                           </TooltipContent>
                         </Tooltip>
-                      </Link>
+                      </TrackedLink>
 
                       <span className="text-sm dark:text-neutral-400 text-neutral-500 hidden sm:inline-block">
                         |

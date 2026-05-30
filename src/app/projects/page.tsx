@@ -1,12 +1,13 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import Script from "next/script";
 
 import { defaultMetadata } from "@/lib/constants/metadata";
 import { sideProjects } from "@/lib/constants/side-projects";
 
 import ChatBotProject from "@/components/home/chat-bot-project";
+import TrackedLink from "@/components/tracked-link";
 import Wrapper from "@/components/wrapper";
+import { analyticsEvents } from "@/lib/analytics";
 
 import {
   Tooltip,
@@ -84,11 +85,16 @@ const ProjectsPage = () => {
                       {"."}
                     </p>
                     <div className="flex items-center gap-2">
-                      <Link
+                      <TrackedLink
                         href={item.projLink}
                         className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
+                        analyticsEvent={analyticsEvents.projectLiveOpened}
+                        analyticsProperties={{
+                          project: item.title,
+                          source: "projects_page",
+                        }}
                       >
                         <Tooltip delayDuration={50}>
                           <TooltipTrigger asChild>
@@ -104,12 +110,17 @@ const ProjectsPage = () => {
                             <p>View project</p>
                           </TooltipContent>
                         </Tooltip>
-                      </Link>
+                      </TrackedLink>
 
-                      <Link
+                      <TrackedLink
                         href={item.descLink}
                         className="dark:text-neutral-400 text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors"
                         aria-label={`View details for ${item.title}`}
+                        analyticsEvent={analyticsEvents.projectDetailOpened}
+                        analyticsProperties={{
+                          project: item.title,
+                          source: "projects_page",
+                        }}
                       >
                         <Tooltip delayDuration={50}>
                           <TooltipTrigger asChild>
@@ -119,7 +130,7 @@ const ProjectsPage = () => {
                             <p>View project details</p>
                           </TooltipContent>
                         </Tooltip>
-                      </Link>
+                      </TrackedLink>
                     </div>
                   </div>
                   <p className="dark:text-neutral-400 text-neutral-600 break-words ml-4">

@@ -6,6 +6,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/provider/theme-provider";
+import { PostHogProvider } from "@/provider/posthog-provider";
 
 import { defaultMetadata } from "@/lib/constants/metadata";
 
@@ -76,32 +77,34 @@ export default function RootLayout({
           />
         </noscript> */}
 
-        <StructuredData />
+        <PostHogProvider>
+          <StructuredData />
 
-        <GrainyFilter />
+          <GrainyFilter />
 
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <CommandPalette />
-
-          <div
-            className="fixed bottom-0 right-0 -z-10 overflow-hidden pointer-events-none select-none flex flex-col items-end leading-[0.8]"
-            aria-hidden="true"
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
           >
-            <span className="text-[22vw] md:text-[15vw] font-black text-black/[0.03] dark:text-white/[0.03] tracking-tighter pr-4 md:pr-8">
-              SHIVAM
-            </span>
-            <span className="text-[22vw] md:text-[15vw] font-black text-black/[0.03] dark:text-white/[0.03] tracking-tighter pr-4 md:pr-8">
-              TANEJA
-            </span>
-          </div>
+            <CommandPalette />
 
-          <SmoothScroll>{children}</SmoothScroll>
-        </ThemeProvider>
+            <div
+              className="fixed bottom-0 right-0 -z-10 overflow-hidden pointer-events-none select-none flex flex-col items-end leading-[0.8]"
+              aria-hidden="true"
+            >
+              <span className="text-[22vw] md:text-[15vw] font-black text-black/[0.03] dark:text-white/[0.03] tracking-tighter pr-4 md:pr-8">
+                SHIVAM
+              </span>
+              <span className="text-[22vw] md:text-[15vw] font-black text-black/[0.03] dark:text-white/[0.03] tracking-tighter pr-4 md:pr-8">
+                TANEJA
+              </span>
+            </div>
+
+            <SmoothScroll>{children}</SmoothScroll>
+          </ThemeProvider>
+        </PostHogProvider>
 
         {/* Vercel Analytics */}
         <Analytics />

@@ -1,11 +1,12 @@
 import { Metadata } from "next";
-import Link from "next/link";
 
 import { RESUME_LINK } from "@/lib/constants/about-me";
 import { defaultMetadata } from "@/lib/constants/metadata";
 
 import ContactForm from "@/components/contact-form";
+import TrackedLink from "@/components/tracked-link";
 import Wrapper from "@/components/wrapper";
+import { analyticsEvents } from "@/lib/analytics";
 import { Calendar, FileText, MailIcon, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -50,14 +51,16 @@ const ContactPage = () => {
                 className="h-5 w-5 dark:text-white text-zinc-900 shrink-0"
                 aria-hidden="true"
               />
-              <a
+              <TrackedLink
                 href="mailto:business.shivamtaneja@gmail.com"
                 className="dark:text-white text-zinc-900 relative overflow-hidden"
+                analyticsEvent={analyticsEvents.emailClicked}
+                analyticsProperties={{ source: "contact_page" }}
               >
                 <span className="hover-animation">
                   business.shivamtaneja@gmail.com
                 </span>
-              </a>
+              </TrackedLink>
             </div>
 
             <div className="flex md:justify-start justify-center w-full items-center gap-3 dark:text-muted-foreground text-neutral-600">
@@ -70,11 +73,13 @@ const ContactPage = () => {
               </span>
             </div>
 
-            <Link
+            <TrackedLink
               href={RESUME_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="flex md:justify-start justify-center w-full items-center gap-3 dark:text-muted-foreground text-neutral-600"
+              analyticsEvent={analyticsEvents.resumeOpened}
+              analyticsProperties={{ source: "contact_page" }}
             >
               <FileText
                 className="h-5 w-5 dark:text-white text-zinc-900 shrink-0"
@@ -83,13 +88,15 @@ const ContactPage = () => {
               <p className="dark:text-white text-zinc-900 relative overflow-hidden">
                 <span className="hover-animation">Download Resume</span>
               </p>
-            </Link>
+            </TrackedLink>
 
-            <Link
+            <TrackedLink
               href="https://calendly.com/shivamtaneja/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex md:justify-start justify-center w-full items-center gap-3 dark:text-muted-foreground text-neutral-600"
+              analyticsEvent={analyticsEvents.calendlyOpened}
+              analyticsProperties={{ source: "contact_page" }}
             >
               <Calendar
                 className="h-5 w-5 dark:text-white text-zinc-900 shrink-0"
@@ -98,7 +105,7 @@ const ContactPage = () => {
               <p className="dark:text-white text-zinc-900 relative overflow-hidden">
                 <span className="hover-animation">Schedule a Call</span>
               </p>
-            </Link>
+            </TrackedLink>
           </div>
         </div>
 

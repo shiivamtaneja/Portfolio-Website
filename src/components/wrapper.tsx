@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 import { delays } from "@/lib/constants/delays";
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
 
 import ChatbotHighlightProvider from "@/provider/chatbot-highlight";
 
@@ -67,6 +68,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
             <Link
               href="/"
               className="inline-flex items-center gap-2 dark:text-muted-foreground text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors"
+              onClick={() => captureEvent(analyticsEvents.backToHomeClicked)}
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Back to home</span>

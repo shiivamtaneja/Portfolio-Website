@@ -1,14 +1,14 @@
 import React from "react";
 
-import Link from "next/link";
-
 import { sideProjects } from "@/lib/constants/side-projects";
+import { analyticsEvents } from "@/lib/analytics";
 
 import ChatBotProject from "./chat-bot-project";
 
 import { ExternalLink, Info } from "lucide-react";
 import { GoDotFill } from "react-icons/go";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import TrackedLink from "../tracked-link";
 
 const SideProjectsSection = () => {
   return (
@@ -21,13 +21,18 @@ const SideProjectsSection = () => {
           >
             Side Projects
           </h2>
-          <Link
+          <TrackedLink
             href={"/projects"}
             className="underline p-0 text-sm dark:text-white text-zinc-900"
             aria-label="View more side projects"
+            analyticsEvent={analyticsEvents.projectDetailOpened}
+            analyticsProperties={{
+              project: "all_projects",
+              source: "home_projects_section",
+            }}
           >
             View More
-          </Link>
+          </TrackedLink>
         </div>
 
         <ul className="flex flex-col gap-4">
@@ -45,11 +50,16 @@ const SideProjectsSection = () => {
                     {"."}
                   </p>
                   <div className="flex items-center gap-2">
-                    <Link
+                    <TrackedLink
                       href={item.projLink}
                       className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
+                      analyticsEvent={analyticsEvents.projectLiveOpened}
+                      analyticsProperties={{
+                        project: item.title,
+                        source: "home_projects_section",
+                      }}
                     >
                       <Tooltip delayDuration={50}>
                         <TooltipTrigger asChild>
@@ -65,12 +75,17 @@ const SideProjectsSection = () => {
                           <p>View project</p>
                         </TooltipContent>
                       </Tooltip>
-                    </Link>
+                    </TrackedLink>
 
-                    <Link
+                    <TrackedLink
                       href={item.descLink}
                       className="dark:text-neutral-400 text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors"
                       aria-label={`View details for ${item.title}`}
+                      analyticsEvent={analyticsEvents.projectDetailOpened}
+                      analyticsProperties={{
+                        project: item.title,
+                        source: "home_projects_section",
+                      }}
                     >
                       <Tooltip delayDuration={50}>
                         <TooltipTrigger asChild>
@@ -80,7 +95,7 @@ const SideProjectsSection = () => {
                           <p>View project details</p>
                         </TooltipContent>
                       </Tooltip>
-                    </Link>
+                    </TrackedLink>
                   </div>
                 </div>
                 <p className="dark:text-neutral-400 text-neutral-600 break-words ml-4">

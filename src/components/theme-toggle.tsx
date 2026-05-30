@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { MoonStar, SunDim } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
 
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -15,12 +16,19 @@ export function ThemeToggle() {
   }, []);
 
   const isDark = resolvedTheme === "dark";
+  const nextTheme = isDark ? "light" : "dark";
 
   return (
     <Button
       variant="outline"
       size="icon"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={() => {
+        setTheme(nextTheme);
+        captureEvent(analyticsEvents.themeChanged, {
+          theme: nextTheme,
+          source: "toggle",
+        });
+      }}
       className="dark:bg-zinc-800 bg-zinc-200 border-none dark:text-white text-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-300 overflow-hidden"
     >
       <AnimatePresence mode="wait" initial={false}>

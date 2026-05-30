@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { RESUME_LINK } from "@/lib/constants/about-me";
 import { navItems } from "@/lib/constants/nav-items";
 import { socialItems } from "@/lib/constants/social-items";
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -60,7 +61,14 @@ const Nav = () => {
             }
             variant="outline"
           >
-            <Link href={RESUME_LINK} target="_blank" rel="noopener noreferrer">
+            <Link
+              href={RESUME_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                captureEvent(analyticsEvents.resumeOpened, { source: "nav" })
+              }
+            >
               <FileText />
               <span>Download Resume</span>
             </Link>
@@ -145,7 +153,9 @@ const Nav = () => {
                             >
                               <Link
                                 href={item.link}
-                                onClick={() => setIsMenuOpen(false)}
+                                onClick={() => {
+                                  setIsMenuOpen(false);
+                                }}
                                 aria-current={
                                   pathname === item.link ? "page" : undefined
                                 }
@@ -171,6 +181,12 @@ const Nav = () => {
                               target="_blank"
                               rel="noopener noreferrer"
                               aria-label={item.heading}
+                              onClick={() =>
+                                captureEvent(analyticsEvents.socialClicked, {
+                                  platform: item.heading,
+                                  source: "mobile_menu",
+                                })
+                              }
                               key={idx}
                             >
                               <Tooltip delayDuration={50}>
@@ -211,6 +227,12 @@ const Nav = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.heading}
+                  onClick={() =>
+                    captureEvent(analyticsEvents.socialClicked, {
+                      platform: item.heading,
+                      source: "nav",
+                    })
+                  }
                   key={idx}
                 >
                   <Tooltip delayDuration={50}>

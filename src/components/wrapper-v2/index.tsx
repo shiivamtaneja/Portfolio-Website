@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
 
 import { delays } from '@/lib/constants/delays';
+import { analyticsEvents, captureEvent } from '@/lib/analytics';
 import ChatbotHighlightProvider from '@/provider/chatbot-highlight';
 import { useIsFirstLoad } from '@/store/loading-store';
 import { TooltipProvider } from '../ui/tooltip';
@@ -41,7 +42,11 @@ const WrapperV2 = ({
     >
       <Nav />
       {pathname !== '/' && (
-        <Link href="/" className="inline-flex items-center gap-2 dark:text-muted-foreground text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 dark:text-muted-foreground text-neutral-600 dark:hover:text-white hover:text-zinc-900 transition-colors"
+          onClick={() => captureEvent(analyticsEvents.backToHomeClicked)}
+        >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to home</span>
         </Link>

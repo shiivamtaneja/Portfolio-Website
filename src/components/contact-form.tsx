@@ -11,6 +11,8 @@ import useRecaptcha from "@/hooks/use-recaptcha";
 
 import { sendEmail } from "@/app/actions/send-mail";
 
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
+
 import { contactFormSchema, ContactFormSchema } from "@/schema/contact";
 
 import { Loader2 } from "lucide-react";
@@ -28,6 +30,7 @@ import { Textarea } from "./ui/textarea";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const { executeRecaptcha } = useRecaptcha();
 
@@ -55,6 +58,13 @@ const ContactForm = () => {
           sendEmail({
             ...values,
             recaptchaToken,
+          }).then((result) => {
+            captureEvent(analyticsEvents.contactFormSubmitted, {
+              subject_length: values.subject.length,
+              message_length: values.message.length,
+            });
+
+            return result;
           }),
           {
             pending: "Sending Message...",
@@ -74,6 +84,10 @@ const ContactForm = () => {
             },
             error: {
               render({ data }: { data: Error }) {
+                captureEvent(analyticsEvents.contactFormFailed, {
+                  reason: data.message || "unknown",
+                });
+
                 const errMsg =
                   data.message || "Failed to send message. Please try again.";
                 return errMsg;
@@ -85,14 +99,28 @@ const ContactForm = () => {
         .catch(() => {});
     } catch (error) {
       console.error("Error submitting form:", error);
+      captureEvent(analyticsEvents.contactFormFailed, {
+        reason: error instanceof Error ? error.message : "unknown",
+      });
     } finally {
       setIsSubmitting(false);
     }
   }
 
+  function handleFormInteraction() {
+    if (hasStarted) return;
+
+    setHasStarted(true);
+    captureEvent(analyticsEvents.contactFormStarted);
+  }
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        onFocusCapture={handleFormInteraction}
+        className="space-y-6 w-full"
+      >
         <FormField
           control={form.control}
           name="name"

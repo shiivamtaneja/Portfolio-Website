@@ -23,6 +23,7 @@ import {
   Laptop,
   FolderOpen,
 } from "lucide-react";
+import { analyticsEvents, captureEvent } from "@/lib/analytics";
 
 export function CommandPalette() {
   const [open, setOpen] = React.useState(false);
@@ -52,22 +53,38 @@ export function CommandPalette() {
           return;
         }
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen((open) => {
+          const nextOpen = !open;
+          if (nextOpen) {
+            captureEvent(analyticsEvents.commandPaletteOpened, {
+              source: "keyboard",
+            });
+          }
+          return nextOpen;
+        });
       }
     };
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const runCommand = React.useCallback((command: () => void) => {
+  const runCommand = React.useCallback((name: string, command: () => void) => {
     setOpen(false);
+    captureEvent(analyticsEvents.commandPaletteCommandSelected, {
+      command: name,
+    });
     command();
   }, []);
 
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+          captureEvent(analyticsEvents.commandPaletteOpened, {
+            source: "button",
+          });
+        }}
         className="fixed bottom-6 left-6 z-50 hidden md:flex items-center gap-2 rounded-full border border-zinc-200/50 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-md px-4 py-2 text-sm font-medium shadow-sm transition-all hover:scale-105 active:scale-95 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
       >
         <span className="flex gap-1 items-center bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-1.5 py-0.5 rounded text-xs text-zinc-500 dark:text-zinc-400">
@@ -83,36 +100,48 @@ export function CommandPalette() {
           <CommandEmpty>No results found.</CommandEmpty>
 
           <CommandGroup heading="Navigation">
-            <CommandItem onSelect={() => runCommand(() => router.push("/"))}>
+            <CommandItem
+              onSelect={() => runCommand("jump_home", () => router.push("/"))}
+            >
               <Home className="mr-2 h-4 w-4" />
               <span>Jump to Home</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/contact"))}
+              onSelect={() =>
+                runCommand("contact", () => router.push("/contact"))
+              }
             >
               <User className="mr-2 h-4 w-4" />
               <span>Contact Me</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/experience"))}
+              onSelect={() =>
+                runCommand("experience", () => router.push("/experience"))
+              }
             >
               <Briefcase className="mr-2 h-4 w-4" />
               <span>Experience & Journey</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/projects"))}
+              onSelect={() =>
+                runCommand("projects", () => router.push("/projects"))
+              }
             >
               <FolderOpen className="mr-2 h-4 w-4" />
               <span>Projects</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/certificates"))}
+              onSelect={() =>
+                runCommand("certificates", () => router.push("/certificates"))
+              }
             >
               <Award className="mr-2 h-4 w-4" />
               <span>Certificates</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/mentorship"))}
+              onSelect={() =>
+                runCommand("mentorship", () => router.push("/mentorship"))
+              }
             >
               <Users className="mr-2 h-4 w-4" />
               <span>Mentorship</span>
@@ -122,15 +151,45 @@ export function CommandPalette() {
           <CommandSeparator />
 
           <CommandGroup heading="System">
-            <CommandItem onSelect={() => runCommand(() => setTheme("light"))}>
+            <CommandItem
+              onSelect={() =>
+                runCommand("theme_light", () => {
+                  setTheme("light");
+                  captureEvent(analyticsEvents.themeChanged, {
+                    theme: "light",
+                    source: "command_palette",
+                  });
+                })
+              }
+            >
               <Sun className="mr-2 h-4 w-4" />
               <span>Light Theme</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => setTheme("dark"))}>
+            <CommandItem
+              onSelect={() =>
+                runCommand("theme_dark", () => {
+                  setTheme("dark");
+                  captureEvent(analyticsEvents.themeChanged, {
+                    theme: "dark",
+                    source: "command_palette",
+                  });
+                })
+              }
+            >
               <Moon className="mr-2 h-4 w-4" />
               <span>Dark Theme</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => setTheme("system"))}>
+            <CommandItem
+              onSelect={() =>
+                runCommand("theme_system", () => {
+                  setTheme("system");
+                  captureEvent(analyticsEvents.themeChanged, {
+                    theme: "system",
+                    source: "command_palette",
+                  });
+                })
+              }
+            >
               <Laptop className="mr-2 h-4 w-4" />
               <span>System Theme</span>
             </CommandItem>

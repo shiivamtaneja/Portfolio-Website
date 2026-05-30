@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import Script from "next/script";
 
 import { defaultMetadata } from "@/lib/constants/metadata";
@@ -7,6 +6,8 @@ import { mentorships } from "@/lib/constants/mentorship";
 import { appendUTM } from "@/lib/utils";
 
 import Wrapper from "@/components/wrapper";
+import TrackedLink from "@/components/tracked-link";
+import { analyticsEvents } from "@/lib/analytics";
 import { ExternalLink } from "lucide-react";
 import {
   Tooltip,
@@ -80,11 +81,16 @@ const MentorshipPage = () => {
                       {"."}
                     </p>
                     <div className="flex items-center gap-2">
-                      <Link
+                      <TrackedLink
                         href={appendUTM(item.link)}
                         className="dark:text-white text-zinc-900 underline capitalize dark:hover:text-neutral-300 hover:text-zinc-600 transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
+                        analyticsEvent={analyticsEvents.mentorshipLinkOpened}
+                        analyticsProperties={{
+                          mentorship: item.title,
+                          role: item.role,
+                        }}
                       >
                         <Tooltip delayDuration={50}>
                           <TooltipTrigger asChild>
@@ -100,7 +106,7 @@ const MentorshipPage = () => {
                             <p>View LinkedIn Post</p>
                           </TooltipContent>
                         </Tooltip>
-                      </Link>
+                      </TrackedLink>
 
                       <span className="text-sm dark:text-neutral-400 text-neutral-500 hidden sm:inline-block">
                         |
