@@ -1,12 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getServerSession } from "next-auth";
-
 import { initGCPAuth } from "@/lib/auth/gcp-auth";
 
-import { authOptions } from "@/lib/auth/next-auth";
 import { generateEmbedding } from "@/lib/embedding";
-import { serverEnv } from "@/lib/env/server";
 import {
   appendToConversation,
   getChatsCollection,
@@ -22,54 +18,6 @@ import {
   prepareHistoryForAI,
   SYSTEM_PROMPT,
 } from "@/lib/chat";
-
-export async function GET(req: NextRequest) {
-  const searchParams = req.nextUrl.searchParams;
-  const page = parseInt(searchParams.get("page") || "1", 10);
-  const limit = parseInt(searchParams.get("limit") || "10", 10);
-  const skip = (page - 1) * limit;
-
-  if (serverEnv().NODE_ENV !== "development") {
-    const session = await getServerSession(authOptions);
-
-    if (
-      !session ||
-      session.user?.email !== serverEnv().ALLOWED_DASHBOARD_EMAIL
-    ) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-  }
-
-  try {
-    const chatsCollection = await getChatsCollection();
-
-    const totalDocs = await chatsCollection.countDocuments();
-
-    const chats = await chatsCollection
-      .find()
-      .project({ chatId: 1, title: 1, createdAt: 1 })
-      .sort({ _id: -1 })
-      .skip(skip)
-      .limit(limit)
-      .toArray();
-
-    return NextResponse.json({
-      chats,
-      pagination: {
-        total: totalDocs,
-        page,
-        limit,
-        totalPages: Math.ceil(totalDocs / limit),
-      },
-    });
-  } catch (error) {
-    console.error("Failed to get chats: ", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 },
-    );
-  }
-}
 
 export async function POST(req: NextRequest) {
   initGCPAuth();

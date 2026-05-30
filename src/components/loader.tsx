@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-import { chatIdRegex, excludedPaths } from "@/lib/constants/path-names";
+import { chatIdRegex } from "@/lib/constants/path-names";
 import { matchPath } from "@/lib/utils";
 
 const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
@@ -16,7 +16,7 @@ const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
 
   useGSAP(
     () => {
-      if (excludedPaths.includes(pathname) || chatIdRegex.test(pathname)) {
+      if (chatIdRegex.test(pathname)) {
         return;
       }
 
@@ -50,7 +50,7 @@ const Loader = ({ isFirstLoad }: { isFirstLoad: boolean }) => {
     { scope: containerRef, dependencies: [isFirstLoad] },
   );
 
-  if (excludedPaths.includes(pathname) || chatIdRegex.test(pathname)) {
+  if (chatIdRegex.test(pathname)) {
     return null;
   }
 

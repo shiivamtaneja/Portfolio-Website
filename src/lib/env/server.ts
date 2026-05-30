@@ -18,16 +18,6 @@ export function serverEnv() {
     // Google reCAPTCHA keys for server-side validation
     RECAPTCHA_SECRET_KEY: getEnvVar("RECAPTCHA_SECRET_KEY"),
 
-    // Google OAuth client credentials for authentication
-    GOOGLE_CLIENT_ID: getEnvVar("GOOGLE_CLIENT_ID"),
-    GOOGLE_CLIENT_SECRET: getEnvVar("GOOGLE_CLIENT_SECRET"),
-
-    // Email allowed to access the dashboard 
-    ALLOWED_DASHBOARD_EMAIL: getEnvVar("ALLOWED_DASHBOARD_EMAIL"),
-
-    // URL of the site to crawl
-    SITE_TO_CRAWL: getEnvVar("SITE_TO_CRAWL"),
-
     // MongoDB connection string (URI) for connecting to the database
     MONGODB_URI: getEnvVar("MONGODB_URI"),
 

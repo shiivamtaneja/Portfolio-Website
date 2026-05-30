@@ -21,11 +21,4 @@ export const pathNames = {
   },
 };
 
-export const excludedPaths = [
-  "/auth/error",
-  "/auth/signin",
-  "/dashboard",
-  "/chat",
-];
-
 export const chatIdRegex = /^\/chat\/[a-f\d]{24}$/i;

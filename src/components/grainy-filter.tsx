@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import React from 'react'
+import React from "react";
 
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
-import { chatIdRegex, excludedPaths } from '@/lib/constants/path-names'
+import { chatIdRegex } from "@/lib/constants/path-names";
 
 const GrainyFilter = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
-  if (excludedPaths.includes(pathname) || chatIdRegex.test(pathname)) {
-    return null
+  if (chatIdRegex.test(pathname)) {
+    return null;
   }
 
   return (
@@ -20,7 +20,7 @@ const GrainyFilter = () => {
         <feColorMatrix type="saturate" values="0"></feColorMatrix>
       </filter>
     </svg>
-  )
-}
+  );
+};
 
-export default GrainyFilter
+export default GrainyFilter;

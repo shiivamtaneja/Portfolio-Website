@@ -6,7 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: ["/"],
-        disallow: ["/dashboard/", "/auth/", "/chat/"],
       },
     ],
     sitemap: "https://www.shivamtaneja.com/sitemap.xml",

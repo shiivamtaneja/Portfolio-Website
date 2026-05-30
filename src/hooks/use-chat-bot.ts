@@ -56,7 +56,6 @@ export function useChatBot(open: boolean) {
     mutationFn: () => initializeChat(),
     onSuccess: async (res) => {
       setChatId(res.chatId);
-      queryClient.invalidateQueries({ queryKey: ["allChats"] });
       queryClient.invalidateQueries({ queryKey: ["chatBotUserCtn"] });
       window.dispatchEvent(new Event("chatbot-user-count-updated"));
     },
