@@ -6,6 +6,7 @@ import { defaultMetadata } from "@/lib/constants/metadata";
 import ContactForm from "@/components/contact-form";
 import TrackedLink from "@/components/tracked-link";
 import Wrapper from "@/components/wrapper";
+import GithubSponsor from "@/components/github-sponsor";
 import { analyticsEvents } from "@/lib/analytics";
 import { Calendar, FileText, MailIcon, MapPin } from "lucide-react";
 
@@ -69,7 +70,7 @@ const ContactPage = () => {
                 aria-hidden="true"
               />
               <span className="dark:text-white text-zinc-900">
-                New Delhi, India
+                Bangalore, India
               </span>
             </div>
 
@@ -106,6 +107,10 @@ const ContactPage = () => {
                 <span className="hover-animation">Schedule a Call</span>
               </p>
             </TrackedLink>
+
+            <div className="flex md:justify-start justify-center w-full mt-4">
+              <GithubSponsor variant="button" />
+            </div>
           </div>
         </div>
 

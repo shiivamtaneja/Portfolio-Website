@@ -1,13 +1,23 @@
 export const experiences = [
   {
+    title: "Custom Applications Development Engineer",
+    companyName: "KPMG",
+    workLocation: "Bangalore",
+    desc: null,
+    start: "June 2026",
+    startISO: "2026-06",
+    end: null,
+    endISO: null,
+  },
+  {
     title: "Associate Software Development Engineer",
     companyName: "NTT Data",
     workLocation: "Remote",
     desc: "Modernizing Nebula, a cloud billing and provisioning platform for NTT affiliates.",
     start: "June 2024",
     startISO: "2024-06",
-    end: null,
-    endISO: null,
+    end: "June 2026",
+    endISO: "2026-06",
   },
   {
     title: "Software Developer Intern",

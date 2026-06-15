@@ -1,8 +1,8 @@
 export const aboutMeContent = [
   // `${calculateAge('2002-05-31')}-year-old B.Tech graduate from India.`,
   "Software engineer crafting production-grade solutions.",
-  "Working as an Associate Software Developer at NTT Data.",
-  "Currently open to software engineering roles.",
+  "Working as a Custom Applications Development Engineer at KPMG.",
+  // "Currently open to software engineering roles.",
   "Crafting real-world SaaS, SDKs, and robust APIs.",
   "Focused on building tools that genuinely help people and teams.",
   `I document what I build, come say hi on <a href="https://www.youtube.com/@codesbyshivam?sub_confirmation=1" target="_blank" class="highlight-yt relative">YouTube</a> or <a href="https://www.instagram.com/codesbyshivam" target="_blank" class="highlight-yt relative">Instagram</a> - <span>@codesbyshivam</span>.`,
