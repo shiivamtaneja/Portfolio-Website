@@ -40,4 +40,14 @@ export const mentorships: Mentorship[] = [
     role: "Mentor",
     link: "https://www.linkedin.com/posts/shivam-taneja_hackathon-mentorship-innovation-ugcPost-7451927109914066944-uIjy",
   },
+  {
+    title: "HackArena 2.0 - Hyderabad Zonals",
+    role: "Mentor",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7469988808038449152/",
+  },
+  {
+    title: "HackArena 2.0 - Bangalore",
+    role: "Mentor",
+    link: "https://www.linkedin.com/posts/shivam-taneja_hackarena-bangalore-igniteroom-ugcPost-7472349333649178624-y998",
+  },
 ];
