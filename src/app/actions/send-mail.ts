@@ -1,34 +1,37 @@
-'use server'
+"use server";
 
-import { Resend } from 'resend'
+import { Resend } from "resend";
 
-import { serverEnv } from '@/lib/env/server'
-import { verifyRecaptchaToken } from '@/lib/utils'
+import { serverEnv } from "@/lib/env/server";
+import { verifyRecaptchaToken } from "@/lib/utils";
 
-import { FormDataWithRecaptcha } from '@/schema/contact'
+import { FormDataWithRecaptcha } from "@/schema/contact";
 
-import ContactFormEmail from '@/components/emails/contact-form-email'
+import ContactFormEmail from "@/components/emails/contact-form-email";
 
-const resend = new Resend(serverEnv().RESEND_API_KEY)
+const resend = new Resend(serverEnv().RESEND_API_KEY);
 
 export async function sendEmail(formData: FormDataWithRecaptcha) {
   try {
-    const { name, email, subject, message, recaptchaToken } = formData
+    const { name, email, subject, message, recaptchaToken } = formData;
 
     const recaptchaResponse = await verifyRecaptchaToken(recaptchaToken);
 
     if (!recaptchaResponse.success) {
-      console.error('reCAPTCHA failed', recaptchaResponse);
-      throw new Error('reCAPTCHA verification failed');
+      console.error("reCAPTCHA failed", recaptchaResponse);
+      throw new Error("reCAPTCHA verification failed");
     }
 
     // If the score is too low, reject the submission
-    if (recaptchaResponse.score === undefined || recaptchaResponse.score < 0.5) {
-      throw new Error('Spam detection triggered. Please try again later.');
+    if (
+      recaptchaResponse.score === undefined ||
+      recaptchaResponse.score < 0.5
+    ) {
+      throw new Error("Spam detection triggered. Please try again later.");
     }
 
     await resend.emails.send({
-      from: 'Shivam Taneja <website@shivamtaneja.com>',
+      from: "Shivam Taneja <website@shivamtaneja.com>",
       to: email,
       subject: `Thank you for your message, ${name}!`,
       react: ContactFormEmail({
@@ -36,26 +39,26 @@ export async function sendEmail(formData: FormDataWithRecaptcha) {
         email,
         subject,
         message,
-        type: 'confirmation'
-      })
-    })
+        type: "confirmation",
+      }),
+    });
 
     // Send notification email to me
     await resend.emails.send({
-      from: 'Portfolio Website <website@shivamtaneja.com>',
-      to: 'business.shivamtaneja@gmail.com',
+      from: "Portfolio Website <website@shivamtaneja.com>",
+      to: "business.shivamtaneja@gmail.com",
       subject: `New Contact Form Submission: ${subject}`,
       react: ContactFormEmail({
         name,
         email,
         subject,
         message,
-        type: 'notification'
-      })
-    })
+        type: "notification",
+      }),
+    });
 
-    return { success: true }
+    return { success: true };
   } catch (error) {
-    throw error
+    throw error;
   }
 }

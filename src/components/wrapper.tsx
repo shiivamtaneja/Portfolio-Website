@@ -51,7 +51,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
       <ChatbotHighlightProvider>
         <Link
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1000] focus:rounded-md focus:bg-zinc-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white dark:focus:bg-white dark:focus:text-zinc-900"
+          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[1000] focus-visible:rounded-md focus-visible:bg-zinc-900 focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:text-white dark:focus-visible:bg-white dark:focus-visible:text-zinc-900"
         >
           Skip to main content
         </Link>
