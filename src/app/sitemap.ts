@@ -47,6 +47,12 @@ export default async function sitemaps(): Promise<MetadataRoute.Sitemap> {
 
     // projects
     {
+      url: "https://www.shivamtaneja.com/projects/bhondu-game",
+      lastModified: new Date(),
+      priority: 0.6,
+      changeFrequency: "yearly",
+    },
+    {
       url: "https://www.shivamtaneja.com/projects/career-guidance",
       lastModified: new Date(),
       priority: 0.6,

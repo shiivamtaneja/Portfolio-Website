@@ -1,5 +1,13 @@
 export const sideProjects = [
   {
+    title: "Bhondu Life",
+    projLink: "https://www.bhondugame.com/",
+    desc: "a desi turn-based life simulator where every day throws a new, hilariously relatable situation at you.",
+    descLink: "/projects/bhondu-game/",
+    userCount: "50 users",
+    activelyWorking: true,
+  },
+  {
     title: "GraphMySelf",
     projLink: "https://www.graphmyself.com/",
     desc: "a personal AI memory layer that knows who you are, so every AI tool you use stops starting from zero.",

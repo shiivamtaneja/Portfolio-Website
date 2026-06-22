@@ -15,6 +15,7 @@ export const pathNames = {
     "tilt-bot": "Project | Tilt Bot",
     "nagar-iq": "Project | Nagar IQ",
     "collab-write": "Project | Collab Write",
+    "bhondu-game": "Project | Bhondu Life",
     "decode-mycode": "Project | DecodeMyCode",
     eznotify: "Project | EZNotify",
     graphmyself: "Project | GraphMySelf",

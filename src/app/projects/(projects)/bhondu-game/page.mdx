@@ -1,0 +1,94 @@
+import Wrapper from "@/components/wrapper";
+
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="Bhondu Life"
+  description="Live your desi life. Make cringey choices. Climb the leaderboard. Become Param Bhondu."
+  url="https://www.shivamtaneja.com/projects/bhondu-game"
+  tech={[
+    "React Native",
+    "Next.js",
+    "NestJS",
+    "Firebase",
+  ]}
+/>
+
+export const metadata = {
+  title: "Bhondu Life",
+  description:
+    "Bhondu Life is a desi turn-based life simulator where every day throws a new, hilariously relatable situation at you. From college lectures and office drama to shaadi pressure and uncle encounters, your choices shape your Bhondu destiny.",
+  keywords: [
+    "bhondu life",
+    "desi life simulator",
+    "turn-based game",
+    "life simulator",
+    "jugaad",
+    "kalesh",
+    "bhondu game",
+    "indian life game",
+    "web game",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://www.shivamtaneja.com/projects/bhondu-game",
+    images: [
+      {
+        url: "/projects/og-image-bhondu-game.png",
+        alt: "Bhondu Life | Shivam Taneja",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/projects/og-image-bhondu-game.png"],
+  },
+  alternates: {
+    canonical: "https://www.shivamtaneja.com/projects/bhondu-game",
+  },
+};
+
+<Wrapper>
+  <article className="flex flex-col gap-6">
+
+    # Bhondu Life
+
+    - [View live project](https://www.bhondugame.com/)
+
+    <SubSection title="About The Project">
+      Bhondu Life is a desi turn-based life simulator where every day throws a new, hilariously relatable situation at you. From college lectures and office drama to shaadi pressure and uncle encounters, your choices shape your Bhondu destiny.
+
+      Make funny, jugaad, or outright cringey decisions to earn Bhondu Points. Handle daily kalesh, unlock achievements, and rise through the global ranks to become the one and only Param Bhondu.
+
+      Whether you are the master of excuses, the king of jugaad, or just vibing through life, Bhondu Life has a place for you. Download now and start living your best bhondu life.
+    </SubSection>
+
+    <SubSection title="Technologies Used">
+      ### Mobile Apps:
+      - React Native
+
+      <br />
+
+      ### Web App:
+      - Next.js
+
+      <br />
+
+      ### Backend & Database:
+      - NestJS
+      - Firebase
+    </SubSection>
+
+    <SubSection title="Features">
+      - **Fresh daily situations**: Inspired by real desi life
+      - **Multiple life stages**: College, Office, Shaadi, Uncle Mode
+      - **Stat tracking**: Jugaad, Kalesh, Chill, and more
+      - **Leaderboard**: Compete with Bhondus worldwide
+      - **Mini-games and achievements**: Unlock them as you play
+      - **Guest or Sign in**: Play as guest or sign in to save progress
+    </SubSection>
+
+  </article>
+</Wrapper>

@@ -19,6 +19,7 @@ The stats page shows privacy-safe aggregate website activity only, such as month
 ## Detailed Projects
 Here is a complete list of my featured projects along with direct links to their detailed pages:
 
+- **Bhondu Life**: [https://www.shivamtaneja.com/projects/bhondu-game](https://www.shivamtaneja.com/projects/bhondu-game)
 - **Career Guidance**: [https://www.shivamtaneja.com/projects/career-guidance](https://www.shivamtaneja.com/projects/career-guidance)
 - **Chat Bot**: [https://www.shivamtaneja.com/projects/chat-bot](https://www.shivamtaneja.com/projects/chat-bot)
 - **Chat Mingle**: [https://www.shivamtaneja.com/projects/chat-mingle](https://www.shivamtaneja.com/projects/chat-mingle)
