@@ -41,11 +41,11 @@ export async function POST(req: NextRequest) {
     // Generate title in background if it's a new chat
     if (!existingChat?.title) {
       generateChatTitle(message).then(async (title) => {
-        await chatsCollection.updateOne(
-          { chatId },
-          { $set: { title } },
-          { session },
-        );
+        try {
+          await chatsCollection.updateOne({ chatId }, { $set: { title } });
+        } catch (e) {
+          console.error("Failed to update chat title in DB:", e);
+        }
       });
     }
 

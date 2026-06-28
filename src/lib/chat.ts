@@ -32,7 +32,7 @@ export async function generateChatTitle(message: string): Promise<string> {
           content: `Generate a short title (max 5 words) for this message: "${message}". Return only the title.`,
         },
       ],
-      max_tokens: 15,
+      max_tokens: 100,
     });
 
     const title = titleRes.choices[0]?.message?.content?.trim() || "New Chat";
