@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
 
   // Stream AI response using Groq
   const aiStreamResponse = await groq.chat.completions.create({
-    model: "llama3-8b-8192",
+    model: "openai/gpt-oss-20b",
     messages: [
       { role: "system", content: SYSTEM_PROMPT },
       ...chatHistory,
@@ -125,7 +125,7 @@ The chatbot implementation uses several techniques to ensure good performance:
 
 1. **Mem0 Knowledge Base**: Context is retrieved efficiently using Mem0's specialized memory layer.
 2. **Streaming Responses**: The backend streams the Groq AI response back to the client as Server-Sent Events, drastically reducing perceived latency.
-3. **Model Selection**: Using Groq's lightning-fast `llama3-8b-8192` model.
+3. **Model Selection**: Using Groq's lightning-fast `openai/gpt-oss-20b` model.
 
 ## Configuration
 

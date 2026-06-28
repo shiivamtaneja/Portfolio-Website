@@ -25,7 +25,7 @@ IMPORTANT RULES:
 export async function generateChatTitle(message: string): Promise<string> {
   try {
     const titleRes = await groq.chat.completions.create({
-      model: "llama3-8b-8192",
+      model: "openai/gpt-oss-20b",
       messages: [
         {
           role: "user",
