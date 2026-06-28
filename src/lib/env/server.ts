@@ -1,18 +1,20 @@
 // import 'server-only';
 
-import { getEnvVar } from './utils';
+import { getEnvVar } from "./utils";
 
 // Centralized object to manage all environment variables for server side application
 export function serverEnv() {
-  if (typeof window !== 'undefined') {
-    throw new Error('Server environment variables cannot be accessed from the client');
+  if (typeof window !== "undefined") {
+    throw new Error(
+      "Server environment variables cannot be accessed from the client",
+    );
   }
 
   return {
     // Environment (e.g., 'development', 'production')
     NODE_ENV: getEnvVar("NODE_ENV"),
 
-    // API key for the Resend service 
+    // API key for the Resend service
     RESEND_API_KEY: getEnvVar("RESEND_API_KEY"),
 
     // Google reCAPTCHA keys for server-side validation
@@ -25,18 +27,15 @@ export function serverEnv() {
     MONGODB_DB_NAME: getEnvVar("MONGODB_DB_NAME"),
 
     // Collection names within MongoDB
-    MONGODB_COLLECTION_EMBEDDINGS: getEnvVar("MONGODB_COLLECTION_EMBEDDINGS"),
-    MONGODB_COLLECTION_CRAWLING_META: getEnvVar("MONGODB_COLLECTION_CRAWLING_META"),
+    MONGODB_COLLECTION_CRAWLING_META: getEnvVar(
+      "MONGODB_COLLECTION_CRAWLING_META",
+    ),
     MONGODB_COLLECTION_CHATS: getEnvVar("MONGODB_COLLECTION_CHATS"),
-
-    // MongoDB vector search configuration settings
-    MONGODB_VECTOR_INDEX_NAME: getEnvVar("MONGODB_VECTOR_INDEX_NAME"),
-    MONGODB_VECTOR_PATH_NAME: getEnvVar("MONGODB_VECTOR_PATH_NAME"),
-
-    // Base64-encoded Google Cloud Platform credentials for accessing GCP services
-    GCP_KEY_BASE64: getEnvVar("GCP_KEY_BASE64"),
 
     // API key for accessing the GROQ API
     GROQ_API_KEY: getEnvVar("GROQ_API_KEY"),
-  }
-};
+
+    // API key for accessing the Mem0 API
+    MEM0_API_KEY: getEnvVar("MEM0_API_KEY"),
+  };
+}

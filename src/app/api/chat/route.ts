@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { initGCPAuth } from "@/lib/auth/gcp-auth";
-
 import {
   appendToConversation,
   getChatsCollection,
@@ -10,11 +8,15 @@ import {
 
 import { chatSchema } from "@/schema/chat";
 
-import { generateChatTitle } from "@/lib/chat";
+import {
+  findRelevantContent,
+  generateChatTitle,
+  groq,
+  prepareHistoryForAI,
+  SYSTEM_PROMPT,
+} from "@/lib/chat";
 
 export async function POST(req: NextRequest) {
-  initGCPAuth();
-
   const client = await getDbClient();
   const session = client.startSession();
   const chatsCollection = await getChatsCollection();
@@ -47,17 +49,84 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Stream the WIP response
-    const wipResponse =
-      "I'm currently a work in progress and will be up or coming soon!";
+    // Prepare history and find relevant content using Mem0
+    const chatHistory = prepareHistoryForAI(existingChat);
+    const relevantContent = await findRelevantContent(message);
+
+    // Fallback if no relevant content found
+    if (!relevantContent) {
+      const fallbackResponse =
+        "I don't have enough information to answer that question. Feel free to ask me something else about me!";
+
+      const stream = new ReadableStream({
+        async start(controller) {
+          const encoder = new TextEncoder();
+          controller.enqueue(
+            encoder.encode(`data: ${JSON.stringify(fallbackResponse)}\n\n`),
+          );
+          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+
+          try {
+            await appendToConversation(
+              chatId,
+              fallbackResponse,
+              null,
+              "bot",
+              session,
+            );
+          } catch (e) {
+            console.error("Failed to append fallback bot response", e);
+          }
+
+          controller.close();
+        },
+      });
+
+      return new Response(stream, {
+        headers: {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
+        },
+      });
+    }
+
+    // Stream the AI response
+    const aiStreamResponse = await groq.chat.completions.create({
+      model: "llama3-8b-8192",
+      messages: [
+        {
+          role: "system",
+          content: SYSTEM_PROMPT,
+        },
+        ...chatHistory,
+        {
+          role: "user",
+          content: `CONTEXT (Information about Shivam Taneja):\n---\n${relevantContent}\n---\n\nVISITOR'S MESSAGE: ${message}\n\nPlease respond in the first person ("I", "my") as Shivam Taneja using the context above. Use standard markdown formatting.`,
+        },
+      ],
+      frequency_penalty: 0.5,
+      presence_penalty: 0.5,
+      temperature: 0.7,
+      max_tokens: 400,
+      stream: true,
+    });
+
     const stream = new ReadableStream({
       async start(controller) {
         const encoder = new TextEncoder();
+        let fullBotResponse = "";
 
         try {
-          controller.enqueue(
-            encoder.encode(`data: ${JSON.stringify(wipResponse)}\n\n`),
-          );
+          for await (const chunk of aiStreamResponse) {
+            const content = chunk.choices[0]?.delta?.content || "";
+            if (content) {
+              fullBotResponse += content;
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify(content)}\n\n`),
+              );
+            }
+          }
         } catch (streamError) {
           console.error("Stream generation error:", streamError);
           controller.error(streamError);
@@ -65,7 +134,7 @@ export async function POST(req: NextRequest) {
           try {
             await appendToConversation(
               chatId,
-              wipResponse,
+              fullBotResponse,
               null,
               "bot",
               session,

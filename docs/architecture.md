@@ -22,10 +22,10 @@ This portfolio website is built as a modern full-stack application using Next.js
 
 ### External Services
 
-- **Database**: MongoDB Atlas with vector search capabilities
-- **AI Services**: 
+- **Database**: MongoDB Atlas for chat history and metadata
+- **AI Services**:
   - Groq AI for chat response generation
-  - Vertex AI for embedding generation
+  - Mem0 for contextual memory management
 - **Email**: Resend for email delivery
 - **Authentication**: NextAuth.js with Google OAuth provider
 
@@ -36,15 +36,15 @@ This portfolio website is built as a modern full-stack application using Next.js
 1. Content is authored and published to the website
 2. The crawler processes the content via sitemap
 3. Content is cleaned, transformed to markdown
-4. Vertex AI generates embeddings
-5. Content and embeddings are stored in MongoDB
+4. Content is ingested into the Mem0 knowledge base
+5. Metadata is tracked in MongoDB
 
 ### Chatbot Interaction Flow
 
 1. User initiates a chat session
 2. User messages are sent to the server
-3. Server converts messages to embeddings
-4. MongoDB vector search finds relevant content
+3. Server queries Mem0 for relevant context
+4. Mem0 returns relevant knowledge about Shivam
 5. Groq AI generates personalized responses
 6. Responses are sent back to the user and stored
 
@@ -73,7 +73,7 @@ This portfolio website is built as a modern full-stack application using Next.js
 
 ## Scalability Considerations
 
-- **Vector Database**: MongoDB scales to millions of embeddings
+- **Memory**: Mem0 provides efficient and scalable contextual memory retrieval
 - **Stateless Design**: API endpoints are stateless for horizontal scaling
 - **Resource Optimization**: Efficient use of AI API calls
 - **Crawling Efficiency**: Incremental crawling to reduce processing

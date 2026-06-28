@@ -33,11 +33,6 @@ async function getChatsCollection() {
   return db.collection<ChatDocument>(serverEnv().MONGODB_COLLECTION_CHATS);
 }
 
-async function getEmbeddingsCollection() {
-  const db = await connectToDatabase();
-  return db.collection(serverEnv().MONGODB_COLLECTION_EMBEDDINGS);
-}
-
 async function getCrawlingMetaDataCollection() {
   const db = await connectToDatabase();
   return db.collection<CrawlingMetaData>(
@@ -87,5 +82,4 @@ export {
   getChatsCollection,
   getCrawlingMetaDataCollection,
   getDbClient,
-  getEmbeddingsCollection,
 };

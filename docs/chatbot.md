@@ -10,8 +10,8 @@ The chatbot system consists of several interconnected components:
 
 1. **Frontend Interface**: A chat UI built with React and Tailwind CSS
 2. **Chat Backend**: API endpoints handling message processing and response generation
-3. **Vector Database**: MongoDB with vector search capabilities
-4. **AI Model**: Groq API for generating natural language responses
+3. **Memory Client**: `mem0ai` for retrieving contextual memory and website content
+4. **AI Model**: Groq API (`llama3-8b-8192`) for generating natural language responses
 
 ## How It Works
 
@@ -27,12 +27,12 @@ When a user clicks on the chatbot button in the frontend:
 ```typescript
 // Simplified chat initialization
 export async function initializeChat() {
-  const response = await fetch('/api/chat/initialize', {
-    method: 'POST',
+  const response = await fetch("/api/chat/initialize", {
+    method: "POST",
   });
-  
+
   const { chatId } = await response.json();
-  localStorage.setItem('chatId', chatId);
+  localStorage.setItem("chatId", chatId);
   return chatId;
 }
 ```
@@ -42,49 +42,44 @@ export async function initializeChat() {
 When a user sends a message:
 
 1. The message and chatId are sent to the `/api/chat` endpoint
-2. The backend converts the message to embeddings using Vertex AI
-3. MongoDB vector search finds relevant content from the website
-4. The message, relevant content, and chat history are sent to Groq AI
-5. The AI generates a response which is stored in the chat history
-6. The response is returned to the frontend and displayed to the user
+2. The user's message is immediately stored in MongoDB chat history
+3. `mem0ai` searches its knowledge base for relevant context
+4. The message, relevant context, and chat history are formatted and sent to Groq AI
+5. The AI generates a streaming response, which is streamed to the frontend
+6. Once streaming completes, the final response is saved to the chat history
 
 ```typescript
 // Simplified message processing flow
 export async function POST(req: NextRequest) {
   const { message, chatId } = await req.json();
-  
-  // Initialize GCP auth
-  initGCPAuth();
-  
-  // Generate embedding for the user's message
-  const queryEmbedding = await generateEmbedding(message);
-  
-  // Search for relevant content
-  const results = await embeddingsCollection.aggregate([
-    {
-      $vectorSearch: {
-        index: serverEnv().MONGODB_VECTOR_INDEX_NAME,
-        path: serverEnv().MONGODB_VECTOR_PATH_NAME,
-        queryVector: queryEmbedding,
-        numCandidates: 100,
-        limit: 5,
-        similarity: "cosine",
-      }
-    }
-  ]).toArray();
-  
+
+  // Save user message immediately
+  await appendToConversation(chatId, message, null, "user", session);
+
+  // Search for relevant content in Mem0
+  const relevantContent = await findRelevantContent(message);
+
   // Get chat history
   const existingChat = await chatsCollection.findOne({ chatId });
-  const chatHistory = prepareChatHistory(existingChat);
-  
-  // Generate AI response using Groq
-  const aiResponse = await generateGroqResponse(message, results[0].content, chatHistory);
-  
-  // Store in database
-  await appendToConversation(chatId, message, "user");
-  await appendToConversation(chatId, aiResponse.response, "bot");
-  
-  return NextResponse.json({ chatId });
+  const chatHistory = prepareHistoryForAI(existingChat);
+
+  // Stream AI response using Groq
+  const aiStreamResponse = await groq.chat.completions.create({
+    model: "llama3-8b-8192",
+    messages: [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...chatHistory,
+      { role: "user", content: `CONTEXT: ... \nMESSAGE: ${message}` },
+    ],
+    stream: true,
+  });
+
+  // (Streaming logic omitted for brevity...)
+
+  // Return ReadableStream
+  return new Response(stream, {
+    headers: { "Content-Type": "text/event-stream" },
+  });
 }
 ```
 
@@ -98,35 +93,25 @@ The Groq AI model generates responses based on:
 4. The user's latest message
 
 The model is configured to:
-- Use a lightweight model (llama-3.1-8b-instant) for speed
+
+- Use a lightweight model (llama3-8b-8192) for speed
 - Generate concise responses with appropriate tone
 - Provide a title for the chat conversation
 - Return valid JSON format
 
 ## Database Schema
 
-The chatbot utilizes two main collections in MongoDB:
-
-### Embeddings Collection
-
-```typescript
-interface EmbeddingDocument {
-  url: string;         // Page URL
-  title: string;       // Page title
-  description: string; // Meta description
-  content: string;     // Page content (markdown)
-  embedding: number[]; // Vector embedding
-}
-```
+The chatbot utilizes the following collection in MongoDB:
 
 ### Chats Collection
 
 ```typescript
 interface ChatDocument {
-  chatId: string;      // Unique chat identifier
-  title: string;       // AI-generated chat title
-  conversation: {      // Array of messages
-    type: 'user' | 'bot';
+  chatId: string; // Unique chat identifier
+  title: string; // AI-generated chat title
+  conversation: {
+    // Array of messages
+    type: "user" | "bot";
     message: string;
     timestamp: Date;
   }[];
@@ -138,10 +123,9 @@ interface ChatDocument {
 
 The chatbot implementation uses several techniques to ensure good performance:
 
-1. **Parallel Operations**: Running embedding generation and chat retrieval in parallel
-2. **Reduced Vector Parameters**: Using optimized numCandidates and limit values
-3. **Model Selection**: Using llama-3.1-8b-instant for faster responses
-4. **Content Limitation**: Limiting content length for embedding to stay within rate limits
+1. **Mem0 Knowledge Base**: Context is retrieved efficiently using Mem0's specialized memory layer.
+2. **Streaming Responses**: The backend streams the Groq AI response back to the client as Server-Sent Events, drastically reducing perceived latency.
+3. **Model Selection**: Using Groq's lightning-fast `llama3-8b-8192` model.
 
 ## Configuration
 
@@ -150,12 +134,9 @@ The chatbot requires the following environment variables:
 ```env
 MONGODB_URI=""
 MONGODB_DB_NAME=""
-MONGODB_COLLECTION_EMBEDDINGS=""
 MONGODB_COLLECTION_CHATS=""
-MONGODB_VECTOR_INDEX_NAME=""
-MONGODB_VECTOR_PATH_NAME=""
-GCP_KEY_BASE64=""
 GROQ_API_KEY=""
+MEM0_API_KEY=""
 NEXTAUTH_SECRET=""
 NEXTAUTH_URL="http://localhost:3000"
 ```
@@ -164,7 +145,6 @@ NEXTAUTH_URL="http://localhost:3000"
 
 Planned improvements for the chatbot include:
 
-1. Implementing response streaming for better UX
-2. Adding feedback mechanism to improve responses
-3. Implementing caching for common questions
-4. Adding typing indicators and read receipts
+1. Adding feedback mechanism to improve responses
+2. Implementing caching for common questions
+3. Adding typing indicators and read receipts
