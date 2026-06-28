@@ -1,7 +1,9 @@
 import Groq from "groq-sdk";
 
 import { serverEnv } from "@/lib/env/server";
+import { getEmbeddingsCollection } from "@/lib/mongo";
 import { ChatDocument } from "@/types/chats.types";
+
 export const groq = new Groq({ apiKey: serverEnv().GROQ_API_KEY });
 
 export const SYSTEM_PROMPT = `
@@ -34,6 +36,33 @@ export async function generateChatTitle(message: string): Promise<string> {
     console.error("Title generation fail", e);
     return "New Chat";
   }
+}
+
+export async function findRelevantContent(
+  queryEmbedding: number[],
+): Promise<string | null> {
+  const embeddingsCollection = await getEmbeddingsCollection();
+
+  const results = await embeddingsCollection
+    .aggregate([
+      {
+        $vectorSearch: {
+          index: serverEnv().MONGODB_VECTOR_INDEX_NAME,
+          path: serverEnv().MONGODB_VECTOR_PATH_NAME,
+          queryVector: queryEmbedding,
+          numCandidates: 100,
+          limit: 5,
+          similarity: "cosine",
+        },
+      },
+    ])
+    .toArray();
+
+  if (!results || results.length === 0) {
+    return null;
+  }
+
+  return results[0].content;
 }
 
 export function prepareHistoryForAI(existingChat: ChatDocument | null) {
