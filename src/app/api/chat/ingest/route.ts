@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { memoryClient } from "@/lib/chat";
 import * as cheerio from "cheerio";
 import { parseStringPromise } from "xml2js";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   if (process.env.NODE_ENV !== "development") {
     return new NextResponse("Not Found", { status: 404 });
   }
