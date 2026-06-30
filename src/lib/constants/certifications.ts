@@ -1,5 +1,30 @@
 export const certifications = [
   {
+    title: "From Relational Model (SQL) to MongoDB's Document Model",
+    company: "MongoDB",
+    link: "https://www.credly.com/badges/ea5f26dc-3d1a-4ac4-ad2b-e55466539798",
+    description:
+      "Validates knowledge of converting SQL or relational models to MongoDB’s document model. Recognizes understanding of designing data relationships and enforcing schema validation to create efficient, well-structured applications with robust data models.",
+    skills: [
+      "Data Architecture",
+      "Database Development",
+      "Database Schemas",
+      "Data Management",
+      "Data Modeling",
+      "Data Models",
+      "Data Validation",
+      "Information Models",
+      "Modeling Languages",
+      "MongoDB",
+      "NoSQL Databases",
+      "Relational",
+      "Relational Databases",
+      "Relationships",
+      "Schema Validation",
+      "SQL",
+    ],
+  },
+  {
     title: "Generative AI Leader Certification",
     company: "Google",
     link: "https://www.credly.com/badges/a0403a29-7dc7-4030-a767-9e770e36a4b1",
