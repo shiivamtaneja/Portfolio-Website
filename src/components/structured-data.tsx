@@ -21,12 +21,12 @@ const StructuredData = () => {
           height: 630,
         },
         description:
-          "Shivam Taneja is an Associate Software Development Engineer and Full Stack Developer specializing in modern web technologies including React, Next.js, and Node.js.",
-        jobTitle: "Associate Software Development Engineer",
+          "Shivam Taneja is an Associate Consultant and Full Stack Developer specializing in modern web technologies including React, Next.js, and Node.js.",
+        jobTitle: "Associate Consultant",
         worksFor: {
           "@type": "Organization",
-          name: "NTT Data",
-          url: "https://www.nttdata.com",
+          name: "KPMG",
+          url: "https://kpmg.com",
         },
         alumniOf: {
           "@type": "EducationalOrganization",

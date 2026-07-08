@@ -1,7 +1,7 @@
 export const aboutMeContent = [
   // `${calculateAge('2002-05-31')}-year-old B.Tech graduate from India.`,
   "Software engineer crafting production-grade solutions.",
-  "Working as a Custom Applications Development Engineer at KPMG.",
+  "Working as an Associate Consultant at KPMG.",
   // "Currently open to software engineering roles.",
   "Crafting real-world SaaS, SDKs, and robust APIs.",
   "Focused on building tools that genuinely help people and teams.",

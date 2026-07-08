@@ -1,6 +1,6 @@
 export const experiences = [
   {
-    title: "Custom Applications Development Engineer",
+    title: "Associate Consultant",
     companyName: "KPMG",
     workLocation: "Bangalore",
     desc: null,
