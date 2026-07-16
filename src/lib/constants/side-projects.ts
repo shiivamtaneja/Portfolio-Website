@@ -4,7 +4,7 @@ export const sideProjects = [
     projLink: "https://www.bhondugame.com/",
     desc: "a desi turn-based life simulator where every day throws a new, hilariously relatable situation at you.",
     descLink: "/projects/bhondu-game/",
-    userCount: "50 users",
+    userCount: "92 users",
     activelyWorking: true,
   },
   {
@@ -13,7 +13,7 @@ export const sideProjects = [
     desc: "a personal AI memory layer that knows who you are, so every AI tool you use stops starting from zero.",
     descLink: "/projects/graphmyself/",
     userCount: "5 users",
-    activelyWorking: true,
+    activelyWorking: false,
   },
   {
     title: "MySkillRoad",
@@ -21,7 +21,7 @@ export const sideProjects = [
     desc: "a personalized learning roadmap that tracks your growth across platforms and tells you exactly what to learn next.",
     descLink: "/projects/myskill-road/",
     userCount: null,
-    activelyWorking: true,
+    activelyWorking: false,
   },
   {
     title: "EZNotify",
