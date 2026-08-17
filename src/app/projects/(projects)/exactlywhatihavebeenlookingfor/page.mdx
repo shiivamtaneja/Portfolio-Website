@@ -1,0 +1,73 @@
+import Wrapper from "@/components/wrapper";
+
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="Exactly What I Have Been Looking For"
+  description="A growing, crowdsourced database of the useful-but-forgettable tools, links, and finds."
+  url="https://www.shivamtaneja.com/projects/exactlywhatihavebeenlookingfor"
+  tech={["Next.js"]}
+/>
+
+export const metadata = {
+  title: "Exactly What I Have Been Looking For",
+  description:
+    "A growing, crowdsourced database of the useful-but-forgettable: tools, links, and finds that people either didn't know existed or knew and lost. Not another sterile productivity-tool list, the personality is the product. Every entry has a reason it's there (a real Reddit thread, a real 'I needed this,' a genuine 'wait, this exists?'), filtered through your own humor and a desi lens that the rest of this niche isn't touching.",
+  keywords: [
+    "exactly what i have been looking for",
+    "useful tools",
+    "crowdsourced database",
+    "desi humor",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://www.shivamtaneja.com/projects/exactlywhatihavebeenlookingfor",
+    images: [
+      {
+        url: "/projects/og-image-exactlywhatihavebeenlookingfor.png",
+        alt: "Exactly What I Have Been Looking For | Shivam Taneja",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/projects/og-image-exactlywhatihavebeenlookingfor.png"],
+  },
+  alternates: {
+    canonical:
+      "https://www.shivamtaneja.com/projects/exactlywhatihavebeenlookingfor",
+  },
+};
+
+<Wrapper>
+  <article className="flex flex-col gap-6">
+
+    # Exactly What I Have Been Looking For
+
+    - [View live project](https://exactlywhatihavebeenlookingfor.com/)
+
+    <SubSection title="About The Project">
+      The place people land when they say "wait, is this actually the domain" and then realize it's true. It's a growing, crowdsourced database of the useful-but-forgettable: tools, links, and finds that people either didn't know existed or knew and lost. Not another sterile productivity-tool list, the personality is the product. Every entry has a reason it's there (a real Reddit thread, a real "I needed this," a genuine "wait, this exists?"), filtered through your own humor and a desi lens that the rest of this niche isn't touching.
+    </SubSection>
+
+    <SubSection title="The Story">
+      It started with a simple realization: the internet is full of hidden gems that we bookmark, forget, and then spend hours trying to find again. Instead of keeping them in a dusty notes app, I decided to build a home for them. And what better name than the exact phrase people type when they finally find what they need?
+    </SubSection>
+
+    <SubSection title="Features">
+      - **Curated Chaos**: A handpicked collection of tools, websites, and resources that actually matter.
+      - **Desi Flavor**: Commentary and categorization that does not take itself too seriously.
+      - **Crowdsourced Goodness**: Submissions from the community because the best finds come from random Reddit threads and group chats.
+      - **The Anti-Sterile Aesthetic**: Designed to feel like you are digging through a treasure chest, not a corporate spreadsheet.
+    </SubSection>
+
+    <SubSection title="Technologies Used">
+      ### Web App:
+      - Next.js
+
+    </SubSection>
+
+  </article>
+</Wrapper>

@@ -20,6 +20,9 @@ export const pathNames = {
     eznotify: "Project | EZNotify",
     graphmyself: "Project | GraphMySelf",
     "myskill-road": "Project | MySkillRoad",
+    exactlywhatihavebeenlookingfor:
+      "Project | Exactly What I Have Been Looking For",
+    theguyshetoldyouabout: "Project | The Guy She Told You About",
   },
 };
 

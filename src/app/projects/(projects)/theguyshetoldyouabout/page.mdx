@@ -1,0 +1,67 @@
+import Wrapper from "@/components/wrapper";
+
+import ProjectStructuredData from "@/components/project-structured-data";
+
+<ProjectStructuredData
+  name="The Guy She Told You About"
+  description="My another profile/portfolio i got just cause for funziess xD."
+  url="https://www.shivamtaneja.com/projects/theguyshetoldyouabout"
+  tech={["Next.js"]}
+/>
+
+export const metadata = {
+  title: "The Guy She Told You About",
+  description:
+    "My another profile/portfolio i got just cause for funziess xD so it has details about me and its like a fun random domain i bought.",
+  keywords: ["the guy she told you about", "fun profile", "portfolio"],
+  openGraph: {
+    type: "website",
+    url: "https://www.shivamtaneja.com/projects/theguyshetoldyouabout",
+    images: [
+      {
+        url: "/projects/og-image-theguyshetoldyouabout.png",
+        alt: "The Guy She Told You About | Shivam Taneja",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/projects/og-image-theguyshetoldyouabout.png"],
+  },
+  alternates: {
+    canonical: "https://www.shivamtaneja.com/projects/theguyshetoldyouabout",
+  },
+};
+
+<Wrapper>
+  <article className="flex flex-col gap-6">
+
+    # The Guy She Told You About
+
+    - [View live project](https://theguyshetoldyouabout.com/)
+
+    <SubSection title="About The Project">
+      My another profile/portfolio i got just cause for funziess xD so it has details about me and its like a fun random domain i bought.
+    </SubSection>
+
+    <SubSection title="The Story">
+      Sometimes you buy a domain because it makes perfect business sense. And sometimes you buy a domain because it is available and it makes you laugh. This is strictly the latter. It is a secondary portfolio that leans entirely into the meme, acting as a personal sandbox for fun interactions and non-serious updates.
+    </SubSection>
+
+    <SubSection title="Features">
+      - **The Vibe**: Pure fun, zero professional pressure.
+      - **Meme First Design**: If it makes me chuckle, it goes on the site.
+      - **Easter Eggs**: Hidden jokes and interactive elements scattered throughout.
+      - **A Second Identity**: A place to show the less polished, more chaotic side of my work.
+    </SubSection>
+
+    <SubSection title="Technologies Used">
+      ### Web App:
+      - Next.js
+
+    </SubSection>
+
+  </article>
+</Wrapper>
