@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePostHog } from "posthog-js/react";
 import { Cookie } from "lucide-react";
 
@@ -15,6 +15,18 @@ export function CookieConsent() {
   const [message, setMessage] = useState<string>(COOKIE_MESSAGES.DEFAULT[0]);
   const posthog = usePostHog();
   const acceptRef = useRef<HTMLButtonElement>(null);
+
+  const acceptCookies = () => {
+    localStorage.setItem("cookie-consent", "accepted");
+    posthog?.opt_in_capturing();
+    setShowBanner(false);
+  };
+
+  const declineCookies = useCallback(() => {
+    localStorage.setItem("cookie-consent", "declined");
+    posthog?.opt_out_capturing();
+    setShowBanner(false);
+  }, [posthog]);
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
@@ -39,21 +51,9 @@ export function CookieConsent() {
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [showBanner]);
+  }, [showBanner, declineCookies]);
 
   if (!showBanner) return null;
-
-  const acceptCookies = () => {
-    localStorage.setItem("cookie-consent", "accepted");
-    posthog?.opt_in_capturing();
-    setShowBanner(false);
-  };
-
-  const declineCookies = () => {
-    localStorage.setItem("cookie-consent", "declined");
-    posthog?.opt_out_capturing();
-    setShowBanner(false);
-  };
 
   return (
     <div
