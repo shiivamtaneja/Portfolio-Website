@@ -40,6 +40,8 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       capture_pageleave: true,
       person_profiles: "identified_only",
 
+      opt_out_capturing_by_default: true,
+
       disable_session_recording: true,
       capture_heatmaps: false,
       enable_heatmaps: false,

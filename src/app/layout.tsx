@@ -14,6 +14,7 @@ import GrainyFilter from "@/components/grainy-filter";
 import SmoothScroll from "@/components/smooth-scroll";
 import StructuredData from "@/components/structured-data";
 import { CommandPalette } from "@/components/command-palette";
+import { CookieConsent } from "@/components/cookie-consent";
 
 const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500", "700"],
@@ -55,13 +56,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       {/* <head>
         <Script id="gtm-init" strategy="afterInteractive">
-          {`
+          {\`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-WVPS3JFL');
-      `}
+      \`}
         </Script>
       </head> */}
       <body
@@ -103,6 +104,8 @@ export default function RootLayout({
             </div>
 
             <SmoothScroll>{children}</SmoothScroll>
+
+            <CookieConsent />
           </ThemeProvider>
         </PostHogProvider>
 
